@@ -1,0 +1,225 @@
+// Zentrale, erweiterbare Definition aller Fragen.
+// Neue Fragen: einfach hier ergänzen. Alte Einträge bleiben gültig,
+// fehlende Antworten gelten als "unbeantwortet".
+export const SCHEMA_VERSION = 1;
+
+export type FieldType =
+  | "scale10"
+  | "text"
+  | "textarea"
+  | "ynu" // Ja / Nein / Unsicher
+  | "list" // wiederholbare Textliste mit Plus-Button
+  | "slist"; // wiederholbare strukturierte Liste
+
+export interface SubField {
+  id: string;
+  label: string;
+  type: "text" | "textarea" | "scale10";
+}
+
+export interface Question {
+  id: string;
+  label: string;
+  type: FieldType;
+  help?: string;
+  fields?: SubField[]; // nur für slist
+}
+
+export interface Section {
+  id: string;
+  title: string;
+  questions: Question[];
+}
+
+const Q = (q: Question) => q;
+
+export const QUESTIONS: Record<string, Question> = {
+  mood_overall: Q({ id: "mood_overall", label: "Gesamtstimmung heute", type: "scale10" }),
+  energy: Q({ id: "energy", label: "Energie", type: "scale10" }),
+  day_summary: Q({ id: "day_summary", label: "Kurze Tageszusammenfassung", type: "textarea" }),
+  improved_today: Q({ id: "improved_today", label: "Bin ich heute besser geworden?", type: "ynu" }),
+  learned_today: Q({ id: "learned_today", label: "Was habe ich gelernt?", type: "list" }),
+  good_decision: Q({ id: "good_decision", label: "Eine gute Entscheidung heute", type: "text" }),
+  social_courage: Q({ id: "social_courage", label: "Gab es eine soziale Mut-Situation?", type: "textarea" }),
+  proud_of: Q({ id: "proud_of", label: "Worauf bin ich stolz?", type: "list" }),
+  tomorrow: Q({ id: "tomorrow", label: "Was möchte ich morgen tun?", type: "list" }),
+  dreamed: Q({ id: "dreamed", label: "Habe ich geträumt?", type: "ynu" }),
+
+  did_today: Q({ id: "did_today", label: "Was habe ich heute gemacht?", type: "textarea" }),
+  important_today: Q({ id: "important_today", label: "Was war heute wichtig?", type: "textarea" }),
+  on_my_mind: Q({ id: "on_my_mind", label: "Was hat mich beschäftigt?", type: "textarea" }),
+  remember: Q({ id: "remember", label: "Was möchte ich nicht vergessen?", type: "list" }),
+  free_thoughts: Q({ id: "free_thoughts", label: "Freie Gedanken", type: "textarea" }),
+
+  mood_morning: Q({ id: "mood_morning", label: "Stimmung morgens", type: "scale10" }),
+  mood_noon: Q({ id: "mood_noon", label: "Stimmung mittags", type: "scale10" }),
+  mood_evening: Q({ id: "mood_evening", label: "Stimmung abends", type: "scale10" }),
+  motivation: Q({ id: "motivation", label: "Motivation", type: "scale10" }),
+  stress: Q({ id: "stress", label: "Stress", type: "scale10" }),
+  focus: Q({ id: "focus", label: "Fokus", type: "scale10" }),
+  calm: Q({ id: "calm", label: "Innere Ruhe", type: "scale10" }),
+  mood_up: Q({ id: "mood_up", label: "Was hat meine Stimmung verbessert?", type: "list" }),
+  mood_down: Q({ id: "mood_down", label: "Was hat meine Stimmung verschlechtert?", type: "list" }),
+
+  feelings: Q({
+    id: "feelings",
+    label: "Besondere Gefühle",
+    type: "slist",
+    fields: [
+      { id: "feeling", label: "Gefühl", type: "text" },
+      { id: "intensity", label: "Intensität", type: "scale10" },
+      { id: "situation", label: "Situation / Auslöser", type: "textarea" },
+      { id: "insight", label: "Gedanke / Erkenntnis dazu", type: "textarea" },
+    ],
+  }),
+
+  dreams: Q({
+    id: "dreams",
+    label: "Träume",
+    type: "slist",
+    fields: [
+      { id: "title", label: "Titel", type: "text" },
+      { id: "description", label: "Beschreibung", type: "textarea" },
+      { id: "intensity", label: "Intensität", type: "scale10" },
+      { id: "interpretation", label: "Eigene Interpretation", type: "textarea" },
+    ],
+  }),
+
+  growth_items: Q({
+    id: "growth_items",
+    label: "Wachstumsbeiträge",
+    type: "slist",
+    fields: [
+      { id: "title", label: "Was ist besser geworden?", type: "text" },
+      { id: "category", label: "Kategorie (z. B. Disziplin, Mut, Schule)", type: "text" },
+      { id: "progress", label: "Größe des Fortschritts", type: "scale10" },
+      { id: "evidence", label: "Konkreter Beleg", type: "textarea" },
+    ],
+  }),
+
+  social_situations: Q({
+    id: "social_situations",
+    label: "Soziale Situationen",
+    type: "slist",
+    fields: [
+      { id: "title", label: "Situation", type: "text" },
+      { id: "fear_expected", label: "Erwartete Angst vorher", type: "scale10" },
+      { id: "fear_actual", label: "Tatsächliche Angst", type: "scale10" },
+      { id: "outcome", label: "Was ist tatsächlich passiert?", type: "textarea" },
+      { id: "learned", label: "Was habe ich gelernt?", type: "textarea" },
+    ],
+  }),
+  initiated_conversations: Q({
+    id: "initiated_conversations",
+    label: "Selbst begonnene Gespräche (Anzahl)",
+    type: "text",
+  }),
+
+  decisions: Q({
+    id: "decisions",
+    label: "Entscheidungen",
+    type: "slist",
+    fields: [
+      { id: "title", label: "Entscheidung", type: "text" },
+      { id: "rating", label: "Gut / schlecht / unklar", type: "text" },
+      { id: "reason", label: "Warum so entschieden?", type: "textarea" },
+      { id: "rule", label: "Daraus gelernte Regel", type: "textarea" },
+    ],
+  }),
+
+  sleep_hours: Q({ id: "sleep_hours", label: "Schlafdauer (Stunden)", type: "text" }),
+  sleep_quality: Q({ id: "sleep_quality", label: "Schlafqualität", type: "scale10" }),
+  training: Q({ id: "training", label: "Training (Art, Dauer)", type: "text" }),
+  complaints: Q({ id: "complaints", label: "Beschwerden", type: "list" }),
+
+  grateful: Q({ id: "grateful", label: "Wofür bin ich dankbar?", type: "list" }),
+  best_moments: Q({ id: "best_moments", label: "Beste Momente", type: "list" }),
+
+  difficult: Q({ id: "difficult", label: "Was war schwierig?", type: "list" }),
+  mistakes_learned: Q({ id: "mistakes_learned", label: "Fehler und was ich daraus lerne", type: "list" }),
+
+  avoid_tomorrow: Q({ id: "avoid_tomorrow", label: "Was möchte ich morgen vermeiden?", type: "text" }),
+  self_reminder: Q({ id: "self_reminder", label: "Erinnerung an mich selbst", type: "text" }),
+};
+
+// Schnellmodus: 60–120 Sekunden
+export const QUICK_IDS: string[] = [
+  "mood_overall",
+  "energy",
+  "day_summary",
+  "improved_today",
+  "learned_today",
+  "good_decision",
+  "social_courage",
+  "proud_of",
+  "tomorrow",
+  "dreamed",
+];
+
+// Vollständiger Check-in (teilt sich Daten mit dem Schnellmodus)
+export const FULL_SECTIONS: Section[] = [
+  {
+    id: "journal",
+    title: "Mini-Tagebuch",
+    questions: [
+      QUESTIONS.did_today,
+      QUESTIONS.important_today,
+      QUESTIONS.on_my_mind,
+      QUESTIONS.remember,
+      QUESTIONS.free_thoughts,
+    ],
+  },
+  {
+    id: "mood",
+    title: "Stimmung im Tagesverlauf",
+    questions: [
+      QUESTIONS.mood_morning,
+      QUESTIONS.mood_noon,
+      QUESTIONS.mood_evening,
+      QUESTIONS.motivation,
+      QUESTIONS.stress,
+      QUESTIONS.focus,
+      QUESTIONS.calm,
+      QUESTIONS.mood_up,
+      QUESTIONS.mood_down,
+    ],
+  },
+  { id: "feelings", title: "Besondere Gefühle", questions: [QUESTIONS.feelings] },
+  { id: "dreams", title: "Traumtagebuch", questions: [QUESTIONS.dreams] },
+  { id: "growth", title: "Persönliches Wachstum", questions: [QUESTIONS.growth_items] },
+  {
+    id: "social",
+    title: "Soziale Sicherheit & Mut",
+    questions: [QUESTIONS.social_situations, QUESTIONS.initiated_conversations],
+  },
+  { id: "decisions", title: "Entscheidungen", questions: [QUESTIONS.decisions] },
+  {
+    id: "health",
+    title: "Körper & Gesundheit",
+    questions: [
+      QUESTIONS.sleep_hours,
+      QUESTIONS.sleep_quality,
+      QUESTIONS.training,
+      QUESTIONS.complaints,
+    ],
+  },
+  {
+    id: "gratitude",
+    title: "Stolz, Dankbarkeit & Höhepunkte",
+    questions: [QUESTIONS.proud_of, QUESTIONS.grateful, QUESTIONS.best_moments],
+  },
+  {
+    id: "difficulties",
+    title: "Schwierigkeiten & Fehler",
+    questions: [QUESTIONS.difficult, QUESTIONS.mistakes_learned],
+  },
+  {
+    id: "planning",
+    title: "Morgenplanung",
+    questions: [QUESTIONS.tomorrow, QUESTIONS.avoid_tomorrow, QUESTIONS.self_reminder],
+  },
+];
+
+export type ListItem = { id: string; text: string };
+export type SListItem = { id: string; [key: string]: unknown };
+export type Answers = Record<string, unknown>;
