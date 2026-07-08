@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { QuestionRenderer } from "../components/Fields";
 import { FULL_SECTIONS, QUESTIONS, QUICK_IDS } from "../lib/schema";
@@ -118,12 +118,20 @@ export default function Today({ userId }: { userId: string }) {
       ) : mode === "quick" ? (
         <div className="card">
           {QUICK_IDS.map((id) => (
-            <QuestionRenderer
-              key={id}
-              q={QUESTIONS[id]}
-              value={answers[id]}
-              onChange={(v) => update(id, v)}
-            />
+            <Fragment key={id}>
+              <QuestionRenderer
+                q={QUESTIONS[id]}
+                value={answers[id]}
+                onChange={(v) => update(id, v)}
+              />
+              {id === "dreamed" && answers.dreamed === "Ja" && (
+                <QuestionRenderer
+                  q={QUESTIONS.dream_text}
+                  value={answers.dream_text}
+                  onChange={(v) => update("dream_text", v)}
+                />
+              )}
+            </Fragment>
           ))}
         </div>
       ) : (
