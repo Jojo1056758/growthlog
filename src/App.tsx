@@ -65,7 +65,7 @@ export default function App() {
         </NavLink>
         <NavLink to="/history">Verlauf</NavLink>
         <NavLink to="/analyse">Analyse</NavLink>
-        <NavLink to="/words">Vörter</NavLink>
+        <NavLink to="/words">Wörter</NavLink>
         <NavLink to="/settings">Mehr</NavLink>
       </nav>
     </BrowserRouter>
