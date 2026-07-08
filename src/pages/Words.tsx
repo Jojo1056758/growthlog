@@ -1,7 +1,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabase";
-import { WORD_SELECT_COLUMNS, WordRow, successRate } from "../lib/quiz";
+import { MAIN_CATEGORIES, WORD_SELECT_COLUMNS, WordRow, successRate } from "../lib/quiz";
 
 export default function Words({ userId }: { userId: string }) {
   const [words, setWords] = useState<WordRow[]>([]);
@@ -82,12 +82,14 @@ export default function Words({ userId }: { userId: string }) {
             required
           />
           <label htmlFor="w-cat">Kategorie (optional)</label>
-          <input
-            id="w-cat"
-            type="text"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          />
+          <select id="w-cat" value={category} onChange={(e) => setCategory(e.target.value)}>
+            <option value="">Keine Kategorie</option>
+            {MAIN_CATEGORIES.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </select>
           <label htmlFor="w-def">Bedeutung</label>
           <input
             id="w-def"

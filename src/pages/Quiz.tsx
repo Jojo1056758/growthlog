@@ -3,14 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import {
   COUNT_OPTIONS,
+  NewRating,
   QUIZ_MODES,
   QuizModeId,
   QuizSettings,
-  Rating,
   RATING_LABELS,
   WORD_SELECT_COLUMNS,
   WordRow,
   buildQuizWords,
+  extractCategories,
   filterByMode,
   recordAnswer,
 } from "../lib/quiz";
@@ -34,7 +35,7 @@ export default function Quiz({ userId }: { userId: string }) {
   const [sessionWords, setSessionWords] = useState<WordRow[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
-  const [results, setResults] = useState<Record<string, Rating>>({});
+  const [results, setResults] = useState<Record<string, NewRating>>({});
   const [saving, setSaving] = useState(false);
 
   const load = async () => {
@@ -57,13 +58,7 @@ export default function Quiz({ userId }: { userId: string }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
-  const categories = useMemo(() => {
-    const set = new Set<string>();
-    words.forEach((w) => {
-      if (w.category) set.add(w.category);
-    });
-    return Array.from(set).sort();
-  }, [words]);
+  const categories = useMemo(() => extractCategories(words), [words]);
 
   const availablePool = useMemo(
     () => filterByMode(words, settings.mode, settings.category),
@@ -86,7 +81,7 @@ export default function Quiz({ userId }: { userId: string }) {
 
   const currentWord = sessionWords[currentIndex] || null;
 
-  const rate = async (rating: Rating) => {
+  const rate = async (rating: NewRating) => {
     if (!currentWord || saving) return;
     setSaving(true);
     await recordAnswer(currentWord, rating);
@@ -104,24 +99,18 @@ export default function Quiz({ userId }: { userId: string }) {
   const summary = useMemo(() => {
     const total = sessionWords.length;
     let correct = 0;
-    let partial = 0;
     let wrong = 0;
-    let unknown = 0;
     const problematic: WordRow[] = [];
     sessionWords.forEach((w) => {
       const r = results[w.id];
       if (r === "correct") correct++;
-      else if (r === "partial") partial++;
       else if (r === "wrong") {
         wrong++;
-        problematic.push(w);
-      } else if (r === "unknown") {
-        unknown++;
         problematic.push(w);
       }
     });
     const rate = total > 0 ? Math.round((correct / total) * 100) : 0;
-    return { total, correct, partial, wrong, unknown, rate, problematic };
+    return { total, correct, wrong, rate, problematic };
   }, [sessionWords, results]);
 
   const retryProblematic = () => {
@@ -283,18 +272,22 @@ export default function Quiz({ userId }: { userId: string }) {
               {currentWord.example && <p className="muted small">{currentWord.example}</p>}
               {currentWord.example2 && <p className="muted small">{currentWord.example2}</p>}
 
-              <div className="row-gap" style={{ flexWrap: "wrap" }}>
-                <button type="button" className="pill" disabled={saving} onClick={() => rate("correct")}>
-                  {RATING_LABELS.correct}
-                </button>
-                <button type="button" className="pill" disabled={saving} onClick={() => rate("partial")}>
-                  {RATING_LABELS.partial}
-                </button>
-                <button type="button" className="pill" disabled={saving} onClick={() => rate("wrong")}>
+              <div className="quiz-answer-row">
+                <button
+                  type="button"
+                  className="quiz-answer-btn wrong"
+                  disabled={saving}
+                  onClick={() => rate("wrong")}
+                >
                   {RATING_LABELS.wrong}
                 </button>
-                <button type="button" className="pill" disabled={saving} onClick={() => rate("unknown")}>
-                  {RATING_LABELS.unknown}
+                <button
+                  type="button"
+                  className="quiz-answer-btn correct"
+                  disabled={saving}
+                  onClick={() => rate("correct")}
+                >
+                  {RATING_LABELS.correct}
                 </button>
               </div>
             </>
@@ -318,16 +311,8 @@ export default function Quiz({ userId }: { userId: string }) {
           <strong>{summary.correct}</strong>
         </div>
         <div className="stat-row">
-          <span>{RATING_LABELS.partial}</span>
-          <strong>{summary.partial}</strong>
-        </div>
-        <div className="stat-row">
           <span>{RATING_LABELS.wrong}</span>
           <strong>{summary.wrong}</strong>
-        </div>
-        <div className="stat-row">
-          <span>{RATING_LABELS.unknown}</span>
-          <strong>{summary.unknown}</strong>
         </div>
         <div className="stat-row">
           <span>Erfolgsquote</span>
@@ -352,7 +337,7 @@ export default function Quiz({ userId }: { userId: string }) {
         disabled={!summary.problematic.length}
         onClick={retryProblematic}
       >
-        Falsche &amp; nicht gewusste Wörter erneut üben
+        Falsche Wörter erneut üben
       </button>
       <button type="button" className="pill" onClick={() => setStep("setup")}>
         Neues Quiz starten

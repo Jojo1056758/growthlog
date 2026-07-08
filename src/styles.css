@@ -63,7 +63,7 @@ label, .q-label {
 }
 .question:first-child .q-label { margin-top: 0; }
 
-input[type="text"], input[type="email"], input[type="password"], textarea {
+input[type="text"], input[type="email"], input[type="password"], textarea, select {
   width: 100%;
   padding: 12px;
   border: 1px solid var(--border);
@@ -228,6 +228,21 @@ button { font: inherit; cursor: pointer; }
   border-radius: 3px 3px 0 0;
   min-width: 3px;
 }
+
+.quiz-answer-row { display: flex; gap: 12px; margin-top: 14px; }
+.quiz-answer-btn {
+  flex: 1;
+  min-height: 64px;
+  padding: 18px 12px;
+  border-radius: 14px;
+  border: 2px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.quiz-answer-btn.wrong { border-color: var(--error); color: var(--error); }
+.quiz-answer-btn.correct { border-color: var(--accent); color: var(--accent); }
 
 .word-row {
   display: flex;
