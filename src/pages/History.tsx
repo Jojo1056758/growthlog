@@ -59,6 +59,7 @@ export default function History({ userId }: { userId: string }) {
         {entries.map((e) => {
           const mood = e.answers?.mood_overall as number | undefined;
           const summary = (e.answers?.day_summary as string) || "";
+          const dreamText = (e.answers?.dream_text as string) || "";
           return (
             <Link className="history-item" to={`/?date=${e.entry_date}`} key={e.entry_date}>
               <div className="history-date">
@@ -68,6 +69,7 @@ export default function History({ userId }: { userId: string }) {
                 )}
               </div>
               {summary && <p className="muted small clamp">{summary}</p>}
+              {dreamText && <p className="muted small clamp">Traum: {dreamText}</p>}
             </Link>
           );
         })}
