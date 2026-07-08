@@ -1,15 +1,7 @@
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabase";
-
-interface WordRow {
-  id: string;
-  word: string;
-  definition: string;
-  example: string | null;
-  notes: string | null;
-  review_count: number;
-  correct_count: number;
-}
+import { WORD_SELECT_COLUMNS, WordRow, successRate } from "../lib/quiz";
 
 export default function Words({ userId }: { userId: string }) {
   const [words, setWords] = useState<WordRow[]>([]);
@@ -17,21 +9,21 @@ export default function Words({ userId }: { userId: string }) {
   const [error, setError] = useState<string | null>(null);
 
   const [word, setWord] = useState("");
+  const [category, setCategory] = useState("");
   const [definition, setDefinition] = useState("");
+  const [definition2, setDefinition2] = useState("");
   const [example, setExample] = useState("");
+  const [example2, setExample2] = useState("");
   const [busy, setBusy] = useState(false);
-
-  const [quizIndex, setQuizIndex] = useState<number | null>(null);
-  const [revealed, setRevealed] = useState(false);
 
   const load = async () => {
     const { data, error } = await supabase
       .from("user_words")
-      .select("id, word, definition, example, notes, review_count, correct_count")
+      .select(WORD_SELECT_COLUMNS)
       .eq("user_id", userId)
       .order("created_at", { ascending: false });
     if (error) setError(error.message);
-    else setWords((data as WordRow[]) || []);
+    else setWords((data as unknown as WordRow[]) || []);
     setLoading(false);
   };
 
@@ -48,8 +40,11 @@ export default function Words({ userId }: { userId: string }) {
     const { error } = await supabase.from("user_words").insert({
       user_id: userId,
       word: word.trim(),
+      category: category.trim() || null,
       definition: definition.trim(),
+      definition2: definition2.trim() || null,
       example: example.trim() || null,
+      example2: example2.trim() || null,
     });
     setBusy(false);
     if (error) {
@@ -57,8 +52,11 @@ export default function Words({ userId }: { userId: string }) {
       return;
     }
     setWord("");
+    setCategory("");
     setDefinition("");
+    setDefinition2("");
     setExample("");
+    setExample2("");
     load();
   };
 
@@ -66,41 +64,6 @@ export default function Words({ userId }: { userId: string }) {
     const { error } = await supabase.from("user_words").delete().eq("id", id);
     if (error) setError(error.message);
     else setWords((prev) => prev.filter((w) => w.id !== id));
-  };
-
-  const quizWord = useMemo(
-    () => (quizIndex !== null && words[quizIndex] ? words[quizIndex] : null),
-    [quizIndex, words]
-  );
-
-  const startQuiz = () => {
-    if (!words.length) return;
-    setQuizIndex(Math.floor(Math.random() * words.length));
-    setRevealed(false);
-  };
-
-  const answer = async (correct: boolean) => {
-    if (!quizWord) return;
-    await supabase
-      .from("user_words")
-      .update({
-        review_count: quizWord.review_count + 1,
-        correct_count: quizWord.correct_count + (correct ? 1 : 0),
-        last_reviewed_at: new Date().toISOString(),
-      })
-      .eq("id", quizWord.id);
-    setWords((prev) =>
-      prev.map((w) =>
-        w.id === quizWord.id
-          ? {
-              ...w,
-              review_count: w.review_count + 1,
-              correct_count: w.correct_count + (correct ? 1 : 0),
-            }
-          : w
-      )
-    );
-    startQuiz();
   };
 
   return (
@@ -118,6 +81,13 @@ export default function Words({ userId }: { userId: string }) {
             onChange={(e) => setWord(e.target.value)}
             required
           />
+          <label htmlFor="w-cat">Kategorie (optional)</label>
+          <input
+            id="w-cat"
+            type="text"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          />
           <label htmlFor="w-def">Bedeutung</label>
           <input
             id="w-def"
@@ -125,12 +95,26 @@ export default function Words({ userId }: { userId: string }) {
             value={definition}
             onChange={(e) => setDefinition(e.target.value)}
           />
+          <label htmlFor="w-def2">Zweite Erklärung (optional)</label>
+          <input
+            id="w-def2"
+            type="text"
+            value={definition2}
+            onChange={(e) => setDefinition2(e.target.value)}
+          />
           <label htmlFor="w-ex">Beispielsatz (optional)</label>
           <input
             id="w-ex"
             type="text"
             value={example}
             onChange={(e) => setExample(e.target.value)}
+          />
+          <label htmlFor="w-ex2">Zweiter Beispielsatz (optional)</label>
+          <input
+            id="w-ex2"
+            type="text"
+            value={example2}
+            onChange={(e) => setExample2(e.target.value)}
           />
           <button className="primary" type="submit" disabled={busy}>
             {busy ? "Speichert…" : "Hinzufügen"}
@@ -141,33 +125,13 @@ export default function Words({ userId }: { userId: string }) {
       <div className="card">
         <div className="row-between">
           <h2>Quiz</h2>
-          <button type="button" className="pill" onClick={startQuiz} disabled={!words.length}>
-            {quizWord ? "Nächstes Wort" : "Quiz starten"}
-          </button>
+          <Link className="pill" to="/words/quiz">
+            Quiz starten
+          </Link>
         </div>
-        {quizWord && (
-          <div>
-            <p className="quiz-word">{quizWord.word}</p>
-            {revealed ? (
-              <>
-                <p>{quizWord.definition || <span className="muted">Keine Bedeutung hinterlegt.</span>}</p>
-                {quizWord.example && <p className="muted small">{quizWord.example}</p>}
-                <div className="row-gap">
-                  <button type="button" className="pill" onClick={() => answer(true)}>
-                    Gewusst ✓
-                  </button>
-                  <button type="button" className="pill" onClick={() => answer(false)}>
-                    Nicht gewusst ✕
-                  </button>
-                </div>
-              </>
-            ) : (
-              <button type="button" className="primary" onClick={() => setRevealed(true)}>
-                Bedeutung anzeigen
-              </button>
-            )}
-          </div>
-        )}
+        <p className="muted small">
+          Wähle Modus, Kategorie und Anzahl der Fragen im Quizbereich.
+        </p>
       </div>
 
       <div className="card">
@@ -177,25 +141,32 @@ export default function Words({ userId }: { userId: string }) {
         {!loading && !words.length && (
           <p className="muted">Noch keine Wörter gespeichert.</p>
         )}
-        {words.map((w) => (
-          <div className="word-row" key={w.id}>
-            <div>
-              <strong>{w.word}</strong>
-              {w.definition && <p className="muted small">{w.definition}</p>}
-              <p className="muted small">
-                {w.review_count}× geübt, {w.correct_count}× gewusst
-              </p>
+        {words.map((w) => {
+          const rate = successRate(w);
+          return (
+            <div className="word-row" key={w.id}>
+              <div>
+                <strong>{w.word}</strong>
+                {w.category && <span className="muted small"> · {w.category}</span>}
+                {w.definition && <p className="muted small">{w.definition}</p>}
+                <p className="muted small">
+                  {w.review_count}× abgefragt
+                  {w.review_count > 0 &&
+                    ` · ${w.correct_count} richtig, ${w.partial_count} teilweise, ${w.wrong_count} falsch, ${w.unknown_count} nicht gewusst`}
+                  {rate !== null && ` · ${Math.round(rate * 100)}% Erfolgsquote`}
+                </p>
+              </div>
+              <button
+                type="button"
+                className="icon-btn"
+                aria-label={`${w.word} löschen`}
+                onClick={() => remove(w.id)}
+              >
+                ✕
+              </button>
             </div>
-            <button
-              type="button"
-              className="icon-btn"
-              aria-label={`${w.word} löschen`}
-              onClick={() => remove(w.id)}
-            >
-              ✕
-            </button>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

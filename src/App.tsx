@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
+import { BrowserRouter, Routes, Route, NavLink, useLocation } from "react-router-dom";
 import type { Session } from "@supabase/supabase-js";
 import { supabase, supabaseConfigured } from "./lib/supabase";
 import Auth from "./pages/Auth";
@@ -7,6 +7,7 @@ import Today from "./pages/Today";
 import History from "./pages/History";
 import Analyse from "./pages/Analyse";
 import Words from "./pages/Words";
+import Quiz from "./pages/Quiz";
 import Settings from "./pages/Settings";
 
 export default function App() {
@@ -49,25 +50,39 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      <Shell userId={userId} email={email} />
+    </BrowserRouter>
+  );
+}
+
+function Shell({ userId, email }: { userId: string; email: string }) {
+  const location = useLocation();
+  const isQuiz = location.pathname.startsWith("/words/quiz");
+
+  return (
+    <>
       <main className="content">
         <Routes>
           <Route path="/" element={<Today userId={userId} />} />
           <Route path="/history" element={<History userId={userId} />} />
           <Route path="/analyse" element={<Analyse userId={userId} />} />
           <Route path="/words" element={<Words userId={userId} />} />
+          <Route path="/words/quiz" element={<Quiz userId={userId} />} />
           <Route path="/settings" element={<Settings userId={userId} email={email} />} />
           <Route path="*" element={<Today userId={userId} />} />
         </Routes>
       </main>
-      <nav className="bottom-nav">
-        <NavLink to="/" end>
-          Heute
-        </NavLink>
-        <NavLink to="/history">Verlauf</NavLink>
-        <NavLink to="/analyse">Analyse</NavLink>
-        <NavLink to="/words">Wörter</NavLink>
-        <NavLink to="/settings">Mehr</NavLink>
-      </nav>
-    </BrowserRouter>
+      {!isQuiz && (
+        <nav className="bottom-nav">
+          <NavLink to="/" end>
+            Heute
+          </NavLink>
+          <NavLink to="/history">Verlauf</NavLink>
+          <NavLink to="/analyse">Analyse</NavLink>
+          <NavLink to="/words">Wörter</NavLink>
+          <NavLink to="/settings">Mehr</NavLink>
+        </nav>
+      )}
+    </>
   );
 }
