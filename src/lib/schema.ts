@@ -44,6 +44,7 @@ export const QUESTIONS: Record<string, Question> = {
   proud_of: Q({ id: "proud_of", label: "Worauf bin ich stolz?", type: "list" }),
   tomorrow: Q({ id: "tomorrow", label: "Was möchte ich morgen tun?", type: "list" }),
   dreamed: Q({ id: "dreamed", label: "Habe ich geträumt?", type: "ynu" }),
+  dream_text: Q({ id: "dream_text", label: "Woran hast du geträumt?", type: "textarea" }),
 
   did_today: Q({ id: "did_today", label: "Was habe ich heute gemacht?", type: "textarea" }),
   important_today: Q({ id: "important_today", label: "Was war heute wichtig?", type: "textarea" }),
