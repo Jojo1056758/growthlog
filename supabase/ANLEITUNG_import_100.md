@@ -16,19 +16,30 @@ kein destruktiver Eingriff). Es werden **keine** bestehenden Wörter gelöscht o
 
 3. **Import-Funktionen anlegen**
    Inhalt von [`import_words.sql`](import_words.sql) ausführen.
-   → legt `gl_enrich_existing_words(...)` und `gl_import_words_until(...)` an.
+   → legt `gl_enrich_existing_words(...)`, `gl_categorize_uncategorized(...)` und
+   `gl_import_words_until(...)` an.
 
 4. **Eigene Benutzer-ID ermitteln** (keine erfundene ID verwenden):
    ```sql
    select id, email from auth.users;
    ```
 
-5. **Bestehende Wörter vervollständigen** (füllt nur leere Felder):
+5. **Bestehende Wörter vervollständigen** (füllt nur leere Felder aus dem Katalog):
    ```sql
    select public.gl_enrich_existing_words('DEINE-USER-ID');
    ```
 
-6. **Auf genau 100 auffüllen:**
+6. **Restliche Wörter ohne Kategorie zuordnen** (damit KEIN Wort unter „Ohne
+   Kategorie" bleibt – betrifft nur Wörter, die nicht im 250er-Katalog vorkommen):
+   ```sql
+   select public.gl_categorize_uncategorized('DEINE-USER-ID');
+   ```
+   Standard-Fallback ist `Allgemeine Bildungssprache`. Optional andere Kategorie:
+   ```sql
+   select public.gl_categorize_uncategorized('DEINE-USER-ID', 'Kultur und Geschichte');
+   ```
+
+7. **Auf genau 100 auffüllen:**
    ```sql
    select * from public.gl_import_words_until('DEINE-USER-ID', 100);
    ```
@@ -38,6 +49,23 @@ kein destruktiver Eingriff). Es werden **keine** bestehenden Wörter gelöscht o
 
 ```sql
 select count(*) from public.user_words where user_id = 'DEINE-USER-ID';   -- erwartet: 100
+```
+
+## Prüfen, ob kein Wort ohne Kategorie bleibt
+
+```sql
+-- erwartet: 0
+select count(*) from public.user_words
+ where user_id = 'DEINE-USER-ID' and nullif(btrim(category),'') is null;
+
+-- Ungültige Kategorien (erwartet: 0 Zeilen):
+select distinct category from public.user_words
+ where user_id = 'DEINE-USER-ID'
+   and category not in (
+     'Philosophie und Erkenntnistheorie','Psychologie und Verhalten','Sprache und Rhetorik',
+     'Logik und Argumentation','Wissenschaft und Forschung','Politik und Gesellschaft',
+     'Wirtschaft und Organisation','Kultur und Geschichte','Recht und Ethik','Allgemeine Bildungssprache'
+   );
 ```
 
 ## Prüfen, ob Kategorien und Zusatzfelder vorhanden sind
@@ -60,11 +88,14 @@ select status, count(*) from public.word_queue group by status;
 
 ## Hinweise
 
-- **Bestehende Wörter ohne Katalogtreffer:** `gl_enrich_existing_words` kann nur
-  Wörter vervollständigen, die auch im 250er-Katalog vorkommen. Für eigene Wörter,
-  die dort nicht enthalten sind, werden Kategorie/zweite Erklärung/zweiter
-  Beispielsatz **nicht** automatisch erfunden. Diese lassen sich in der App manuell
-  über das Wort-Formular nachtragen.
+- **Bestehende Wörter ohne Katalogtreffer:** `gl_enrich_existing_words` kann die
+  fachlich passende Kategorie sowie zweite Erklärung/zweiten Beispielsatz nur für
+  Wörter setzen, die auch im 250er-Katalog vorkommen. Für eigene Wörter, die dort
+  nicht enthalten sind, weist `gl_categorize_uncategorized` eine Fallback-Kategorie
+  zu (Standard: `Allgemeine Bildungssprache`), damit kein Wort ohne Kategorie bleibt.
+  Die zweite Erklärung/der zweite Beispielsatz werden für diese Wörter **nicht**
+  erfunden und lassen sich in der App manuell über das Wort-Formular nachtragen;
+  auch die Fallback-Kategorie kann dort jederzeit angepasst werden.
 - **Warteliste bleibt erhalten:** Nicht aktivierte Wörter bleiben in `word_queue`
   mit Status `pending` und dienen später der (separaten) Tagesautomatisierung.
 - **Regenerieren des Katalogs** (optional, nur bei inhaltlichen Änderungen):

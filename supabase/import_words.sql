@@ -37,6 +37,40 @@ begin
 end;
 $$;
 
+-- 1b) Verbleibende Wörter OHNE Kategorie einer Fallback-Hauptkategorie zuordnen.
+--     Nach gl_enrich_existing_words ausführen: die fachlich passende Kategorie wird
+--     dort bereits per Katalogtreffer gesetzt. Hier landen nur Wörter, die NICHT im
+--     250er-Katalog vorkommen. So bleibt garantiert kein Wort unter „Ohne Kategorie".
+--     Idempotent (füllt nur leere Kategorien) und nicht destruktiv.
+create or replace function public.gl_categorize_uncategorized(
+  target_user uuid,
+  fallback_category text default 'Allgemeine Bildungssprache'
+)
+returns int
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  updated_count int;
+  allowed text[] := array[
+    'Philosophie und Erkenntnistheorie','Psychologie und Verhalten','Sprache und Rhetorik',
+    'Logik und Argumentation','Wissenschaft und Forschung','Politik und Gesellschaft',
+    'Wirtschaft und Organisation','Kultur und Geschichte','Recht und Ethik','Allgemeine Bildungssprache'
+  ];
+begin
+  if not (fallback_category = any(allowed)) then
+    raise exception 'Ungültige Fallback-Kategorie: %', fallback_category;
+  end if;
+  update public.user_words uw
+     set category = fallback_category
+   where uw.user_id = target_user
+     and nullif(btrim(uw.category), '') is null;
+  get diagnostics updated_count = row_count;
+  return updated_count;
+end;
+$$;
+
 -- 2) Wortschatz auf genau target_total (Standard 100) auffüllen:
 --    - markiert Katalogwörter, die der Nutzer bereits besitzt, als 'skipped_duplicate'
 --    - fügt danach angereicherte, noch nicht vorhandene Wörter in balancierter
@@ -111,16 +145,35 @@ $$;
 --   1. Eigene Benutzer-ID ermitteln (KEINE erfundene ID verwenden!):
 --        select id, email from auth.users;
 --
---   2. Bestehende Wörter vervollständigen (leere Felder auffüllen):
+--   2. Bestehende Wörter vervollständigen (leere Felder aus Katalog auffüllen):
 --        select public.gl_enrich_existing_words('DEINE-USER-ID');
 --
---   3. Auf genau 100 Wörter auffüllen:
+--   3. Restliche Wörter ohne Kategorie einer Fallback-Kategorie zuordnen,
+--      damit KEIN Wort unter „Ohne Kategorie" bleibt:
+--        select public.gl_categorize_uncategorized('DEINE-USER-ID');
+--      (optional andere Fallback-Kategorie:
+--        select public.gl_categorize_uncategorized('DEINE-USER-ID', 'Kultur und Geschichte'); )
+--
+--   4. Auf genau 100 Wörter auffüllen:
 --        select * from public.gl_import_words_until('DEINE-USER-ID', 100);
 --      Rückgabe: inserted (neu eingefügt), skipped (Duplikate), final_total (=100).
 --
 -- PRÜFUNGEN:
 --   -- Gesamtzahl (erwartet: 100):
 --   select count(*) from public.user_words where user_id = 'DEINE-USER-ID';
+--
+--   -- Wörter ohne Kategorie (erwartet: 0):
+--   select count(*) from public.user_words
+--    where user_id = 'DEINE-USER-ID' and nullif(btrim(category),'') is null;
+--
+--   -- Ungültige Kategorien (erwartet: 0 Zeilen):
+--   select distinct category from public.user_words
+--    where user_id = 'DEINE-USER-ID'
+--      and category not in (
+--        'Philosophie und Erkenntnistheorie','Psychologie und Verhalten','Sprache und Rhetorik',
+--        'Logik und Argumentation','Wissenschaft und Forschung','Politik und Gesellschaft',
+--        'Wirtschaft und Organisation','Kultur und Geschichte','Recht und Ethik','Allgemeine Bildungssprache'
+--      );
 --
 --   -- Verteilung je Kategorie:
 --   select category, count(*) from public.user_words
