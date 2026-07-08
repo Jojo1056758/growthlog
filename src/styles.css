@@ -229,6 +229,29 @@ button { font: inherit; cursor: pointer; }
   min-width: 3px;
 }
 
+.cat-section { border-bottom: 1px solid var(--border); }
+.cat-section:last-child { border-bottom: none; }
+.cat-section .section-toggle { padding: 12px 0; }
+.cat-words { padding-bottom: 8px; }
+.word-main { flex: 1; min-width: 0; }
+.word-open {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--text);
+  padding: 0;
+}
+.word-detail {
+  margin-top: 8px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+}
+.word-detail p { margin: 4px 0; }
+
 .quiz-answer-row { display: flex; gap: 12px; margin-top: 14px; }
 .quiz-answer-btn {
   flex: 1;

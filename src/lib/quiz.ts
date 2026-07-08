@@ -43,6 +43,35 @@ export function extractCategories(words: WordRow[]): string[] {
   return Array.from(set).sort((a, b) => a.localeCompare(b, "de"));
 }
 
+export const NO_CATEGORY_LABEL = "Ohne Kategorie";
+
+export interface WordGroup {
+  category: string; // normalisierter Name oder NO_CATEGORY_LABEL
+  words: WordRow[];
+}
+
+// Gruppiert Wörter nach normalisierter Kategorie. Reihenfolge: zuerst die zehn
+// Hauptkategorien (nur wenn belegt), dann zusätzliche Kategorien alphabetisch,
+// zuletzt Wörter ohne Kategorie. Leere Gruppen entfallen.
+export function groupByCategory(words: WordRow[]): WordGroup[] {
+  const map = new Map<string, WordRow[]>();
+  for (const w of words) {
+    const key = normalizeCategory(w.category) || NO_CATEGORY_LABEL;
+    if (!map.has(key)) map.set(key, []);
+    map.get(key)!.push(w);
+  }
+  const order: string[] = [];
+  MAIN_CATEGORIES.forEach((c) => {
+    if (map.has(c)) order.push(c);
+  });
+  Array.from(map.keys())
+    .filter((k) => k !== NO_CATEGORY_LABEL && !MAIN_CATEGORIES.includes(k))
+    .sort((a, b) => a.localeCompare(b, "de"))
+    .forEach((k) => order.push(k));
+  if (map.has(NO_CATEGORY_LABEL)) order.push(NO_CATEGORY_LABEL);
+  return order.map((category) => ({ category, words: map.get(category)! }));
+}
+
 export interface WordRow {
   id: string;
   word: string;

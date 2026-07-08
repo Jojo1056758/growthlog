@@ -1,0 +1,2252 @@
+[
+  {
+    "reihenfolge": 1,
+    "wort": "Abstraktion",
+    "wortart": "Substantiv",
+    "erklaerung": "Das Herauslösen allgemeiner Merkmale aus vielen einzelnen Fällen.",
+    "beispielsatz": "Die Abstraktion half ihr, hinter den Beispielen ein gemeinsames Muster zu erkennen.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 2,
+    "wort": "Axiom",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine grundlegende Annahme, die innerhalb eines Systems nicht weiter bewiesen wird.",
+    "beispielsatz": "Die gesamte Argumentation beruhte auf dem Axiom, dass gleiche Fälle gleich behandelt werden sollen.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 3,
+    "wort": "Deduktion",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein Schluss vom Allgemeinen auf einen besonderen Einzelfall.",
+    "beispielsatz": "Durch Deduktion folgerte er aus der Regel, dass auch dieser Vertrag ungültig sein musste.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 4,
+    "wort": "Phänomenologie",
+    "wortart": "Substantiv",
+    "erklaerung": "Die genaue Beschreibung dessen, wie etwas erlebt oder wahrgenommen wird.",
+    "beispielsatz": "Die Phänomenologie der Angst untersucht, wie sich Angst für Betroffene unmittelbar anfühlt.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 5,
+    "wort": "Epistemologie",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Lehre davon, wie Wissen entsteht und wo seine Grenzen liegen.",
+    "beispielsatz": "Die Epistemologie fragt, wann eine Überzeugung wirklich als Wissen gelten kann.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 6,
+    "wort": "Evidenz",
+    "wortart": "Substantiv",
+    "erklaerung": "Beobachtungen oder Belege, die eine Aussage stützen.",
+    "beispielsatz": "Für die Behauptung fehlte bislang belastbare Evidenz.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 7,
+    "wort": "Extrapolation",
+    "wortart": "Substantiv",
+    "erklaerung": "Das Fortsetzen eines bekannten Verlaufs über den beobachteten Bereich hinaus.",
+    "beispielsatz": "Die Extrapolation der bisherigen Zahlen ergab eine deutlich höhere Nachfrage im nächsten Jahr.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 8,
+    "wort": "Falsifikation",
+    "wortart": "Substantiv",
+    "erklaerung": "Der Versuch, eine Aussage durch ein Gegenbeispiel zu widerlegen.",
+    "beispielsatz": "Eine wissenschaftliche Behauptung muss grundsätzlich eine Falsifikation zulassen.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 9,
+    "wort": "Algorithmik",
+    "wortart": "Substantiv",
+    "erklaerung": "Die systematische Entwicklung klarer Rechenschritte zur Lösung von Problemen.",
+    "beispielsatz": "In der Algorithmik wird nicht nur gefragt, ob eine Lösung funktioniert, sondern auch wie effizient sie ist.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 10,
+    "wort": "Explanandum",
+    "wortart": "Substantiv",
+    "erklaerung": "Der Sachverhalt, der erklärt werden soll.",
+    "beispielsatz": "Das plötzliche Absinken der Temperatur war das Explanandum der Untersuchung.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 11,
+    "wort": "Bayesianismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Denkweise, bei der Überzeugungen nach neuen Hinweisen schrittweise angepasst werden.",
+    "beispielsatz": "Der Bayesianismus verlangt, neue Daten bei der Einschätzung einer Vermutung fortlaufend zu berücksichtigen.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 12,
+    "wort": "Kausalität",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein Zusammenhang, bei dem ein Ereignis ein anderes hervorruft.",
+    "beispielsatz": "Die Studie zeigte einen Zusammenhang, bewies aber noch keine Kausalität.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 13,
+    "wort": "Noetik",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Lehre vom Denken, Erkennen und geistigen Erfassen.",
+    "beispielsatz": "Die Noetik beschäftigt sich mit der Frage, wie der menschliche Geist Bedeutung bildet.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 14,
+    "wort": "Konstrukt",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein gedanklich gebildeter Begriff, der nicht direkt beobachtet werden kann.",
+    "beispielsatz": "Intelligenz ist ein Konstrukt, das durch verschiedene Aufgaben messbar gemacht wird.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 15,
+    "wort": "Korrelation",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein statistischer Zusammenhang zwischen zwei Größen, ohne dass eine Ursache bewiesen ist.",
+    "beispielsatz": "Zwischen Schlafdauer und Konzentration bestand eine deutliche Korrelation.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 16,
+    "wort": "Methodologie",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Lehre von den Grundsätzen und der Auswahl wissenschaftlicher Methoden.",
+    "beispielsatz": "Die Methodologie erklärt, warum eine bestimmte Untersuchungsform für die Frage geeignet ist.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 17,
+    "wort": "Operationalisierung",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Übersetzung eines abstrakten Begriffs in konkret messbare Merkmale.",
+    "beispielsatz": "Für die Operationalisierung von Stress wurden Puls, Schlaf und Selbstauskünfte erfasst.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 18,
+    "wort": "Episteme",
+    "wortart": "Substantiv",
+    "erklaerung": "Das grundlegende Wissens- und Denksystem einer bestimmten Zeit.",
+    "beispielsatz": "Die Episteme einer Epoche bestimmt mit, welche Fragen überhaupt als sinnvoll gelten.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 19,
+    "wort": "Probabilismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Haltung, die Entscheidungen auf Wahrscheinlichkeiten statt auf völlige Gewissheit stützt.",
+    "beispielsatz": "Der Probabilismus akzeptiert, dass vernünftige Urteile auch ohne absolute Sicherheit möglich sind.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 20,
+    "wort": "Postulat",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Forderung oder Annahme, die als Ausgangspunkt gesetzt wird.",
+    "beispielsatz": "Die Gleichheit aller Menschen ist ein zentrales Postulat moderner Rechtsstaaten.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 21,
+    "wort": "Prämisse",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Ausgangsaussage, auf der ein Schluss aufgebaut wird.",
+    "beispielsatz": "Wenn die Prämisse falsch ist, kann auch ein formal sauberer Schluss unbrauchbar sein.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 22,
+    "wort": "Prognostik",
+    "wortart": "Substantiv",
+    "erklaerung": "Die systematische Erstellung begründeter Vorhersagen.",
+    "beispielsatz": "Die Prognostik nutzt frühere Daten, um mögliche Entwicklungen abzuschätzen.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 23,
+    "wort": "Replikation",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Wiederholung einer Untersuchung, um ein Ergebnis zu überprüfen.",
+    "beispielsatz": "Erst die erfolgreiche Replikation machte den Befund überzeugender.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 24,
+    "wort": "Trennschärfe",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Fähigkeit eines Verfahrens, unterschiedliche Fälle zuverlässig auseinanderzuhalten.",
+    "beispielsatz": "Der Test hatte zu wenig Trennschärfe, weil fast alle Personen ähnlich abschnitten.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 25,
+    "wort": "Synopse",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine übersichtliche Gegenüberstellung mehrerer Sichtweisen oder Texte.",
+    "beispielsatz": "Die Synopse machte Gemeinsamkeiten und Unterschiede der drei Entwürfe sofort sichtbar.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 26,
+    "wort": "Theorem",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Aussage, die innerhalb eines formalen Systems bewiesen wurde.",
+    "beispielsatz": "Das Theorem folgt zwingend aus den zuvor festgelegten Annahmen.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 27,
+    "wort": "Reliabilität",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Zuverlässigkeit einer Messung bei Wiederholung.",
+    "beispielsatz": "Die Reliabilität des Tests war hoch, weil er bei mehreren Durchläufen ähnliche Ergebnisse lieferte.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 28,
+    "wort": "Verifikation",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Überprüfung, ob eine Aussage oder ein Ergebnis zutrifft.",
+    "beispielsatz": "Vor der Veröffentlichung erfolgte eine unabhängige Verifikation der Zahlen.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 29,
+    "wort": "Varianz",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein Maß dafür, wie stark Werte um ihren Durchschnitt streuen.",
+    "beispielsatz": "Die große Varianz zeigte, dass die Leistungen der Gruppe sehr unterschiedlich waren.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 30,
+    "wort": "Intersubjektivität",
+    "wortart": "Substantiv",
+    "erklaerung": "Nachvollziehbarkeit eines Urteils für mehrere voneinander unabhängige Personen.",
+    "beispielsatz": "Wissenschaftliche Ergebnisse sollen durch klare Methoden intersubjektiv überprüfbar sein.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 31,
+    "wort": "Introspektion",
+    "wortart": "Substantiv",
+    "erklaerung": "Die bewusste Beobachtung eigener Gedanken und Gefühle.",
+    "beispielsatz": "Durch Introspektion bemerkte sie, dass ihre Ablehnung vor allem aus Unsicherheit entstand.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 32,
+    "wort": "Metakognition",
+    "wortart": "Substantiv",
+    "erklaerung": "Das Nachdenken über das eigene Denken und Lernen.",
+    "beispielsatz": "Metakognition half ihm zu erkennen, warum seine bisherige Lernstrategie nicht funktionierte.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 33,
+    "wort": "Kontingenz",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Eigenschaft, dass etwas so sein kann, aber nicht zwingend so sein muss.",
+    "beispielsatz": "Der Ausgang war kontingent und hing von mehreren zufälligen Umständen ab.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 34,
+    "wort": "Emergenz",
+    "wortart": "Substantiv",
+    "erklaerung": "Das Entstehen neuer Eigenschaften aus dem Zusammenspiel vieler Teile.",
+    "beispielsatz": "Bewusstsein wird oft als Emergenz komplexer Gehirnprozesse beschrieben.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 35,
+    "wort": "Immanenz",
+    "wortart": "Substantiv",
+    "erklaerung": "Das Verbleiben innerhalb eines Bereichs oder Systems, ohne darüber hinauszugehen.",
+    "beispielsatz": "Die Erklärung blieb in der Immanenz des Modells und berücksichtigte keine äußeren Einflüsse.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 36,
+    "wort": "Transzendenz",
+    "wortart": "Substantiv",
+    "erklaerung": "Das Überschreiten einer gegebenen Grenze oder Erfahrungsebene.",
+    "beispielsatz": "In der Philosophie bezeichnet Transzendenz häufig das Überschreiten des unmittelbar Erfahrbaren.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 37,
+    "wort": "Ontologie",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Lehre davon, was existiert und welche Arten des Seins es gibt.",
+    "beispielsatz": "Die Ontologie des Modells legt fest, welche Gegenstände und Beziehungen es überhaupt kennt.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 38,
+    "wort": "Teleologie",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Erklärung eines Vorgangs durch seinen Zweck oder sein angestrebtes Ziel.",
+    "beispielsatz": "Eine teleologische Deutung erklärt das Verhalten durch den Zweck, den es erfüllen soll.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 39,
+    "wort": "apriorisch",
+    "wortart": "Adjektiv",
+    "erklaerung": "Unabhängig von konkreter Erfahrung allein aus Denken oder Voraussetzungen abgeleitet.",
+    "beispielsatz": "Die Aussage wurde apriorisch begründet und nicht aus Beobachtungen gewonnen.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 40,
+    "wort": "aposteriorisch",
+    "wortart": "Adjektiv",
+    "erklaerung": "Erst durch Erfahrung oder Beobachtung begründet.",
+    "beispielsatz": "Die Einschätzung war aposteriorisch, weil sie auf den Ergebnissen des Versuchs beruhte.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 41,
+    "wort": "Determinismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Auffassung, dass jedes Ereignis vollständig durch vorherige Bedingungen festgelegt ist.",
+    "beispielsatz": "Ein strenger Determinismus lässt für echten Zufall kaum Raum.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 42,
+    "wort": "Fallibilität",
+    "wortart": "Substantiv",
+    "erklaerung": "Die grundsätzliche Möglichkeit, sich trotz guter Gründe zu irren.",
+    "beispielsatz": "Wissenschaft lebt von der Anerkennung menschlicher Fallibilität.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 43,
+    "wort": "Holismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Sichtweise, dass ein Ganzes mehr ist als die Summe seiner Einzelteile.",
+    "beispielsatz": "Der Holismus betrachtet das Team als Beziehungsgefüge und nicht nur als Sammlung einzelner Personen.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 44,
+    "wort": "Reduktionismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Erklärung eines komplexen Sachverhalts allein durch einfachere Bestandteile.",
+    "beispielsatz": "Der Reduktionismus greift zu kurz, wenn soziale Probleme nur biologisch erklärt werden.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 45,
+    "wort": "Essentialismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Annahme, Dinge oder Gruppen hätten einen festen, unveränderlichen Wesenskern.",
+    "beispielsatz": "Essentialismus kann Unterschiede fälschlich als naturgegeben und unveränderbar darstellen.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 46,
+    "wort": "Konstruktivismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Auffassung, dass Menschen Wirklichkeit durch Wahrnehmung und Deutung mitgestalten.",
+    "beispielsatz": "Der Konstruktivismus betont, dass dieselbe Situation verschieden verstanden werden kann.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 47,
+    "wort": "Realismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Auffassung, dass eine von unserem Denken unabhängige Wirklichkeit existiert.",
+    "beispielsatz": "Der wissenschaftliche Realismus nimmt an, dass Theorien reale Strukturen beschreiben können.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 48,
+    "wort": "Relativismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Auffassung, dass Wahrheit oder Bewertung vom jeweiligen Standpunkt abhängt.",
+    "beispielsatz": "Ein radikaler Relativismus erschwert die Begründung allgemeiner Maßstäbe.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 49,
+    "wort": "Universalismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Auffassung, dass bestimmte Regeln oder Rechte für alle Menschen gelten.",
+    "beispielsatz": "Der Universalismus der Menschenrechte beansprucht Gültigkeit unabhängig von Herkunft und Kultur.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 50,
+    "wort": "Partikularismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Bevorzugung besonderer Gruppen, Fälle oder Traditionen gegenüber allgemeinen Regeln.",
+    "beispielsatz": "Partikularismus kann dazu führen, dass für die eigene Gruppe andere Maßstäbe gelten.",
+    "kategorie": "Erkenntnis & Wissenschaft",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 51,
+    "wort": "Analogie",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein Vergleich zweier Fälle wegen ähnlicher Merkmale oder Strukturen.",
+    "beispielsatz": "Die Analogie zum Schach verdeutlichte, warum langfristige Planung wichtiger als ein einzelner Zug ist.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 52,
+    "wort": "Antinomie",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein Widerspruch zwischen zwei scheinbar gleichermaßen begründbaren Aussagen.",
+    "beispielsatz": "Die Antinomie entstand, weil Freiheit und vollständige Vorherbestimmung zugleich behauptet wurden.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 53,
+    "wort": "Aporie",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine gedankliche Sackgasse, in der keine Lösung widerspruchsfrei erscheint.",
+    "beispielsatz": "Die Diskussion endete in einer Aporie, weil jede Antwort ein neues Problem erzeugte.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 54,
+    "wort": "Binarität",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Einteilung in genau zwei klar getrennte Möglichkeiten.",
+    "beispielsatz": "Die Binarität von richtig und falsch wird komplexen moralischen Fragen oft nicht gerecht.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 55,
+    "wort": "Dilemma",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Lage, in der jede verfügbare Entscheidung einen erheblichen Nachteil hat.",
+    "beispielsatz": "Er stand vor dem Dilemma, entweder Zeit oder Qualität zu opfern.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 56,
+    "wort": "Konsekution",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Folgerung, die sich logisch aus vorherigen Aussagen ergibt.",
+    "beispielsatz": "Die Konsekution war nur dann zwingend, wenn alle Ausgangsannahmen stimmten.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 57,
+    "wort": "Kontradiktion",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein direkter Widerspruch, bei dem zwei Aussagen nicht zugleich wahr sein können.",
+    "beispielsatz": "Zwischen seinen beiden Aussagen bestand eine klare Kontradiktion.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 58,
+    "wort": "kontrafaktisch",
+    "wortart": "Adjektiv",
+    "erklaerung": "Auf eine gedachte Situation bezogen, die tatsächlich nicht eingetreten ist.",
+    "beispielsatz": "Die kontrafaktische Frage lautete, wie sich alles ohne diese Entscheidung entwickelt hätte.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 59,
+    "wort": "Konsistenz",
+    "wortart": "Substantiv",
+    "erklaerung": "Widerspruchsfreiheit innerhalb von Aussagen, Regeln oder Handlungen.",
+    "beispielsatz": "Seiner Position fehlte Konsistenz, weil er bei ähnlichen Fällen verschiedene Maßstäbe anlegte.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 60,
+    "wort": "Konsilienz",
+    "wortart": "Substantiv",
+    "erklaerung": "Das Zusammenpassen unabhängiger Hinweise oder Forschungsgebiete zu einem gemeinsamen Bild.",
+    "beispielsatz": "Die Konsilienz der Daten aus Biologie, Psychologie und Soziologie stärkte die Erklärung.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 61,
+    "wort": "Konvergenz",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Annäherung verschiedener Entwicklungen an einen gemeinsamen Punkt.",
+    "beispielsatz": "Trotz unterschiedlicher Ausgangslagen zeigte sich eine Konvergenz der Ergebnisse.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 62,
+    "wort": "Divergenz",
+    "wortart": "Substantiv",
+    "erklaerung": "Das Auseinandergehen von Entwicklungen, Ansichten oder Ergebnissen.",
+    "beispielsatz": "Die Divergenz zwischen Theorie und Praxis wurde im Verlauf immer größer.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 63,
+    "wort": "monokausal",
+    "wortart": "Adjektiv",
+    "erklaerung": "Nur auf eine einzige Ursache zurückgeführt.",
+    "beispielsatz": "Die monokausale Erklärung ignorierte wirtschaftliche, soziale und persönliche Einflüsse.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 64,
+    "wort": "multikausal",
+    "wortart": "Adjektiv",
+    "erklaerung": "Durch mehrere zusammenwirkende Ursachen entstanden.",
+    "beispielsatz": "Schulischer Erfolg ist multikausal und lässt sich nicht nur durch Begabung erklären.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 65,
+    "wort": "Mutualität",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein Verhältnis, in dem beide Seiten wechselseitig geben und empfangen.",
+    "beispielsatz": "Vertrauen beruht auf Mutualität und kann nicht dauerhaft nur von einer Seite getragen werden.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 66,
+    "wort": "Isomorphie",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine gleiche Grundstruktur trotz unterschiedlicher Inhalte oder Erscheinungsformen.",
+    "beispielsatz": "Zwischen den beiden Modellen bestand eine Isomorphie, obwohl sie andere Begriffe verwendeten.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 67,
+    "wort": "Tautologie",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Aussage, die denselben Inhalt nur mit anderen Worten wiederholt und nichts erklärt.",
+    "beispielsatz": "Die Begründung war eine Tautologie: Es sei richtig, weil es eben das Richtige sei.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 68,
+    "wort": "Zirkelschluss",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Begründung, bei der die zu beweisende Aussage bereits vorausgesetzt wird.",
+    "beispielsatz": "Der Satz „Die Quelle ist glaubwürdig, weil sie die Wahrheit sagt“ ist ein Zirkelschluss.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 69,
+    "wort": "Syllogismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein formaler Schluss aus zwei Voraussetzungen auf eine Folgerung.",
+    "beispielsatz": "Der klassische Syllogismus verbindet eine allgemeine Regel mit einem konkreten Fall.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 70,
+    "wort": "Subsumtion",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Einordnung eines Einzelfalls unter eine allgemeine Regel oder einen Begriff.",
+    "beispielsatz": "Bei der juristischen Subsumtion wird geprüft, ob der konkrete Fall die Merkmale des Gesetzes erfüllt.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 71,
+    "wort": "Abduktion",
+    "wortart": "Substantiv",
+    "erklaerung": "Der Schluss von einer Beobachtung auf die wahrscheinlichste Erklärung.",
+    "beispielsatz": "Aus den nassen Straßen folgerte sie durch Abduktion, dass es geregnet haben könnte.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 72,
+    "wort": "Inferenz",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine gedankliche Folgerung aus vorhandenen Informationen.",
+    "beispielsatz": "Die Inferenz war nachvollziehbar, aber nicht zwingend, weil auch andere Erklärungen möglich waren.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 73,
+    "wort": "Invektive",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine scharfe persönliche Beschimpfung statt einer sachlichen Auseinandersetzung.",
+    "beispielsatz": "Seine Antwort war keine Kritik mehr, sondern eine Invektive gegen den Gegner.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 74,
+    "wort": "Eristik",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Kunst, einen Streit zu gewinnen, auch ohne inhaltlich recht zu haben.",
+    "beispielsatz": "Die Eristik des Redners zielte stärker auf Wirkung als auf Wahrheit.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 75,
+    "wort": "Sophismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein scheinbar kluger, tatsächlich aber irreführender Gedankengang.",
+    "beispielsatz": "Der Sophismus klang überzeugend, beruhte jedoch auf einer versteckten Bedeutungsverschiebung.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 76,
+    "wort": "Dialektik",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Denkweise, die Gegensätze untersucht und aus ihrer Spannung neue Einsichten gewinnt.",
+    "beispielsatz": "Die Dialektik von Freiheit und Sicherheit prägte die gesamte Debatte.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 77,
+    "wort": "Präzedenzfall",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein früherer Fall, der als Maßstab für spätere Entscheidungen dient.",
+    "beispielsatz": "Das Urteil könnte zum Präzedenzfall für ähnliche Verfahren werden.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 78,
+    "wort": "Proportionalität",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein Verhältnis, bei dem sich zwei Größen in einem festen Verhältnis verändern.",
+    "beispielsatz": "Die Strafe stand nicht in Proportionalität zur geringen Schwere des Fehlers.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 79,
+    "wort": "Linearität",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein gleichmäßiger Verlauf ohne Sprünge, Rückkopplungen oder Richtungswechsel.",
+    "beispielsatz": "Die Annahme einer stetigen Linearität unterschätzte plötzliche Wendepunkte.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 80,
+    "wort": "Asymmetrie",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein unausgeglichenes Verhältnis zwischen zwei Seiten.",
+    "beispielsatz": "Die Informationsasymmetrie gab dem Verkäufer einen deutlichen Vorteil.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 81,
+    "wort": "Komplementarität",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein Verhältnis, in dem unterschiedliche Teile einander sinnvoll ergänzen.",
+    "beispielsatz": "Die Komplementarität ihrer Fähigkeiten machte das Team besonders leistungsfähig.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 82,
+    "wort": "Interdependenz",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine wechselseitige Abhängigkeit, bei der Veränderungen auf beiden Seiten Folgen haben.",
+    "beispielsatz": "Die wirtschaftliche Interdependenz erschwerte eine vollständige Trennung der Staaten.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 83,
+    "wort": "Ambiguität",
+    "wortart": "Substantiv",
+    "erklaerung": "Mehrdeutigkeit eines Wortes, Zeichens oder Sachverhalts.",
+    "beispielsatz": "Die Ambiguität der Formulierung erlaubte zwei gegensätzliche Deutungen.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 84,
+    "wort": "Antagonismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein grundlegender Gegensatz zwischen Kräften, Interessen oder Gruppen.",
+    "beispielsatz": "Der Antagonismus zwischen kurzfristigem Gewinn und langfristiger Stabilität blieb ungelöst.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 85,
+    "wort": "Inkongruenz",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein fehlendes Zusammenpassen von Aussagen, Gefühlen, Formen oder Erwartungen.",
+    "beispielsatz": "Die Inkongruenz zwischen seinen Worten und seinem Verhalten fiel sofort auf.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 86,
+    "wort": "Überdetermination",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Lage, in der mehrere Ursachen unabhängig voneinander dasselbe Ergebnis erklären können.",
+    "beispielsatz": "Der Konflikt war überdeterminiert, weil wirtschaftliche, persönliche und politische Gründe zusammenwirkten.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 87,
+    "wort": "Nuancierung",
+    "wortart": "Substantiv",
+    "erklaerung": "Die feinere Abstufung einer zunächst groben Aussage.",
+    "beispielsatz": "Durch die Nuancierung wurde aus der pauschalen Behauptung eine differenzierte Einschätzung.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 88,
+    "wort": "Differenzierung",
+    "wortart": "Substantiv",
+    "erklaerung": "Die genaue Unterscheidung ähnlicher, aber nicht gleicher Fälle.",
+    "beispielsatz": "Ohne Differenzierung wurden berechtigte Kritik und persönliche Angriffe miteinander verwechselt.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 89,
+    "wort": "Kategorisierung",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Einordnung von Dingen oder Fällen in geordnete Gruppen.",
+    "beispielsatz": "Die Kategorisierung erleichterte den Überblick, konnte aber Grenzfälle verzerren.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 90,
+    "wort": "Taxonomie",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein geordnetes System zur Einteilung von Begriffen oder Gegenständen.",
+    "beispielsatz": "Die Taxonomie ordnete die Fehler nach Ursache, Schwere und Häufigkeit.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 91,
+    "wort": "Interpolation",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Schätzung eines Wertes zwischen bereits bekannten Messpunkten.",
+    "beispielsatz": "Durch Interpolation wurde der fehlende Wert zwischen den beiden Messungen angenähert.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 92,
+    "wort": "Spezifizität",
+    "wortart": "Substantiv",
+    "erklaerung": "Der Grad, in dem eine Aussage oder Methode genau auf einen bestimmten Fall zugeschnitten ist.",
+    "beispielsatz": "Die hohe Spezifizität der Frage verhinderte ausweichende Antworten.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 93,
+    "wort": "Konzision",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Fähigkeit, einen Gedanken knapp und ohne unnötige Umwege auszudrücken.",
+    "beispielsatz": "Die Konzision seiner Zusammenfassung machte den komplizierten Sachverhalt schnell verständlich.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 94,
+    "wort": "evident",
+    "wortart": "Adjektiv",
+    "erklaerung": "So klar erkennbar, dass kaum vernünftiger Zweifel bleibt.",
+    "beispielsatz": "Nach dem Vergleich der Daten war der Rechenfehler evident.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 95,
+    "wort": "konklusiv",
+    "wortart": "Adjektiv",
+    "erklaerung": "So schlüssig, dass eine klare Folgerung daraus gezogen werden kann.",
+    "beispielsatz": "Die Indizien waren stark, aber noch nicht konklusiv.",
+    "kategorie": "Logik & Argumentation",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 96,
+    "wort": "Affekt",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein starkes, kurzfristiges Gefühl, das Denken und Handeln unmittelbar beeinflusst.",
+    "beispielsatz": "Im Affekt sagte er etwas, das er wenige Minuten später bereute.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 97,
+    "wort": "Affinität",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine natürliche Nähe, Neigung oder besondere Verbindung zu etwas.",
+    "beispielsatz": "Sie zeigte früh eine starke Affinität zu mathematischen Problemen.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 98,
+    "wort": "Altruismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Handeln zum Wohl anderer, auch wenn man selbst keinen direkten Vorteil hat.",
+    "beispielsatz": "Sein Altruismus zeigte sich darin, dass er anonym einen großen Teil des Gewinns spendete.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 99,
+    "wort": "Prolepse",
+    "wortart": "Substantiv",
+    "erklaerung": "Das gedankliche Vorwegnehmen eines späteren Einwands oder Ereignisses.",
+    "beispielsatz": "Durch eine Prolepse griff die Rednerin den erwartbaren Einwand auf, bevor er gestellt wurde.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 100,
+    "wort": "Attribution",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Zuschreibung einer Ursache zu einem Verhalten oder Ereignis.",
+    "beispielsatz": "Ihre Attribution war vorschnell, weil sie den Fehler nur auf mangelnde Motivation zurückführte.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 101,
+    "wort": "Aversion",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine starke Abneigung gegen eine Person, Sache oder Handlung.",
+    "beispielsatz": "Seine Aversion gegen Kontrolle machte selbst hilfreiche Rückmeldungen für ihn schwer annehmbar.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 102,
+    "wort": "Disposition",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine relativ stabile innere Neigung, auf bestimmte Weise zu reagieren.",
+    "beispielsatz": "Ihre ruhige Disposition half ihr, auch unter Druck überlegt zu handeln.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 103,
+    "wort": "Dissonanz",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein unangenehmer Widerspruch zwischen Überzeugungen, Gefühlen oder Handlungen.",
+    "beispielsatz": "Die Dissonanz entstand, weil er Nachhaltigkeit wichtig fand, aber ständig unnötig konsumierte.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 104,
+    "wort": "Dissoziation",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine zeitweise Trennung von Wahrnehmung, Erinnerung oder Gefühl, die sonst zusammengehören.",
+    "beispielsatz": "Unter extremer Belastung kann Dissoziation dazu führen, dass sich die Umgebung unwirklich anfühlt.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 105,
+    "wort": "Mentalisierung",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Fähigkeit, eigenes und fremdes Verhalten durch Gedanken, Gefühle und Absichten zu verstehen.",
+    "beispielsatz": "Gute Mentalisierung half ihr zu erkennen, dass sein Schweigen nicht zwingend Ablehnung bedeutete.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 106,
+    "wort": "Externalisierung",
+    "wortart": "Substantiv",
+    "erklaerung": "Das Verlegen eigener Ursachen oder Konflikte nach außen.",
+    "beispielsatz": "Durch Externalisierung machte er ausschließlich die Umstände für seine Fehler verantwortlich.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 107,
+    "wort": "Internalisierung",
+    "wortart": "Substantiv",
+    "erklaerung": "Das Übernehmen äußerer Regeln, Werte oder Bewertungen in das eigene Denken.",
+    "beispielsatz": "Die Internalisierung ständiger Kritik führte dazu, dass sie sich selbst hart beurteilte.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 108,
+    "wort": "Habituation",
+    "wortart": "Substantiv",
+    "erklaerung": "Die allmähliche Gewöhnung an einen wiederkehrenden Reiz.",
+    "beispielsatz": "Durch Habituation nahm er den Straßenlärm nach einigen Wochen kaum noch wahr.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 109,
+    "wort": "Identifikation",
+    "wortart": "Substantiv",
+    "erklaerung": "Das innere Gleichsetzen mit einer Person, Rolle oder Vorstellung.",
+    "beispielsatz": "Die Identifikation mit der Hauptfigur verstärkte die emotionale Wirkung des Films.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 110,
+    "wort": "Idealisierung",
+    "wortart": "Substantiv",
+    "erklaerung": "Die übermäßig positive Darstellung, bei der Schwächen ausgeblendet werden.",
+    "beispielsatz": "Die Idealisierung der Vergangenheit ließ die damaligen Probleme vergessen.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 111,
+    "wort": "Idiosynkrasie",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine sehr persönliche, ungewöhnliche Reaktionsweise oder Eigenart.",
+    "beispielsatz": "Seine Idiosynkrasie bestand darin, jede Entscheidung zuerst in Tabellen zu ordnen.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 112,
+    "wort": "Impulsivität",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Neigung, schnell zu handeln, ohne Folgen ausreichend zu prüfen.",
+    "beispielsatz": "Hohe Impulsivität kann kurzfristig befreiend wirken, aber langfristig Probleme erzeugen.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 113,
+    "wort": "intrinsisch",
+    "wortart": "Adjektiv",
+    "erklaerung": "Aus eigenem Interesse oder innerem Antrieb heraus.",
+    "beispielsatz": "Sie lernte intrinsisch motiviert, weil sie das Thema wirklich verstehen wollte.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 114,
+    "wort": "extrinsisch",
+    "wortart": "Adjektiv",
+    "erklaerung": "Durch äußere Belohnung, Druck oder Anerkennung angetrieben.",
+    "beispielsatz": "Die extrinsische Motivation verschwand, sobald keine Belohnung mehr angeboten wurde.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 115,
+    "wort": "Konformität",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Anpassung des eigenen Verhaltens an Erwartungen einer Gruppe.",
+    "beispielsatz": "Aus Konformität stimmten mehrere Personen zu, obwohl sie innerlich Zweifel hatten.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 116,
+    "wort": "Resilienz",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Fähigkeit, Belastungen zu bewältigen und sich davon zu erholen.",
+    "beispielsatz": "Ihre Resilienz zeigte sich darin, dass sie nach dem Rückschlag strukturiert neu begann.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 117,
+    "wort": "Ressentiment",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein anhaltender, oft verborgener Groll aus erlebter Kränkung oder Unterlegenheit.",
+    "beispielsatz": "Sein Ressentiment gegenüber Erfolgreichen prägte viele seiner Urteile.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 118,
+    "wort": "Selbstwirksamkeit",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Überzeugung, durch eigenes Handeln etwas bewirken zu können.",
+    "beispielsatz": "Jeder kleine Erfolg stärkte ihre Selbstwirksamkeit.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 119,
+    "wort": "Sozialisation",
+    "wortart": "Substantiv",
+    "erklaerung": "Der Prozess, in dem Menschen Regeln, Werte und Verhaltensweisen ihrer Umgebung erlernen.",
+    "beispielsatz": "Familie, Schule und Freundeskreis prägen die Sozialisation eines Menschen.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 120,
+    "wort": "Stigmatisierung",
+    "wortart": "Substantiv",
+    "erklaerung": "Die abwertende Kennzeichnung einer Person oder Gruppe durch ein negatives Merkmal.",
+    "beispielsatz": "Die Stigmatisierung psychischer Probleme hält manche Menschen davon ab, Hilfe zu suchen.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 121,
+    "wort": "Sublimierung",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Umwandlung belastender oder unerwünschter Impulse in gesellschaftlich akzeptierte Leistungen.",
+    "beispielsatz": "Er verwandelte seine Aggression durch Sublimierung in intensives sportliches Training.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 122,
+    "wort": "Suggestion",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Beeinflussung, durch die eine Vorstellung ohne gründliche Prüfung übernommen wird.",
+    "beispielsatz": "Die suggestive Frage erzeugte eine Suggestion, obwohl die Erinnerung unsicher war.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 123,
+    "wort": "Ambiguitätstoleranz",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Fähigkeit, Mehrdeutigkeit und Unsicherheit auszuhalten, ohne vorschnell zu urteilen.",
+    "beispielsatz": "Hohe Ambiguitätstoleranz half ihr, widersprüchliche Informationen zunächst nebeneinander stehen zu lassen.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 124,
+    "wort": "Kompensation",
+    "wortart": "Substantiv",
+    "erklaerung": "Der Ausgleich einer Schwäche oder Belastung durch eine andere Leistung oder Strategie.",
+    "beispielsatz": "Er suchte Anerkennung im Beruf als Kompensation für sein geringes Selbstwertgefühl.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 125,
+    "wort": "Projektion",
+    "wortart": "Substantiv",
+    "erklaerung": "Das Zuschreiben eigener Gefühle oder Wünsche an andere Personen.",
+    "beispielsatz": "Seine Behauptung, alle seien neidisch, wirkte wie eine Projektion seiner eigenen Unsicherheit.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 126,
+    "wort": "Rationalisierung",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine nachträgliche scheinbar vernünftige Begründung für ein eigentlich anders motiviertes Verhalten.",
+    "beispielsatz": "Die angebliche Zeitersparnis war nur eine Rationalisierung für seine Bequemlichkeit.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 127,
+    "wort": "Regression",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Rückkehr zu früheren, einfacheren Verhaltensweisen unter Belastung.",
+    "beispielsatz": "Unter starkem Stress zeigte er eine Regression und reagierte ungewöhnlich kindlich.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 128,
+    "wort": "Reaktanz",
+    "wortart": "Substantiv",
+    "erklaerung": "Innerer Widerstand, der entsteht, wenn die eigene Freiheit eingeschränkt wirkt.",
+    "beispielsatz": "Das strikte Verbot löste Reaktanz aus und machte die verbotene Sache erst interessant.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 129,
+    "wort": "Konditionierung",
+    "wortart": "Substantiv",
+    "erklaerung": "Das Erlernen einer Reaktion durch wiederholte Verbindung mit einem Reiz oder einer Folge.",
+    "beispielsatz": "Durch Konditionierung verband der Hund das Geräusch mit der bevorstehenden Fütterung.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 130,
+    "wort": "dispositionell",
+    "wortart": "Adjektiv",
+    "erklaerung": "Auf eine relativ stabile persönliche Neigung zurückgeführt.",
+    "beispielsatz": "Die dispositionelle Erklärung sah die Ursache vor allem in seinem Charakter.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 131,
+    "wort": "Volition",
+    "wortart": "Substantiv",
+    "erklaerung": "Die bewusste Steuerung des eigenen Handelns trotz Ablenkung oder Widerstand.",
+    "beispielsatz": "Motivation brachte ihn zum Start, aber Volition hielt ihn bei der Aufgabe.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 132,
+    "wort": "Perzeption",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Aufnahme und Deutung von Sinneseindrücken.",
+    "beispielsatz": "Die Perzeption derselben Szene unterschied sich je nach Erwartung der Beobachter.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 133,
+    "wort": "Prädisposition",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine vorhandene Anlage oder erhöhte Bereitschaft für eine bestimmte Entwicklung.",
+    "beispielsatz": "Eine genetische Prädisposition bedeutet nicht, dass eine Erkrankung zwangsläufig ausbricht.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 134,
+    "wort": "Behaviorismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine psychologische Richtung, die vor allem beobachtbares Verhalten und Lernprozesse untersucht.",
+    "beispielsatz": "Der Behaviorismus erklärt Lernen häufig durch Reize, Reaktionen und Folgen.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 135,
+    "wort": "Intention",
+    "wortart": "Substantiv",
+    "erklaerung": "Die bewusste Absicht hinter einer Handlung.",
+    "beispielsatz": "Die gute Intention änderte nichts daran, dass die Handlung negative Folgen hatte.",
+    "kategorie": "Psychologie & Verhalten",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 136,
+    "wort": "Autonomie",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Fähigkeit und das Recht, selbstbestimmt zu entscheiden und zu handeln.",
+    "beispielsatz": "Echte Autonomie setzt voraus, dass eine Entscheidung ohne unangemessenen Druck getroffen werden kann.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 137,
+    "wort": "Autoritarismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine politische oder soziale Haltung, die starke Führung und wenig Widerspruch bevorzugt.",
+    "beispielsatz": "Autoritarismus zeigt sich häufig in der Abwertung offener Kritik und unabhängiger Kontrolle.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 138,
+    "wort": "Hegemonie",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine überlegene Stellung, durch die eine Gruppe Regeln und Vorstellungen prägen kann.",
+    "beispielsatz": "Die kulturelle Hegemonie zeigte sich darin, dass eine Sichtweise als selbstverständlich galt.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 139,
+    "wort": "Ideologie",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein geschlossenes System von Vorstellungen darüber, wie Gesellschaft und Wirklichkeit zu verstehen sind.",
+    "beispielsatz": "Die Ideologie beeinflusste nicht nur politische Ziele, sondern auch die Auswahl der Fakten.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 140,
+    "wort": "Legitimität",
+    "wortart": "Substantiv",
+    "erklaerung": "Die anerkannte Rechtmäßigkeit oder moralische Berechtigung von Macht und Entscheidungen.",
+    "beispielsatz": "Eine Wahl verleiht politischer Macht Legitimität, ersetzt aber nicht jede weitere Kontrolle.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 141,
+    "wort": "Meritokratie",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Ordnung, in der Stellung und Chancen hauptsächlich nach Leistung vergeben werden sollen.",
+    "beispielsatz": "Die Vorstellung einer Meritokratie wird problematisch, wenn Startbedingungen stark ungleich sind.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 142,
+    "wort": "Pluralismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Das gleichzeitige Bestehen unterschiedlicher Interessen, Werte und Lebensformen.",
+    "beispielsatz": "Politischer Pluralismus schützt die Möglichkeit, öffentlich verschiedene Positionen zu vertreten.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 143,
+    "wort": "Populismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine politische Strategie, die ein einheitliches Volk gegen angebliche Eliten stellt und Probleme stark vereinfacht.",
+    "beispielsatz": "Der Populismus der Rede reduzierte ein vielschichtiges Problem auf einen einzigen Schuldigen.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 144,
+    "wort": "Totalitarismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Herrschaftsform, die Staat, Gesellschaft und Privatleben möglichst vollständig kontrollieren will.",
+    "beispielsatz": "Totalitarismus duldet kaum unabhängige Medien, Organisationen oder abweichende Weltbilder.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 145,
+    "wort": "Subsidiarität",
+    "wortart": "Substantiv",
+    "erklaerung": "Das Prinzip, Aufgaben möglichst auf der kleinsten handlungsfähigen Ebene zu lösen.",
+    "beispielsatz": "Nach dem Prinzip der Subsidiarität soll die Gemeinde entscheiden, solange sie die Aufgabe selbst bewältigen kann.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 146,
+    "wort": "Partizipation",
+    "wortart": "Substantiv",
+    "erklaerung": "Die aktive Beteiligung an Entscheidungen oder gesellschaftlichen Prozessen.",
+    "beispielsatz": "Die frühe Partizipation der Betroffenen erhöhte die Akzeptanz des Projekts.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 147,
+    "wort": "Emanzipation",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Befreiung aus Abhängigkeit, Bevormundung oder rechtlicher Benachteiligung.",
+    "beispielsatz": "Bildung spielte eine zentrale Rolle bei der Emanzipation zuvor ausgeschlossener Gruppen.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 148,
+    "wort": "Exklusion",
+    "wortart": "Substantiv",
+    "erklaerung": "Der Ausschluss von Personen oder Gruppen aus Teilhabe und Zugehörigkeit.",
+    "beispielsatz": "Hohe Gebühren können zu sozialer Exklusion führen.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 149,
+    "wort": "Inklusion",
+    "wortart": "Substantiv",
+    "erklaerung": "Die gleichberechtigte Einbeziehung unterschiedlicher Menschen in gemeinsame Strukturen.",
+    "beispielsatz": "Inklusion bedeutet mehr als Anwesenheit; sie verlangt echte Mitwirkung und Zugänglichkeit.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 150,
+    "wort": "Assimilation",
+    "wortart": "Substantiv",
+    "erklaerung": "Die weitgehende Anpassung an eine andere Gruppe, bei der eigene Merkmale zurücktreten.",
+    "beispielsatz": "Assimilation geht weiter als Integration, weil Unterschiede möglichst verschwinden sollen.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 151,
+    "wort": "Akkulturation",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Veränderung von Gewohnheiten und Vorstellungen durch längeren Kontakt zwischen Kulturen.",
+    "beispielsatz": "Akkulturation kann in beide Richtungen wirken und neue Mischformen hervorbringen.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 152,
+    "wort": "Säkularisierung",
+    "wortart": "Substantiv",
+    "erklaerung": "Der Rückgang religiöser Bindung oder religiösen Einflusses auf öffentliche Bereiche.",
+    "beispielsatz": "Die Säkularisierung veränderte das Verhältnis zwischen Staat, Gesellschaft und Kirchen.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 153,
+    "wort": "Instrumentalisierung",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Nutzung einer Person oder Sache als Mittel für einen anderen Zweck.",
+    "beispielsatz": "Die Instrumentalisierung einzelner Schicksale für politische Werbung wurde scharf kritisiert.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 154,
+    "wort": "Polarisierung",
+    "wortart": "Substantiv",
+    "erklaerung": "Die zunehmende Aufteilung in stark gegensätzliche Lager.",
+    "beispielsatz": "Die Polarisierung erschwerte Kompromisse, obwohl viele Sachfragen lösbar gewesen wären.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 155,
+    "wort": "Radikalisierung",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein Prozess, in dem Positionen immer extremer werden und gemäßigte Lösungen an Bedeutung verlieren.",
+    "beispielsatz": "Die Radikalisierung begann mit einfachen Feindbildern und steigerte sich schrittweise.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 156,
+    "wort": "normativ",
+    "wortart": "Adjektiv",
+    "erklaerung": "Vorschreibend oder bewertend; darauf bezogen, wie etwas sein soll.",
+    "beispielsatz": "Die Aussage war normativ, weil sie nicht nur beschrieb, sondern eine Pflicht formulierte.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 157,
+    "wort": "deskriptiv",
+    "wortart": "Adjektiv",
+    "erklaerung": "Rein beschreibend; darauf bezogen, wie etwas tatsächlich ist.",
+    "beispielsatz": "Die Untersuchung blieb deskriptiv und gab keine moralische Empfehlung ab.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 158,
+    "wort": "Deontologie",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Ethik, die Handlungen nach Pflichten und Regeln beurteilt, nicht nur nach ihren Folgen.",
+    "beispielsatz": "Aus deontologischer Sicht kann eine Lüge auch dann falsch sein, wenn sie nützlich wäre.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 159,
+    "wort": "Utilitarismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Ethik, die Handlungen danach bewertet, wie viel Wohlergehen sie insgesamt erzeugen.",
+    "beispielsatz": "Der Utilitarismus könnte eine Entscheidung unterstützen, wenn sie vielen Menschen deutlich hilft.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 160,
+    "wort": "Kollektivismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Haltung, die Ziele und Interessen der Gemeinschaft stärker als die des Einzelnen gewichtet.",
+    "beispielsatz": "Kollektivismus kann Zusammenhalt fördern, aber individuelle Freiheit begrenzen.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 161,
+    "wort": "Individualismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Haltung, die Selbstbestimmung und Rechte des Einzelnen besonders betont.",
+    "beispielsatz": "Der Individualismus der Gesellschaft zeigte sich in der hohen Bedeutung persönlicher Wahlfreiheit.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 162,
+    "wort": "Opportunismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Anpassung der eigenen Position an den unmittelbaren Vorteil statt an feste Grundsätze.",
+    "beispielsatz": "Sein plötzlicher Kurswechsel wirkte wie Opportunismus.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 163,
+    "wort": "Dogmatismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Das starre Festhalten an Überzeugungen ohne Bereitschaft zur Prüfung oder Korrektur.",
+    "beispielsatz": "Dogmatismus verhindert Lernen, weil Gegenargumente von vornherein abgewiesen werden.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 164,
+    "wort": "Orthodoxie",
+    "wortart": "Substantiv",
+    "erklaerung": "Das strenge Festhalten an einer offiziell anerkannten Lehre oder Auslegung.",
+    "beispielsatz": "Die wirtschaftliche Orthodoxie der Partei ließ kaum Raum für abweichende Modelle.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 165,
+    "wort": "Anomie",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein Zustand schwacher oder widersprüchlicher gesellschaftlicher Regeln und Orientierung.",
+    "beispielsatz": "In Zeiten schneller Umbrüche kann Anomie entstehen, weil alte Normen verschwinden und neue noch fehlen.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 166,
+    "wort": "Devianz",
+    "wortart": "Substantiv",
+    "erklaerung": "Verhalten, das von geltenden sozialen Normen abweicht.",
+    "beispielsatz": "Ob ein Verhalten als Devianz gilt, hängt stark vom historischen und kulturellen Umfeld ab.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 167,
+    "wort": "Distinktion",
+    "wortart": "Substantiv",
+    "erklaerung": "Die bewusste Abgrenzung, durch die Unterschiede und sozialer Status sichtbar gemacht werden.",
+    "beispielsatz": "Die teure Kleidung diente nicht nur dem Nutzen, sondern auch der Distinktion.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 168,
+    "wort": "Stratifikation",
+    "wortart": "Substantiv",
+    "erklaerung": "Die dauerhafte Gliederung einer Gesellschaft in soziale Schichten.",
+    "beispielsatz": "Die Stratifikation zeigte sich in ungleichen Bildungs- und Aufstiegschancen.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 169,
+    "wort": "Proliferation",
+    "wortart": "Substantiv",
+    "erklaerung": "Die schnelle Ausbreitung oder starke Vermehrung von etwas.",
+    "beispielsatz": "Die Proliferation schwer kontrollierbarer Informationsquellen erhöhte das Risiko von Falschmeldungen.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 170,
+    "wort": "Bürokratisierung",
+    "wortart": "Substantiv",
+    "erklaerung": "Die zunehmende Regelung durch formale Verfahren, Zuständigkeiten und Dokumentation.",
+    "beispielsatz": "Die Bürokratisierung sollte Fairness schaffen, machte den Ablauf aber zugleich langsamer.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 171,
+    "wort": "Zentralisierung",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Bündelung von Entscheidungen und Zuständigkeiten an einer übergeordneten Stelle.",
+    "beispielsatz": "Durch Zentralisierung wurden Standards vereinheitlicht, lokale Unterschiede aber weniger beachtet.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 172,
+    "wort": "Dezentralisierung",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Verteilung von Entscheidungen und Zuständigkeiten auf mehrere Ebenen oder Orte.",
+    "beispielsatz": "Dezentralisierung kann schnellere Entscheidungen vor Ort ermöglichen.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 173,
+    "wort": "Korporatismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Ordnung, in der organisierte Verbände fest in politische Entscheidungen eingebunden sind.",
+    "beispielsatz": "Im Korporatismus verhandeln Staat, Arbeitgeberverbände und Gewerkschaften regelmäßig miteinander.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 174,
+    "wort": "Souveränität",
+    "wortart": "Substantiv",
+    "erklaerung": "Die höchste selbstständige Entscheidungsgewalt eines Staates oder einer Person.",
+    "beispielsatz": "Internationale Verträge begrenzen staatliche Souveränität freiwillig zugunsten gemeinsamer Regeln.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 175,
+    "wort": "Repräsentation",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Vertretung oder Darstellung von Personen, Gruppen oder Ideen.",
+    "beispielsatz": "Politische Repräsentation bedeutet, dass Gewählte Interessen der Bevölkerung in Entscheidungen einbringen.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 176,
+    "wort": "Diskurs",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein gesellschaftlicher Zusammenhang, in dem über ein Thema gesprochen und Bedeutung erzeugt wird.",
+    "beispielsatz": "Der öffentliche Diskurs über Leistung veränderte sich mit den wirtschaftlichen Bedingungen.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 177,
+    "wort": "Diskursformation",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein Gefüge aus Regeln und Begriffen, das festlegt, wie ein Thema überhaupt besprochen werden kann.",
+    "beispielsatz": "Die Diskursformation der Zeit ließ bestimmte Fragen vernünftig und andere undenkbar erscheinen.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 178,
+    "wort": "Stigma",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein negativ bewertetes Merkmal, das eine Person gesellschaftlich abwertet.",
+    "beispielsatz": "Das Stigma der Arbeitslosigkeit belastete ihn stärker als der finanzielle Verlust.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 179,
+    "wort": "Utopie",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Vorstellung einer idealen, bisher nicht verwirklichten Gesellschaft.",
+    "beispielsatz": "Die Utopie entwarf eine gerechte Ordnung, erklärte aber kaum den Weg dorthin.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 180,
+    "wort": "Dystopie",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Darstellung einer bedrückenden oder gefährlichen zukünftigen Gesellschaft.",
+    "beispielsatz": "Die Dystopie zeigte, wie Bequemlichkeit schrittweise in vollständige Überwachung umschlagen konnte.",
+    "kategorie": "Gesellschaft & Politik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 181,
+    "wort": "Allegorie",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine längere bildhafte Darstellung, bei der etwas Sichtbares für einen abstrakten Gedanken steht.",
+    "beispielsatz": "Die Figur der blinden Justitia ist eine Allegorie der unparteiischen Gerechtigkeit.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 182,
+    "wort": "Allusion",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine indirekte Anspielung auf einen bekannten Text, eine Person oder ein Ereignis.",
+    "beispielsatz": "Die Allusion auf den Mythos war nur für Leser mit entsprechendem Vorwissen erkennbar.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 183,
+    "wort": "Anachronismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Etwas, das zeitlich nicht in den dargestellten Zusammenhang passt.",
+    "beispielsatz": "Ein Smartphone in einem Mittelalterfilm wäre ein offensichtlicher Anachronismus.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 184,
+    "wort": "Antithese",
+    "wortart": "Substantiv",
+    "erklaerung": "Die pointierte Gegenüberstellung entgegengesetzter Gedanken.",
+    "beispielsatz": "Die Antithese „Freiheit statt Kontrolle“ verdichtete den Konflikt auf zwei Pole.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 185,
+    "wort": "Aphorismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein kurzer, zugespitzter Satz, der einen Gedanken einprägsam ausdrückt.",
+    "beispielsatz": "Der Aphorismus wirkte einfach, eröffnete aber bei genauerem Lesen mehrere Deutungen.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 186,
+    "wort": "Chiasmus",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine überkreuzte Satzstruktur nach dem Muster A-B-B-A.",
+    "beispielsatz": "Der Satz „Die Kunst ist lang, und kurz ist unser Leben“ enthält einen Chiasmus.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 187,
+    "wort": "Duktus",
+    "wortart": "Substantiv",
+    "erklaerung": "Die charakteristische Art, wie jemand spricht, schreibt oder gestaltet.",
+    "beispielsatz": "Der sachliche Duktus des Berichts kontrastierte mit seinem dramatischen Inhalt.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 188,
+    "wort": "Ellipse",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein sprachlicher Ausdruck, bei dem leicht ergänzbare Wörter ausgelassen werden.",
+    "beispielsatz": "Die Ellipse „Je früher, desto besser“ ist trotz fehlender Verben verständlich.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 189,
+    "wort": "Euphemismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine beschönigende Bezeichnung für etwas Unangenehmes oder Härteres.",
+    "beispielsatz": "„Freisetzung von Personal“ ist ein Euphemismus für Entlassungen.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 190,
+    "wort": "Exegese",
+    "wortart": "Substantiv",
+    "erklaerung": "Die sorgfältige Auslegung eines schwierigen oder bedeutenden Textes.",
+    "beispielsatz": "Die Exegese untersuchte Wortwahl, historischen Hintergrund und mögliche Lesarten.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 191,
+    "wort": "Exkurs",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine kurze Abschweifung vom Hauptthema, die zusätzliche Zusammenhänge erklärt.",
+    "beispielsatz": "In einem Exkurs erläuterte der Autor die historische Entstehung des Begriffs.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 192,
+    "wort": "Hyperbel",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine bewusste, starke Übertreibung zur Verstärkung einer Aussage.",
+    "beispielsatz": "„Ich habe dir das tausendmal gesagt“ ist eine Hyperbel.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 193,
+    "wort": "Litotes",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Untertreibung, bei der das Gegenteil verneint wird.",
+    "beispielsatz": "Mit „nicht ganz unbegabt“ verwendete sie eine Litotes, um vorsichtig zu loben.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 194,
+    "wort": "Denotation",
+    "wortart": "Substantiv",
+    "erklaerung": "Die sachliche Grundbedeutung eines Wortes ohne zusätzliche Gefühle oder Wertungen.",
+    "beispielsatz": "Die Denotation von „Fuchs“ bezeichnet zunächst das Tier, unabhängig von der Vorstellung von Schlauheit.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 195,
+    "wort": "Metapher",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein bildhafter Ausdruck, bei dem ein Wort auf einen anderen Bereich übertragen wird.",
+    "beispielsatz": "Die Metapher vom „Datenstrom“ macht unsichtbare digitale Vorgänge anschaulich.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 196,
+    "wort": "Metonymie",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Ersetzung eines Begriffs durch einen sachlich eng verbundenen anderen Begriff.",
+    "beispielsatz": "In „Berlin entscheidet“ steht die Stadt als Metonymie für die Bundesregierung.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 197,
+    "wort": "Neologismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein neu gebildetes oder neu verwendetes Wort.",
+    "beispielsatz": "„Doomscrolling“ ist ein Neologismus für das endlose Lesen negativer Nachrichten.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 198,
+    "wort": "Paradoxon",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Aussage, die widersprüchlich wirkt, aber eine tiefere Wahrheit enthalten kann.",
+    "beispielsatz": "Das Paradoxon „Weniger ist mehr“ ergibt in vielen Gestaltungssituationen Sinn.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 199,
+    "wort": "Paraphrase",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Wiedergabe eines Gedankens mit anderen Worten.",
+    "beispielsatz": "Durch die Paraphrase zeigte sie, dass sie den schwierigen Absatz verstanden hatte.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 200,
+    "wort": "Periphrase",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine umschreibende Bezeichnung statt des direkten Wortes.",
+    "beispielsatz": "„Das Land der aufgehenden Sonne“ ist eine Periphrase für Japan.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 201,
+    "wort": "Polysemie",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Eigenschaft eines Wortes, mehrere miteinander verbundene Bedeutungen zu haben.",
+    "beispielsatz": "Die Polysemie von „Schloss“ umfasst sowohl ein Gebäude als auch einen Verschluss.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 202,
+    "wort": "Semantik",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Bedeutung von Wörtern, Sätzen und Zeichen.",
+    "beispielsatz": "Grammatikalisch war der Satz korrekt, doch seine Semantik blieb unklar.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 203,
+    "wort": "Symbolik",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Verwendung von Zeichen oder Bildern mit übertragener Bedeutung.",
+    "beispielsatz": "Die Symbolik des zerbrochenen Spiegels verwies auf den Verlust der eigenen Identität.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 204,
+    "wort": "Synekdoche",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Ausdrucksweise, bei der ein Teil für das Ganze oder das Ganze für einen Teil steht.",
+    "beispielsatz": "In „Wir brauchen mehr Hände“ steht „Hände“ als Synekdoche für Arbeitskräfte.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 205,
+    "wort": "Topos",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein wiederkehrendes Denkbild oder bekanntes Motiv in Sprache und Kultur.",
+    "beispielsatz": "Der Topos vom einsamen Genie taucht in vielen Künstlerbiografien auf.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 206,
+    "wort": "Zynismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine Haltung, die Ideale verspottet und eigennützige Motive als selbstverständlich annimmt.",
+    "beispielsatz": "Sein Zynismus ließ jede Hilfeleistung wie bloße Selbstdarstellung erscheinen.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 207,
+    "wort": "Pathos",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine feierliche oder stark gefühlsbetonte Ausdrucksweise.",
+    "beispielsatz": "Das große Pathos der Rede passte kaum zu dem kleinen Anlass.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 208,
+    "wort": "Ethos",
+    "wortart": "Substantiv",
+    "erklaerung": "Die glaubwürdig wirkende Haltung und der moralische Charakter einer sprechenden Person.",
+    "beispielsatz": "Ihr ruhiges Ethos überzeugte stärker als die vielen Zahlen.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 209,
+    "wort": "Logos",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Überzeugungskraft durch nachvollziehbare Gründe und Belege.",
+    "beispielsatz": "Der Logos der Argumentation beruhte auf klaren Daten und sauberen Schlüssen.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 210,
+    "wort": "Narratologie",
+    "wortart": "Substantiv",
+    "erklaerung": "Die wissenschaftliche Untersuchung davon, wie Geschichten aufgebaut und erzählt werden.",
+    "beispielsatz": "Die Narratologie unterscheidet zwischen dem Geschehen und der Art seiner Darstellung.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 211,
+    "wort": "Etymologie",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Herkunft und geschichtliche Entwicklung eines Wortes.",
+    "beispielsatz": "Die Etymologie des Begriffs zeigte, dass seine ursprüngliche Bedeutung deutlich enger war.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 212,
+    "wort": "Idiomatismus",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine feste sprachliche Wendung, deren Bedeutung nicht direkt aus den Einzelwörtern folgt.",
+    "beispielsatz": "„Ins Gras beißen“ ist ein Idiomatismus und darf nicht wörtlich verstanden werden.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 213,
+    "wort": "implizit",
+    "wortart": "Adjektiv",
+    "erklaerung": "Mitgemeint, aber nicht ausdrücklich ausgesprochen.",
+    "beispielsatz": "Seine Zustimmung war implizit, weil er ohne Widerspruch mit der Umsetzung begann.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 214,
+    "wort": "explizit",
+    "wortart": "Adjektiv",
+    "erklaerung": "Klar und ausdrücklich formuliert.",
+    "beispielsatz": "Die Regel verbot explizit jede Weitergabe der Zugangsdaten.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 215,
+    "wort": "Kontextualisierung",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Einordnung einer Aussage in ihren zeitlichen, sozialen oder sachlichen Zusammenhang.",
+    "beispielsatz": "Erst die Kontextualisierung erklärte, warum der Satz damals anders verstanden wurde.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 216,
+    "wort": "Dekonstruktion",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine genaue Analyse, die verborgene Gegensätze und Voraussetzungen eines Textes offenlegt.",
+    "beispielsatz": "Die Dekonstruktion zeigte, dass der Text die angeblich klare Grenze selbst immer wieder unterlief.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 217,
+    "wort": "Hermeneutik",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Lehre vom Verstehen und Auslegen von Texten, Handlungen und Bedeutungen.",
+    "beispielsatz": "Hermeneutik berücksichtigt, dass Vorwissen jede Interpretation mitprägt.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 218,
+    "wort": "Mimesis",
+    "wortart": "Substantiv",
+    "erklaerung": "Die künstlerische Nachahmung oder Darstellung von Wirklichkeit.",
+    "beispielsatz": "Der Roman erzeugt Mimesis, ohne die Wirklichkeit einfach zu kopieren.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 219,
+    "wort": "Intertextualität",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Beziehung eines Textes zu anderen Texten durch Zitate, Motive oder Anspielungen.",
+    "beispielsatz": "Die Intertextualität des Romans wurde durch zahlreiche Verweise auf antike Mythen sichtbar.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 220,
+    "wort": "Metanarrativ",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine umfassende Erzählung, die viele Ereignisse durch ein großes Deutungsmuster erklärt.",
+    "beispielsatz": "Der Glaube an stetigen Fortschritt kann als Metanarrativ moderner Gesellschaften verstanden werden.",
+    "kategorie": "Sprache & Rhetorik",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 221,
+    "wort": "adäquat",
+    "wortart": "Adjektiv",
+    "erklaerung": "Angemessen und genau passend für die jeweilige Situation.",
+    "beispielsatz": "Eine pauschale Antwort wäre der Komplexität des Problems nicht adäquat.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 222,
+    "wort": "arbiträr",
+    "wortart": "Adjektiv",
+    "erklaerung": "Ohne zwingenden Grund festgelegt und grundsätzlich auch anders möglich.",
+    "beispielsatz": "Die Grenze wirkte arbiträr, weil keine sachliche Begründung für ihren Verlauf erkennbar war.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 223,
+    "wort": "antiquiert",
+    "wortart": "Adjektiv",
+    "erklaerung": "Veraltet und nicht mehr zeitgemäß.",
+    "beispielsatz": "Das Rollenbild erschien vielen Jugendlichen antiquiert.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 224,
+    "wort": "akzidentiell",
+    "wortart": "Adjektiv",
+    "erklaerung": "Zufällig oder nebensächlich vorhanden, ohne zum notwendigen Wesen einer Sache zu gehören.",
+    "beispielsatz": "Die Farbe ist für die Funktion des Geräts akzidentiell.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 225,
+    "wort": "immanent",
+    "wortart": "Adjektiv",
+    "erklaerung": "Innerhalb eines Systems liegend und aus ihm selbst hervorgehend.",
+    "beispielsatz": "Der Konflikt war dem Geschäftsmodell immanent und nicht nur Folge eines einzelnen Fehlers.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 226,
+    "wort": "sukzessiv",
+    "wortart": "Adjektiv",
+    "erklaerung": "Schrittweise nacheinander erfolgend.",
+    "beispielsatz": "Die alten Geräte wurden sukzessiv durch effizientere Modelle ersetzt.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 227,
+    "wort": "simultan",
+    "wortart": "Adjektiv",
+    "erklaerung": "Zur gleichen Zeit stattfindend.",
+    "beispielsatz": "Die beiden Entwicklungen verliefen simultan, ohne zwingend voneinander verursacht zu sein.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 228,
+    "wort": "prospektiv",
+    "wortart": "Adjektiv",
+    "erklaerung": "Auf zukünftige Entwicklungen gerichtet.",
+    "beispielsatz": "Die prospektive Studie begleitet die Teilnehmenden über mehrere Jahre.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 229,
+    "wort": "retrospektiv",
+    "wortart": "Adjektiv",
+    "erklaerung": "Rückblickend auf bereits vergangene Ereignisse gerichtet.",
+    "beispielsatz": "Retrospektiv wirkte die Entscheidung riskanter, als sie im damaligen Wissensstand erschien.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 230,
+    "wort": "rekursiv",
+    "wortart": "Adjektiv",
+    "erklaerung": "So aufgebaut, dass ein Vorgang auf sich selbst oder eine kleinere Version desselben Vorgangs zurückgreift.",
+    "beispielsatz": "Die rekursive Funktion löste das Problem, indem sie es wiederholt in kleinere Teilprobleme zerlegte.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 231,
+    "wort": "konstitutiv",
+    "wortart": "Adjektiv",
+    "erklaerung": "Grundlegend dafür, dass etwas überhaupt in seiner Form entsteht oder besteht.",
+    "beispielsatz": "Vertrauen ist konstitutiv für jede langfristige Zusammenarbeit.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 232,
+    "wort": "Manifestation",
+    "wortart": "Substantiv",
+    "erklaerung": "Das sichtbare oder erkennbare Auftreten eines zuvor verborgenen Vorgangs.",
+    "beispielsatz": "Der plötzliche Leistungsabfall war eine Manifestation der länger andauernden Überlastung.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 233,
+    "wort": "Fragmentierung",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Aufteilung eines zusammenhängenden Ganzen in viele getrennte Teile.",
+    "beispielsatz": "Die Fragmentierung der Informationen erschwerte einen vollständigen Überblick.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 234,
+    "wort": "Akkumulation",
+    "wortart": "Substantiv",
+    "erklaerung": "Die schrittweise Ansammlung oder Vermehrung über längere Zeit.",
+    "beispielsatz": "Die Akkumulation kleiner Fehler führte schließlich zu einem größeren Ausfall.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 235,
+    "wort": "Diffusion",
+    "wortart": "Substantiv",
+    "erklaerung": "Die allmähliche Ausbreitung von Stoffen, Ideen oder Neuerungen.",
+    "beispielsatz": "Die Diffusion der neuen Technik verlief zunächst langsam und beschleunigte sich später.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 236,
+    "wort": "Adaption",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Anpassung an neue Bedingungen oder die Übertragung in eine andere Form.",
+    "beispielsatz": "Die filmische Adaption veränderte mehrere Szenen des Romans.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 237,
+    "wort": "Transformation",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine grundlegende Veränderung von Struktur, Form oder Zustand.",
+    "beispielsatz": "Die digitale Transformation betraf nicht nur Werkzeuge, sondern auch Arbeitsabläufe und Rollen.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 238,
+    "wort": "Transgression",
+    "wortart": "Substantiv",
+    "erklaerung": "Die bewusste Überschreitung einer sozialen, moralischen oder künstlerischen Grenze.",
+    "beispielsatz": "Die Transgression sollte provozieren und die geltenden Regeln sichtbar machen.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 239,
+    "wort": "Disruption",
+    "wortart": "Substantiv",
+    "erklaerung": "Eine tiefgreifende Unterbrechung, die bestehende Abläufe oder Märkte grundlegend verändert.",
+    "beispielsatz": "Streaming führte zu einer Disruption traditioneller Vertriebsmodelle.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 240,
+    "wort": "Volatilität",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Stärke und Häufigkeit kurzfristiger Schwankungen.",
+    "beispielsatz": "Die hohe Volatilität des Preises machte verlässliche Planung schwierig.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 241,
+    "wort": "Friktion",
+    "wortart": "Substantiv",
+    "erklaerung": "Ein Widerstand oder Reibungsverlust, der Abläufe erschwert oder verlangsamt.",
+    "beispielsatz": "Unklare Zuständigkeiten erzeugten Friktion zwischen den beiden Teams.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 242,
+    "wort": "Latenz",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Verzögerung zwischen einem Auslöser und der sichtbaren Reaktion.",
+    "beispielsatz": "Die hohe Latenz machte die Steuerung des Systems unpräzise.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 243,
+    "wort": "Genese",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Entstehung und schrittweise Entwicklung eines Sachverhalts.",
+    "beispielsatz": "Die Genese des Konflikts ließ sich bis zu einer frühen Fehlentscheidung zurückverfolgen.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 244,
+    "wort": "Prozessualität",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Eigenschaft, nicht statisch zu sein, sondern sich fortlaufend zu entwickeln.",
+    "beispielsatz": "Die Prozessualität von Identität bedeutet, dass sie sich durch Erfahrungen ständig verändert.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 245,
+    "wort": "Komplexität",
+    "wortart": "Substantiv",
+    "erklaerung": "Das Zusammenwirken vieler Teile und Beziehungen, wodurch einfache Erklärungen nicht ausreichen.",
+    "beispielsatz": "Die Komplexität des Systems machte kleine Eingriffe schwer vorhersehbar.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 246,
+    "wort": "Heterogenität",
+    "wortart": "Substantiv",
+    "erklaerung": "Die Verschiedenartigkeit der Bestandteile einer Gruppe oder Menge.",
+    "beispielsatz": "Die Heterogenität der Lerngruppe erforderte unterschiedliche Aufgaben und Erklärungen.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 247,
+    "wort": "Homogenität",
+    "wortart": "Substantiv",
+    "erklaerung": "Die weitgehende Gleichartigkeit der Bestandteile einer Gruppe oder Menge.",
+    "beispielsatz": "Die scheinbare Homogenität der Gruppe verdeckte wichtige individuelle Unterschiede.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 248,
+    "wort": "inkommensurabel",
+    "wortart": "Adjektiv",
+    "erklaerung": "Nicht sinnvoll mit demselben Maßstab vergleichbar.",
+    "beispielsatz": "Künstlerische Qualität und finanzieller Gewinn sind teilweise inkommensurabel.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 249,
+    "wort": "exogen",
+    "wortart": "Adjektiv",
+    "erklaerung": "Von außen verursacht oder in ein System hineingetragen.",
+    "beispielsatz": "Der Nachfrageeinbruch war exogen, weil er durch ein internationales Ereignis ausgelöst wurde.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  },
+  {
+    "reihenfolge": 250,
+    "wort": "endogen",
+    "wortart": "Adjektiv",
+    "erklaerung": "Aus inneren Bedingungen oder Vorgängen eines Systems heraus entstanden.",
+    "beispielsatz": "Das Wachstum war endogen und beruhte auf eigenen Verbesserungen des Unternehmens.",
+    "kategorie": "Abstrakte Bildungssprache",
+    "status": "wartend"
+  }
+]
