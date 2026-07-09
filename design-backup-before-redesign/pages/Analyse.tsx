@@ -95,100 +95,54 @@ export default function Analyse({ userId }: { userId: string }) {
     return count;
   }, [entries]);
 
-  const moodAvg = useMemo(() => {
-    const vals = last30
-      .map((e) => num(e.answers?.mood_overall))
-      .filter((v): v is number => v !== undefined);
-    return vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : undefined;
-  }, [last30]);
-
   return (
     <div className="page">
       <h1>Analyse</h1>
-
-      {loading && (
-        <>
-          <div className="stat-grid" style={{ marginBottom: "var(--s3)" }}>
-            <div className="skeleton skel-tile" />
-            <div className="skeleton skel-tile" />
-            <div className="skeleton skel-tile" />
-          </div>
-          <div className="card">
-            <div className="skeleton skel-line w60" />
-            <div className="skeleton" style={{ height: 130, borderRadius: 12 }} />
-          </div>
-        </>
-      )}
-
-      {error && (
-        <div className="alert">
-          <span className="alert-ico" aria-hidden="true">!</span>
-          <div>Die Auswertung konnte nicht geladen werden. Bitte später erneut versuchen.</div>
-        </div>
-      )}
-
+      {loading && <div className="card muted">Lädt…</div>}
+      {error && <div className="card status error">{error}</div>}
       {!loading && !error && entries.length === 0 && (
-        <div className="card empty">
-          <span className="empty-ico" aria-hidden="true">📊</span>
-          <p className="empty-title">Noch keine Auswertung</p>
-          <p>Sobald du einige Einträge angelegt hast, erscheinen hier Trends und Durchschnitte.</p>
-        </div>
+        <div className="card muted">Noch keine Daten. Fülle zuerst ein paar Check-ins aus.</div>
       )}
-
       {!loading && !error && entries.length > 0 && (
         <>
-          <div className="stat-grid">
-            <div className="stat-tile">
-              <div className="stat-value">{entries.length}</div>
-              <div className="stat-label">Einträge gesamt</div>
+          <div className="card">
+            <h2>Überblick</h2>
+            <div className="stat-row">
+              <span>Einträge gesamt</span>
+              <strong>{entries.length}</strong>
             </div>
-            <div className="stat-tile">
-              <div className="stat-value">
-                {streak}
-                <span className="unit">{streak === 1 ? "Tag" : "Tage"}</span>
-              </div>
-              <div className="stat-label">Aktuelle Serie</div>
-            </div>
-            <div className="stat-tile">
-              <div className="stat-value">
-                {moodAvg !== undefined ? moodAvg.toFixed(1) : "–"}
-                {moodAvg !== undefined && <span className="unit">/10</span>}
-              </div>
-              <div className="stat-label">Ø Stimmung</div>
+            <div className="stat-row">
+              <span>Aktuelle Serie</span>
+              <strong>{streak} Tage</strong>
             </div>
           </div>
 
           <div className="card">
-            <h2>Stimmungsverlauf</h2>
-            <p className="section-hint">Gesamtstimmung (1–10) der letzten 30 Einträge.</p>
-            <div className="chart">
+            <h2>Stimmungsverlauf (letzte 30 Einträge)</h2>
+            <div className="bars">
               {moodBars.map((b) => (
                 <div
                   key={b.date}
-                  className={`bar${b.mood ? "" : " empty"}`}
-                  title={`${b.date}: ${b.mood ?? "kein Wert"}`}
-                  style={{ height: b.mood ? `${Math.max(b.mood * 10, 4)}%` : "6%" }}
+                  className="bar"
+                  title={`${b.date}: ${b.mood ?? "–"}`}
+                  style={{
+                    height: b.mood ? `${b.mood * 10}%` : "2%",
+                    opacity: b.mood ? 1 : 0.3,
+                  }}
                 />
               ))}
             </div>
+            <p className="muted small">Balkenhöhe = Gesamtstimmung (1–10) pro Tag.</p>
           </div>
 
           <div className="card">
-            <h2>Durchschnitt</h2>
-            <p className="section-hint">Über die letzten 30 Einträge, nur erfasste Werte.</p>
+            <h2>Durchschnitt (letzte 30 Einträge)</h2>
             {averages.map((m) => (
-              <div className="metric-row" key={m.id}>
-                <div className="metric-head">
-                  <span>{m.label}</span>
-                  <strong>
-                    {m.avg !== undefined ? m.avg.toFixed(1) : "–"}
-                    {m.avg !== undefined && <span className="muted small"> /10</span>}
-                  </strong>
-                </div>
-                <div className="meter" aria-hidden="true">
-                  <span style={{ width: m.avg !== undefined ? `${m.avg * 10}%` : "0%" }} />
-                </div>
-                <span className="stat-sub">{m.count}× erfasst</span>
+              <div className="stat-row" key={m.id}>
+                <span>
+                  {m.label} <span className="muted small">({m.count}×)</span>
+                </span>
+                <strong>{m.avg !== undefined ? m.avg.toFixed(1) : "–"}</strong>
               </div>
             ))}
           </div>

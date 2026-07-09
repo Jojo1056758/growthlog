@@ -57,25 +57,20 @@ export default function Settings({ userId, email }: { userId: string; email: str
       <div className="card">
         <h2>Konto</h2>
         <div className="stat-row">
-          <span className="muted">Angemeldet als</span>
+          <span>Angemeldet als</span>
           <strong>{email || "–"}</strong>
         </div>
-        <button type="button" className="btn-secondary" onClick={signOut}>
+        <button type="button" className="primary" onClick={signOut}>
           Abmelden
         </button>
       </div>
 
       <div className="card">
         <h2>Daten</h2>
-        <p className="section-hint">
+        <p className="muted small">
           Exportiert alle Einträge und Wörter als JSON-Datei – z. B. als Backup.
         </p>
-        {error && (
-          <div className="alert" style={{ marginBottom: "var(--s3)" }}>
-            <span className="alert-ico" aria-hidden="true">!</span>
-            <div>Der Export ist fehlgeschlagen. Bitte versuche es später erneut.</div>
-          </div>
-        )}
+        {error && <p className="status error">{error}</p>}
         <button type="button" className="primary" onClick={exportData} disabled={busy}>
           {busy ? "Exportiert…" : "Alle Daten exportieren"}
         </button>
@@ -83,7 +78,7 @@ export default function Settings({ userId, email }: { userId: string; email: str
 
       <div className="card">
         <h2>Über GrowthLog</h2>
-        <p className="section-hint" style={{ margin: 0 }}>
+        <p className="muted small">
           Tägliches Tagebuch für Stimmung, Wachstum, soziale Situationen, Träume und
           Vokabeln. Deine Daten liegen in deinem eigenen Supabase-Projekt und sind durch
           Row Level Security nur für dich sichtbar.

@@ -10,48 +10,6 @@ import Words from "./pages/Words";
 import Quiz from "./pages/Quiz";
 import Settings from "./pages/Settings";
 
-const svgProps = {
-  width: 22,
-  height: 22,
-  viewBox: "0 0 24 24",
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 1.9,
-  strokeLinecap: "round" as const,
-  strokeLinejoin: "round" as const,
-};
-const IconToday = () => (
-  <svg {...svgProps}>
-    <path d="M12 3a6 6 0 0 0-6 6c0 2.5 1.5 3.8 2.3 5.2.4.7.7 1.3.7 1.8h6c0-.5.3-1.1.7-1.8C16.5 12.8 18 11.5 18 9a6 6 0 0 0-6-6Z" />
-    <path d="M9.5 20h5M10 22h4" />
-  </svg>
-);
-const IconHistory = () => (
-  <svg {...svgProps}>
-    <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
-    <path d="M3 4v4h4M12 8v4l3 2" />
-  </svg>
-);
-const IconChart = () => (
-  <svg {...svgProps}>
-    <path d="M4 4v16h16" />
-    <path d="M8 15v-3M12 15V9M16 15v-6" />
-  </svg>
-);
-const IconWords = () => (
-  <svg {...svgProps}>
-    <path d="M5 4h9a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4Z" />
-    <path d="M17 20a3 3 0 0 0-3-3H5" />
-  </svg>
-);
-const IconMore = () => (
-  <svg {...svgProps}>
-    <circle cx="5" cy="12" r="1.4" />
-    <circle cx="12" cy="12" r="1.4" />
-    <circle cx="19" cy="12" r="1.4" />
-  </svg>
-);
-
 export default function App() {
   const [session, setSession] = useState<Session | null>(null);
   const [ready, setReady] = useState(false);
@@ -117,25 +75,12 @@ function Shell({ userId, email }: { userId: string; email: string }) {
       {!isQuiz && (
         <nav className="bottom-nav">
           <NavLink to="/" end>
-            <span className="nav-ico" aria-hidden="true"><IconToday /></span>
-            <span className="nav-label">Heute</span>
+            Heute
           </NavLink>
-          <NavLink to="/history">
-            <span className="nav-ico" aria-hidden="true"><IconHistory /></span>
-            <span className="nav-label">Verlauf</span>
-          </NavLink>
-          <NavLink to="/analyse">
-            <span className="nav-ico" aria-hidden="true"><IconChart /></span>
-            <span className="nav-label">Analyse</span>
-          </NavLink>
-          <NavLink to="/words">
-            <span className="nav-ico" aria-hidden="true"><IconWords /></span>
-            <span className="nav-label">Wörter</span>
-          </NavLink>
-          <NavLink to="/settings">
-            <span className="nav-ico" aria-hidden="true"><IconMore /></span>
-            <span className="nav-label">Mehr</span>
-          </NavLink>
+          <NavLink to="/history">Verlauf</NavLink>
+          <NavLink to="/analyse">Analyse</NavLink>
+          <NavLink to="/words">Wörter</NavLink>
+          <NavLink to="/settings">Mehr</NavLink>
         </nav>
       )}
     </>

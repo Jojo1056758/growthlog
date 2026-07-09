@@ -1,7 +1,7 @@
 import { Fragment, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { QuestionRenderer } from "../components/Fields";
-import { FULL_SECTIONS, QUESTIONS, QUICK_IDS } from "../lib/schema";
+import { FULL_SECTIONS, QUESTIONS, QUICK_IDS, Question } from "../lib/schema";
 import { useEntry } from "../lib/useEntry";
 
 const toIso = (d: Date) => {
@@ -28,11 +28,30 @@ const formatDate = (iso: string) => {
   });
 };
 
+// Ein einziges, geführtes Tagebuch: die Überblicksfragen (früher „Schnell")
+// bilden den ersten Abschnitt, danach folgen die ausführlichen Bereiche.
+// Alle Felder bleiben optional; keine Änderung an Daten-/Speicherlogik.
+const FULL_IDS = new Set(FULL_SECTIONS.flatMap((s) => s.questions.map((q) => q.id)));
+const OVERVIEW_QUESTIONS: Question[] = QUICK_IDS
+  .filter((id) => id !== "dream_text" && !FULL_IDS.has(id))
+  .map((id) => QUESTIONS[id]);
+
+interface JournalSection {
+  id: string;
+  title: string;
+  questions: Question[];
+}
+const SECTIONS: JournalSection[] = [
+  { id: "overview", title: "Überblick", questions: OVERVIEW_QUESTIONS },
+  ...FULL_SECTIONS.map((s) => ({ id: s.id, title: s.title, questions: s.questions })),
+];
+
 export default function Today({ userId }: { userId: string }) {
   const [params, setParams] = useSearchParams();
   const date = params.get("date") || todayIso();
-  const [mode, setMode] = useState<"quick" | "full">("quick");
-  const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({
+    overview: true,
+  });
   const { answers, update, status, retry } = useEntry(userId, date);
 
   const isToday = date === todayIso();
@@ -45,20 +64,33 @@ export default function Today({ userId }: { userId: string }) {
   const toggleSection = (id: string) =>
     setOpenSections((prev) => ({ ...prev, [id]: !prev[id] }));
 
-  const statusText = useMemo(() => {
+  const save = useMemo(() => {
     switch (status) {
       case "loading":
-        return "Lädt…";
+        return { cls: "", text: "Lädt…" };
       case "saving":
-        return "Speichert…";
+        return { cls: "saving", text: "Speichert…" };
       case "saved":
-        return "Gespeichert";
+        return { cls: "saved", text: "Gespeichert" };
       case "error":
-        return "Fehler beim Speichern";
+        return { cls: "err", text: "Nicht gespeichert" };
       default:
-        return "";
+        return { cls: "", text: "Bereit" };
     }
   }, [status]);
+
+  const renderQuestion = (q: Question) => (
+    <Fragment key={q.id}>
+      <QuestionRenderer q={q} value={answers[q.id]} onChange={(v) => update(q.id, v)} />
+      {q.id === "dreamed" && answers.dreamed === "Ja" && (
+        <QuestionRenderer
+          q={QUESTIONS.dream_text}
+          value={answers.dream_text}
+          onChange={(v) => update("dream_text", v)}
+        />
+      )}
+    </Fragment>
+  );
 
   return (
     <div className="page">
@@ -87,75 +119,49 @@ export default function Today({ userId }: { userId: string }) {
       </div>
 
       <div className="row-between">
-        <div className="mode-switch">
-          <button
-            type="button"
-            className={mode === "quick" ? "pill active" : "pill"}
-            onClick={() => setMode("quick")}
-          >
-            Schnell
-          </button>
-          <button
-            type="button"
-            className={mode === "full" ? "pill active" : "pill"}
-            onClick={() => setMode("full")}
-          >
-            Komplett
-          </button>
-        </div>
-        <span className={status === "error" ? "status error" : "status"}>
-          {statusText}
+        <p className="section-hint" style={{ margin: 0 }}>
+          Halte fest, was passt – jedes Feld ist freiwillig.
+        </p>
+        <span className={`save-chip ${save.cls}`}>
+          <span className="save-dot" />
+          {save.text}
           {status === "error" && (
             <button type="button" className="link-btn" onClick={retry}>
-              Erneut versuchen
+              Erneut
             </button>
           )}
         </span>
       </div>
 
       {status === "loading" ? (
-        <div className="card muted">Eintrag wird geladen…</div>
-      ) : mode === "quick" ? (
         <div className="card">
-          {QUICK_IDS.map((id) => (
-            <Fragment key={id}>
-              <QuestionRenderer
-                q={QUESTIONS[id]}
-                value={answers[id]}
-                onChange={(v) => update(id, v)}
-              />
-              {id === "dreamed" && answers.dreamed === "Ja" && (
-                <QuestionRenderer
-                  q={QUESTIONS.dream_text}
-                  value={answers.dream_text}
-                  onChange={(v) => update("dream_text", v)}
-                />
-              )}
-            </Fragment>
-          ))}
+          <div className="skeleton skel-line w40" />
+          <div className="skeleton skel-line w80" />
+          <div className="skeleton skel-line w60" />
         </div>
       ) : (
-        FULL_SECTIONS.map((section) => (
-          <div className="card" key={section.id}>
-            <button
-              type="button"
-              className="section-toggle"
-              onClick={() => toggleSection(section.id)}
-            >
-              <span>{section.title}</span>
-              <span className="muted">{openSections[section.id] ? "−" : "+"}</span>
-            </button>
-            {openSections[section.id] &&
-              section.questions.map((q) => (
-                <QuestionRenderer
-                  key={q.id}
-                  q={q}
-                  value={answers[q.id]}
-                  onChange={(v) => update(q.id, v)}
-                />
-              ))}
-          </div>
-        ))
+        SECTIONS.map((section) => {
+          const open = !!openSections[section.id];
+          if (!section.questions.length) return null;
+          return (
+            <div className="card" key={section.id}>
+              <button
+                type="button"
+                className="section-toggle"
+                aria-expanded={open}
+                onClick={() => toggleSection(section.id)}
+              >
+                <span>{section.title}</span>
+                <span className="chev" aria-hidden="true">›</span>
+              </button>
+              {open && (
+                <div className="accordion-body">
+                  {section.questions.map(renderQuestion)}
+                </div>
+              )}
+            </div>
+          );
+        })
       )}
     </div>
   );

@@ -17,14 +17,11 @@ export default function Auth() {
     try {
       if (mode === "login") {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
-        if (error)
-          setError("Anmeldung fehlgeschlagen. Bitte prüfe E-Mail und Passwort.");
+        if (error) setError(error.message);
       } else {
         const { data, error } = await supabase.auth.signUp({ email, password });
         if (error) {
-          setError(
-            "Registrierung nicht möglich. Prüfe deine E-Mail oder versuche es später erneut."
-          );
+          setError(error.message);
         } else if (data.user && !data.session) {
           setInfo("Konto erstellt. Bitte E-Mail bestätigen und dann anmelden.");
         }
@@ -37,9 +34,8 @@ export default function Auth() {
   return (
     <div className="auth-wrap">
       <div className="card auth-card">
-        <div className="brand-mark" aria-hidden="true">G</div>
         <h1>GrowthLog</h1>
-        <p className="section-hint">Dein tägliches Wachstums- und Stimmungstagebuch.</p>
+        <p className="muted small">Dein tägliches Wachstums- und Stimmungstagebuch.</p>
         <form onSubmit={submit}>
           <label htmlFor="email">E-Mail</label>
           <input
@@ -60,18 +56,8 @@ export default function Auth() {
             minLength={6}
             required
           />
-          {error && (
-            <div className="alert" style={{ marginTop: "var(--s3)" }}>
-              <span className="alert-ico" aria-hidden="true">!</span>
-              <div>{error}</div>
-            </div>
-          )}
-          {info && (
-            <div className="alert" style={{ marginTop: "var(--s3)", background: "var(--accent-soft)", borderColor: "var(--accent-border)" }}>
-              <span className="alert-ico" aria-hidden="true" style={{ color: "var(--accent)" }}>✓</span>
-              <div>{info}</div>
-            </div>
-          )}
+          {error && <p className="status error">{error}</p>}
+          {info && <p className="status">{info}</p>}
           <button className="primary" type="submit" disabled={busy}>
             {busy ? "Bitte warten…" : mode === "login" ? "Anmelden" : "Konto erstellen"}
           </button>

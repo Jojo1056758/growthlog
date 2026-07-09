@@ -22,7 +22,6 @@ export default function Words({ userId }: { userId: string }) {
   const [example2, setExample2] = useState("");
   const [busy, setBusy] = useState(false);
 
-  const [formOpen, setFormOpen] = useState(false);
   const [openCats, setOpenCats] = useState<Set<string>>(new Set());
   const [openWordId, setOpenWordId] = useState<string | null>(null);
 
@@ -67,16 +66,11 @@ export default function Words({ userId }: { userId: string }) {
     setDefinition2("");
     setExample("");
     setExample2("");
-    setFormOpen(false);
     load();
   };
 
   const remove = async (w: WordRow) => {
-    if (
-      !window.confirm(
-        `Wort „${w.word}“ wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.`
-      )
-    ) {
+    if (!window.confirm(`Wort „${w.word}“ wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.`)) {
       return;
     }
     const { error } = await supabase.from("user_words").delete().eq("id", w.id);
@@ -97,97 +91,68 @@ export default function Words({ userId }: { userId: string }) {
 
   return (
     <div className="page">
-      <div className="row-between">
-        <h1 style={{ margin: 0 }}>Wörter</h1>
-        <button
-          type="button"
-          className="btn"
-          aria-expanded={formOpen}
-          onClick={() => setFormOpen((v) => !v)}
-        >
-          {formOpen ? "Schließen" : "＋ Wort"}
-        </button>
-      </div>
+      <h1>Wörter</h1>
 
-      {formOpen && (
-        <div className="card accordion-body">
-          <h2>Neues Wort</h2>
-          <form onSubmit={add}>
-            <label htmlFor="w-word">Wort</label>
-            <input
-              id="w-word"
-              type="text"
-              value={word}
-              onChange={(e) => setWord(e.target.value)}
-              required
-            />
-            <label htmlFor="w-cat">Kategorie (optional)</label>
-            <select id="w-cat" value={category} onChange={(e) => setCategory(e.target.value)}>
-              <option value="">Keine Kategorie</option>
-              {MAIN_CATEGORIES.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-            </select>
-            <label htmlFor="w-def">Bedeutung</label>
-            <input
-              id="w-def"
-              type="text"
-              value={definition}
-              onChange={(e) => setDefinition(e.target.value)}
-            />
-            <label htmlFor="w-def2">Zweite Erklärung (optional)</label>
-            <input
-              id="w-def2"
-              type="text"
-              value={definition2}
-              onChange={(e) => setDefinition2(e.target.value)}
-            />
-            <label htmlFor="w-ex">Beispielsatz (optional)</label>
-            <input
-              id="w-ex"
-              type="text"
-              value={example}
-              onChange={(e) => setExample(e.target.value)}
-            />
-            <label htmlFor="w-ex2">Zweiter Beispielsatz (optional)</label>
-            <input
-              id="w-ex2"
-              type="text"
-              value={example2}
-              onChange={(e) => setExample2(e.target.value)}
-            />
-            {error && <p className="status error">{error}</p>}
-            <button className="primary" type="submit" disabled={busy}>
-              {busy ? "Speichert…" : "Hinzufügen"}
-            </button>
-          </form>
-        </div>
-      )}
+      <div className="card">
+        <h2>Neues Wort</h2>
+        <form onSubmit={add}>
+          <label htmlFor="w-word">Wort</label>
+          <input
+            id="w-word"
+            type="text"
+            value={word}
+            onChange={(e) => setWord(e.target.value)}
+            required
+          />
+          <label htmlFor="w-cat">Kategorie (optional)</label>
+          <select id="w-cat" value={category} onChange={(e) => setCategory(e.target.value)}>
+            <option value="">Keine Kategorie</option>
+            {MAIN_CATEGORIES.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </select>
+          <label htmlFor="w-def">Bedeutung</label>
+          <input
+            id="w-def"
+            type="text"
+            value={definition}
+            onChange={(e) => setDefinition(e.target.value)}
+          />
+          <label htmlFor="w-def2">Zweite Erklärung (optional)</label>
+          <input
+            id="w-def2"
+            type="text"
+            value={definition2}
+            onChange={(e) => setDefinition2(e.target.value)}
+          />
+          <label htmlFor="w-ex">Beispielsatz (optional)</label>
+          <input
+            id="w-ex"
+            type="text"
+            value={example}
+            onChange={(e) => setExample(e.target.value)}
+          />
+          <label htmlFor="w-ex2">Zweiter Beispielsatz (optional)</label>
+          <input
+            id="w-ex2"
+            type="text"
+            value={example2}
+            onChange={(e) => setExample2(e.target.value)}
+          />
+          <button className="primary" type="submit" disabled={busy}>
+            {busy ? "Speichert…" : "Hinzufügen"}
+          </button>
+        </form>
+      </div>
 
       <div className="card">
         <h2>Meine Wörter ({words.length})</h2>
-
-        {loading && (
-          <>
-            <div className="skeleton skel-line w60" />
-            <div className="skeleton skel-line w40" />
-            <div className="skeleton skel-line w80" />
-          </>
-        )}
-        {!loading && error && !formOpen && (
-          <div className="alert">
-            <span className="alert-ico" aria-hidden="true">!</span>
-            <div>Wörter konnten nicht geladen werden. Bitte später erneut versuchen.</div>
-          </div>
-        )}
+        {loading && <p className="muted">Lädt…</p>}
+        {error && <p className="status error">{error}</p>}
         {!loading && !words.length && (
-          <div className="empty">
-            <span className="empty-ico" aria-hidden="true">📖</span>
-            <p className="empty-title">Noch keine Wörter</p>
-            <p>Füge über „＋ Wort" dein erstes Wort hinzu.</p>
-          </div>
+          <p className="muted">Noch keine Wörter gespeichert.</p>
         )}
 
         {groups.map((group) => {
@@ -201,14 +166,14 @@ export default function Words({ userId }: { userId: string }) {
                 onClick={() => toggleCat(group.category)}
               >
                 <span>
-                  {group.category}
-                  <span className="cat-count">{group.words.length}</span>
+                  {group.category}{" "}
+                  <span className="muted small">({group.words.length})</span>
                 </span>
-                <span className="chev" aria-hidden="true">›</span>
+                <span aria-hidden="true">{open ? "▾" : "▸"}</span>
               </button>
 
               {open && (
-                <div className="cat-words accordion-body">
+                <div className="cat-words">
                   {group.words.map((w) => {
                     const rate = successRate(w);
                     const detail = openWordId === w.id;
@@ -226,9 +191,9 @@ export default function Words({ userId }: { userId: string }) {
                               <span className="muted small clamp"> {w.definition}</span>
                             )}
                           </button>
-                          <p className="word-stat">
+                          <p className="muted small">
                             {w.review_count}× abgefragt
-                            {rate !== null && ` · ${Math.round(rate * 100)}% richtig`}
+                            {rate !== null && ` · ${Math.round(rate * 100)}% Erfolgsquote`}
                           </p>
 
                           {detail && (
@@ -237,7 +202,7 @@ export default function Words({ userId }: { userId: string }) {
                               {w.definition2 && <p>{w.definition2}</p>}
                               {w.example && <p className="muted small">{w.example}</p>}
                               {w.example2 && <p className="muted small">{w.example2}</p>}
-                              <p className="word-stat">
+                              <p className="muted small">
                                 {w.correct_count} richtig · {w.wrong_count} falsch
                                 {(w.partial_count > 0 || w.unknown_count > 0) &&
                                   ` · ${w.partial_count} teilweise, ${w.unknown_count} nicht gewusst (früher)`}
@@ -247,9 +212,8 @@ export default function Words({ userId }: { userId: string }) {
                         </div>
                         <button
                           type="button"
-                          className="icon-btn danger"
+                          className="icon-btn"
                           aria-label={`${w.word} löschen`}
-                          title="Löschen"
                           onClick={() => remove(w)}
                         >
                           ✕
@@ -264,12 +228,17 @@ export default function Words({ userId }: { userId: string }) {
         })}
       </div>
 
-      <Link className="primary" to="/words/quiz" style={{ textDecoration: "none" }}>
-        Quiz starten
-      </Link>
-      <p className="section-hint" style={{ textAlign: "center", marginTop: "var(--s2)" }}>
-        Modus, Kategorie und Anzahl der Fragen wählst du im Quizbereich.
-      </p>
+      <div className="card">
+        <div className="row-between">
+          <h2>Quiz</h2>
+          <Link className="pill" to="/words/quiz">
+            Quiz starten
+          </Link>
+        </div>
+        <p className="muted small">
+          Wähle Modus, Kategorie und Anzahl der Fragen im Quizbereich.
+        </p>
+      </div>
     </div>
   );
 }

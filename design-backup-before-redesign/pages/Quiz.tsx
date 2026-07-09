@@ -241,41 +241,36 @@ export default function Quiz({ userId }: { userId: string }) {
   }
 
   if (step === "session" && currentWord) {
-    const progress = Math.round((currentIndex / sessionWords.length) * 100);
     return (
       <div className="page">
-        <div className="row-between" style={{ marginBottom: "var(--s2)" }}>
+        <div className="row-between">
           <button type="button" className="icon-btn" aria-label="Quiz abbrechen" onClick={backToWords}>
             ✕
           </button>
           <span className="status">
-            Frage {currentIndex + 1} / {sessionWords.length}
+            Frage {currentIndex + 1} von {sessionWords.length} · noch{" "}
+            {sessionWords.length - currentIndex} übrig
           </span>
         </div>
-        <div className="quiz-progress" aria-hidden="true">
-          <span style={{ width: `${progress}%` }} />
-        </div>
 
-        <div className="card quiz-card">
-          {currentWord.category && <span className="quiz-cat">{currentWord.category}</span>}
+        <div className="card">
+          {currentWord.category && <p className="muted small">{currentWord.category}</p>}
           <p className="quiz-word">{currentWord.word}</p>
 
           {!revealed ? (
             <button type="button" className="primary" onClick={() => setRevealed(true)}>
-              Lösung anzeigen
+              Bedeutung anzeigen
             </button>
           ) : (
             <>
-              <div className="quiz-solution">
-                <p className="def">
-                  {currentWord.definition || (
-                    <span className="muted">Keine Bedeutung hinterlegt.</span>
-                  )}
-                </p>
-                {currentWord.definition2 && <p className="def">{currentWord.definition2}</p>}
-                {currentWord.example && <p className="ex">{currentWord.example}</p>}
-                {currentWord.example2 && <p className="ex">{currentWord.example2}</p>}
-              </div>
+              <p>
+                {currentWord.definition || (
+                  <span className="muted">Keine Bedeutung hinterlegt.</span>
+                )}
+              </p>
+              {currentWord.definition2 && <p>{currentWord.definition2}</p>}
+              {currentWord.example && <p className="muted small">{currentWord.example}</p>}
+              {currentWord.example2 && <p className="muted small">{currentWord.example2}</p>}
 
               <div className="quiz-answer-row">
                 <button
@@ -307,29 +302,32 @@ export default function Quiz({ userId }: { userId: string }) {
     <div className="page">
       <h1>Ergebnis</h1>
       <div className="card">
-        <div className="result-ring">
-          <div className="result-pct">{summary.rate}%</div>
-          <div className="stat-sub">Erfolgsquote bei {summary.total} Wörtern</div>
-          <div className="result-split">
-            <span className="result-chip ok">● {summary.correct} richtig</span>
-            <span className="result-chip no">● {summary.wrong} falsch</span>
-          </div>
+        <div className="stat-row">
+          <span>Abgefragte Wörter</span>
+          <strong>{summary.total}</strong>
         </div>
-        <div className="meter" aria-hidden="true">
-          <span style={{ width: `${summary.rate}%` }} />
+        <div className="stat-row">
+          <span>{RATING_LABELS.correct}</span>
+          <strong>{summary.correct}</strong>
+        </div>
+        <div className="stat-row">
+          <span>{RATING_LABELS.wrong}</span>
+          <strong>{summary.wrong}</strong>
+        </div>
+        <div className="stat-row">
+          <span>Erfolgsquote</span>
+          <strong>{summary.rate}%</strong>
         </div>
       </div>
 
       {summary.problematic.length > 0 && (
         <div className="card">
-          <h2>Schwierige Wörter</h2>
-          <div className="chip-wrap">
-            {summary.problematic.map((w) => (
-              <span className="word-chip" key={w.id}>
-                {w.word}
-              </span>
-            ))}
-          </div>
+          <h2>Problematische Wörter</h2>
+          {summary.problematic.map((w) => (
+            <div className="word-row" key={w.id}>
+              <span>{w.word}</span>
+            </div>
+          ))}
         </div>
       )}
 
@@ -341,10 +339,10 @@ export default function Quiz({ userId }: { userId: string }) {
       >
         Falsche Wörter erneut üben
       </button>
-      <button type="button" className="btn-secondary" onClick={() => setStep("setup")}>
+      <button type="button" className="pill" onClick={() => setStep("setup")}>
         Neues Quiz starten
       </button>
-      <button type="button" className="btn-secondary" onClick={backToWords}>
+      <button type="button" className="pill" onClick={backToWords}>
         Zurück zum Wörterbereich
       </button>
     </div>
