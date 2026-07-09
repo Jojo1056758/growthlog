@@ -1,9 +1,62 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
+
+interface DataStats {
+  entries: number;
+  words: number;
+  bytes: number;
+}
+
+const formatBytes = (bytes: number): string => {
+  if (bytes < 1024) return `${bytes} B`;
+  const kb = bytes / 1024;
+  if (kb < 1024) return `${kb.toFixed(1)} KB`;
+  return `${(kb / 1024).toFixed(2)} MB`;
+};
 
 export default function Settings({ userId, email }: { userId: string; email: string }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const [stats, setStats] = useState<DataStats | null>(null);
+  const [statsLoading, setStatsLoading] = useState(true);
+  const [statsError, setStatsError] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      setStatsLoading(true);
+      setStatsError(false);
+      // Nur Daten des angemeldeten Nutzers (RLS + expliziter user_id-Filter).
+      const [entries, words] = await Promise.all([
+        supabase
+          .from("daily_entries")
+          .select("entry_date, answers, schema_version, created_at, updated_at")
+          .eq("user_id", userId),
+        supabase
+          .from("user_words")
+          .select("*")
+          .eq("user_id", userId),
+      ]);
+      if (cancelled) return;
+      if (entries.error || words.error) {
+        setStatsError(true);
+        setStatsLoading(false);
+        return;
+      }
+      const entryRows = entries.data || [];
+      const wordRows = words.data || [];
+      // Geschätzte Größe = Serialisierung der tatsächlich gespeicherten
+      // App-Daten dieses Nutzers (nicht die gesamte Datenbank).
+      const bytes = new Blob([JSON.stringify({ daily_entries: entryRows, user_words: wordRows })])
+        .size;
+      setStats({ entries: entryRows.length, words: wordRows.length, bytes });
+      setStatsLoading(false);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [userId]);
 
   const signOut = async () => {
     await supabase.auth.signOut();
@@ -66,7 +119,52 @@ export default function Settings({ userId, email }: { userId: string; email: str
       </div>
 
       <div className="card">
-        <h2>Daten</h2>
+        <h2>Deine gespeicherten Daten</h2>
+
+        {statsLoading && (
+          <>
+            <div className="skeleton skel-line w60" />
+            <div className="skeleton skel-line w40" />
+          </>
+        )}
+
+        {!statsLoading && statsError && (
+          <div className="alert">
+            <span className="alert-ico" aria-hidden="true">!</span>
+            <div>Die Datenübersicht konnte nicht geladen werden. Bitte später erneut versuchen.</div>
+          </div>
+        )}
+
+        {!statsLoading && !statsError && stats && (
+          stats.entries === 0 && stats.words === 0 ? (
+            <p className="section-hint" style={{ margin: 0 }}>
+              Noch keine gespeicherten Daten vorhanden.
+            </p>
+          ) : (
+            <>
+              <div className="stat-row">
+                <span className="muted">Tagebucheinträge</span>
+                <strong>{stats.entries}</strong>
+              </div>
+              <div className="stat-row">
+                <span className="muted">Wörter</span>
+                <strong>{stats.words}</strong>
+              </div>
+              <div className="stat-row">
+                <span className="muted">Datensätze gesamt</span>
+                <strong>{stats.entries + stats.words}</strong>
+              </div>
+              <div className="stat-row">
+                <span className="muted">Geschätzte Größe deiner gespeicherten App-Daten</span>
+                <strong>{formatBytes(stats.bytes)}</strong>
+              </div>
+            </>
+          )
+        )}
+      </div>
+
+      <div className="card">
+        <h2>Export</h2>
         <p className="section-hint">
           Exportiert alle Einträge und Wörter als JSON-Datei – z. B. als Backup.
         </p>

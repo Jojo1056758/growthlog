@@ -26,6 +26,10 @@ export default function Words({ userId }: { userId: string }) {
   const [openCats, setOpenCats] = useState<Set<string>>(new Set());
   const [openWordId, setOpenWordId] = useState<string | null>(null);
 
+  const [resetScope, setResetScope] = useState(""); // "" = alle Wörter, sonst Kategoriename
+  const [resetBusy, setResetBusy] = useState(false);
+  const [resetMsg, setResetMsg] = useState<{ ok: boolean; text: string } | null>(null);
+
   const load = async () => {
     const { data, error } = await supabase
       .from("user_words")
@@ -85,6 +89,54 @@ export default function Words({ userId }: { userId: string }) {
   };
 
   const groups = useMemo(() => groupByCategory(words), [words]);
+
+  // Setzt ausschließlich die Quizstatistik-Felder zurück – Wort, Kategorie,
+  // Definitionen und Beispiele bleiben unverändert. Nur Daten des angemeldeten
+  // Nutzers (RLS + user_id-Filter), begrenzt auf die betroffenen Wort-IDs.
+  const resetStats = async () => {
+    const targets = resetScope
+      ? groups.find((g) => g.category === resetScope)?.words ?? []
+      : words;
+    if (!targets.length) {
+      setResetMsg({ ok: false, text: "Keine passenden Wörter gefunden." });
+      return;
+    }
+    const scopeText = resetScope ? `der Kategorie „${resetScope}“` : "aller Wörter";
+    if (
+      !window.confirm(
+        `Quizstatistik ${scopeText} (${targets.length} Wörter) wirklich zurücksetzen? ` +
+          `Wörter, Kategorien, Erklärungen und Beispiele bleiben erhalten.`
+      )
+    ) {
+      return;
+    }
+    setResetBusy(true);
+    setResetMsg(null);
+    const ids = targets.map((w) => w.id);
+    const { error } = await supabase
+      .from("user_words")
+      .update({
+        review_count: 0,
+        correct_count: 0,
+        partial_count: 0,
+        wrong_count: 0,
+        unknown_count: 0,
+        last_reviewed_at: null,
+        last_correct_at: null,
+      })
+      .eq("user_id", userId)
+      .in("id", ids);
+    setResetBusy(false);
+    if (error) {
+      setResetMsg({ ok: false, text: "Zurücksetzen fehlgeschlagen. Bitte später erneut versuchen." });
+      return;
+    }
+    await load(); // UI (und damit der Quizalgorithmus beim nächsten Start) sofort aktualisieren
+    setResetMsg({
+      ok: true,
+      text: `Quizstatistik ${scopeText} für ${targets.length} Wörter zurückgesetzt.`,
+    });
+  };
 
   const toggleCat = (cat: string) => {
     setOpenCats((prev) => {
@@ -263,6 +315,50 @@ export default function Words({ userId }: { userId: string }) {
           );
         })}
       </div>
+
+      {words.length > 0 && (
+        <div className="card">
+          <h2>Quizstatistik zurücksetzen</h2>
+          <p className="section-hint">
+            Setzt nur die Quizbewertungen zurück. Wörter, Kategorien, Erklärungen und
+            Beispiele bleiben erhalten.
+          </p>
+          <label htmlFor="reset-scope">Umfang</label>
+          <select
+            id="reset-scope"
+            value={resetScope}
+            onChange={(e) => {
+              setResetScope(e.target.value);
+              setResetMsg(null);
+            }}
+          >
+            <option value="">Alle Wörter</option>
+            {groups.map((g) => (
+              <option key={g.category} value={g.category}>
+                {g.category} ({g.words.length})
+              </option>
+            ))}
+          </select>
+          {resetMsg && (
+            <p className={resetMsg.ok ? "status" : "status error"} style={{ marginTop: "var(--s3)" }}>
+              {resetMsg.text}
+            </p>
+          )}
+          <button
+            type="button"
+            className="btn-danger btn-block"
+            style={{ marginTop: "var(--s3)" }}
+            disabled={resetBusy}
+            onClick={resetStats}
+          >
+            {resetBusy
+              ? "Setzt zurück…"
+              : resetScope
+              ? `Statistik der Kategorie zurücksetzen`
+              : "Statistik aller Wörter zurücksetzen"}
+          </button>
+        </div>
+      )}
 
       <Link className="primary" to="/words/quiz" style={{ textDecoration: "none" }}>
         Quiz starten

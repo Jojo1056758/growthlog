@@ -1,7 +1,7 @@
 import { Fragment, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { QuestionRenderer } from "../components/Fields";
-import { FULL_SECTIONS, QUESTIONS, QUICK_IDS, Question } from "../lib/schema";
+import { FULL_SECTIONS, QUESTIONS, Question } from "../lib/schema";
 import { useEntry } from "../lib/useEntry";
 
 const toIso = (d: Date) => {
@@ -28,13 +28,13 @@ const formatDate = (iso: string) => {
   });
 };
 
-// Ein einziges, geführtes Tagebuch: die Überblicksfragen (früher „Schnell")
-// bilden den ersten Abschnitt, danach folgen die ausführlichen Bereiche.
+// Ein einziges, geführtes Tagebuch. Der obere Überblick enthält NUR die
+// grundlegenden Tageswerte und keine Inhalte, die weiter unten in einem
+// ausführlichen Bereich (Mini-Tagebuch, Traumtagebuch, Entscheidungen,
+// Wachstum, soziale Sicherheit) ausführlicher vorkommen.
 // Alle Felder bleiben optional; keine Änderung an Daten-/Speicherlogik.
-const FULL_IDS = new Set(FULL_SECTIONS.flatMap((s) => s.questions.map((q) => q.id)));
-const OVERVIEW_QUESTIONS: Question[] = QUICK_IDS
-  .filter((id) => id !== "dream_text" && !FULL_IDS.has(id))
-  .map((id) => QUESTIONS[id]);
+const OVERVIEW_IDS = ["mood_overall", "energy"];
+const OVERVIEW_QUESTIONS: Question[] = OVERVIEW_IDS.map((id) => QUESTIONS[id]);
 
 interface JournalSection {
   id: string;
