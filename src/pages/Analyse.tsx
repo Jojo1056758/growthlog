@@ -42,6 +42,23 @@ const TIMEOFDAY_MAPPING: Record<string, { morning: string; noon: string; evening
 const num = (v: unknown): number | undefined =>
   typeof v === "number" && Number.isFinite(v) ? v : undefined;
 
+// Für Textfelder mit Zahleneingabe (Gewicht, Trainingsdauer, Übungsanzahl):
+// akzeptiert sowohl echte Zahlen als auch numerische Strings (Komma oder Punkt).
+const parseNumeric = (v: unknown): number | undefined => {
+  if (typeof v === "number" && Number.isFinite(v)) return v;
+  if (typeof v === "string" && v.trim() !== "") {
+    const n = parseFloat(v.replace(",", "."));
+    if (Number.isFinite(n)) return n;
+  }
+  return undefined;
+};
+
+const NON_DAY_TIMEFRAMES = [
+  { id: "week", label: "Woche (7 Tage)" },
+  { id: "month", label: "Monat (30 Tage)" },
+  { id: "year", label: "Jahr (alle)" },
+];
+
 interface DataPoint {
   date: string;
   value: number;
@@ -227,6 +244,87 @@ const DayChart = ({
   );
 };
 
+// SVG Liniengraph mit automatisch angepasster Y-Achse (statt fester 1–10-Skala) –
+// für Kennzahlen wie Gewicht oder Trainingsdauer, die keine 1–10-Skala haben.
+const AutoLineChart = ({ data, unit }: { data: DataPoint[]; unit?: string }) => {
+  if (data.length === 0) {
+    return <p className="stat-sub">Keine Daten für diese Auswahl.</p>;
+  }
+
+  const values = data.map((d) => d.value);
+  const rawMin = Math.min(...values);
+  const rawMax = Math.max(...values);
+  const spread = rawMax - rawMin;
+  const pad = spread === 0 ? Math.max(Math.abs(rawMax) * 0.1, 1) : spread * 0.15;
+  const minVal = rawMin - pad;
+  const maxVal = rawMax + pad;
+
+  const padding = 40;
+  const width = 400;
+  const height = 200;
+  const graphWidth = width - padding * 2;
+  const graphHeight = height - padding * 2;
+
+  const xStep = graphWidth / Math.max(data.length - 1, 1);
+  const yRange = maxVal - minVal || 1;
+  const yScale = graphHeight / yRange;
+  const yFor = (v: number) => padding + graphHeight - (v - minVal) * yScale;
+
+  const points = data.map((d, i) => ({ x: padding + i * xStep, y: yFor(d.value) }));
+  const pathData = points
+    .map((p, i) => (i === 0 ? `M${p.x},${p.y}` : `L${p.x},${p.y}`))
+    .join(" ");
+
+  const xLabels = data.map((d, i) => {
+    const show = data.length <= 7 || i % Math.ceil(data.length / 5) === 0;
+    const x = padding + i * xStep;
+    if (!show) return null;
+    const shortDate = d.date.slice(5); // MM-DD
+    return (
+      <text key={i} x={x} y={height - 15} textAnchor="middle" fontSize="12" fill="var(--muted)">
+        {shortDate}
+      </text>
+    );
+  });
+
+  const unitSuffix = unit ? ` ${unit}` : "";
+  const yTicks = [minVal, (minVal + maxVal) / 2, maxVal];
+
+  return (
+    <svg viewBox={`0 0 ${width} ${height}`} style={{ width: "100%", maxHeight: "300px" }}>
+      {/* Y-Achse */}
+      <line x1={padding} y1={padding} x2={padding} y2={height - padding} stroke="var(--border)" strokeWidth="1" />
+      {/* X-Achse */}
+      <line x1={padding} y1={height - padding} x2={width - padding} y2={height - padding} stroke="var(--border)" strokeWidth="1" />
+
+      {/* Y-Achsen-Labels */}
+      {yTicks.map((val, i) => {
+        const y = yFor(val);
+        return (
+          <g key={i}>
+            <line x1={padding - 5} y1={y} x2={padding} y2={y} stroke="var(--border)" strokeWidth="1" />
+            <text x={padding - 10} y={y + 4} textAnchor="end" fontSize="11" fill="var(--muted)">
+              {val.toFixed(1)}
+              {unitSuffix}
+            </text>
+          </g>
+        );
+      })}
+
+      {/* X-Achsen-Labels */}
+      {xLabels}
+
+      {/* Liniengraph */}
+      <path d={pathData} stroke="var(--accent)" strokeWidth="2" fill="none" />
+
+      {/* Punkte */}
+      {points.map((p, i) => (
+        <circle key={i} cx={p.x} cy={p.y} r="3" fill="var(--accent)" />
+      ))}
+    </svg>
+  );
+};
+
 export default function Analyse({ userId }: { userId: string }) {
   const [entries, setEntries] = useState<EntryRow[]>([]);
   const [loading, setLoading] = useState(true);
@@ -236,6 +334,10 @@ export default function Analyse({ userId }: { userId: string }) {
   const [selectedTimeframe, setSelectedTimeframe] = useState("month");
   const [selectedView, setSelectedView] = useState("daily");
   const [selectedDay, setSelectedDay] = useState("");
+
+  const [weightView, setWeightView] = useState<"morning" | "evening">("morning");
+  const [weightTimeframe, setWeightTimeframe] = useState("month");
+  const [gymTimeframe, setGymTimeframe] = useState("month");
 
   useEffect(() => {
     let cancelled = false;
@@ -323,6 +425,29 @@ export default function Analyse({ userId }: { userId: string }) {
       }))
       .filter((d) => d.value !== undefined) as DataPoint[];
   }, [entries, selectedMetric, selectedTimeframe, selectedView]);
+
+  const weightData = useMemo(() => {
+    let filtered = entries;
+    if (weightTimeframe === "week") filtered = entries.slice(-7);
+    else if (weightTimeframe === "month") filtered = entries.slice(-30);
+    const key = weightView === "morning" ? "weight_morning" : "weight_evening";
+    return filtered
+      .map((e) => ({ date: e.entry_date, value: parseNumeric(e.answers?.[key]) }))
+      .filter((d): d is DataPoint => d.value !== undefined);
+  }, [entries, weightView, weightTimeframe]);
+
+  const gymData = useMemo(() => {
+    let filtered = entries;
+    if (gymTimeframe === "week") filtered = entries.slice(-7);
+    else if (gymTimeframe === "month") filtered = entries.slice(-30);
+    const duration = filtered
+      .map((e) => ({ date: e.entry_date, value: parseNumeric(e.answers?.gym_duration) }))
+      .filter((d): d is DataPoint => d.value !== undefined);
+    const exercises = filtered
+      .map((e) => ({ date: e.entry_date, value: parseNumeric(e.answers?.gym_exercises) }))
+      .filter((d): d is DataPoint => d.value !== undefined);
+    return { duration, exercises };
+  }, [entries, gymTimeframe]);
 
   // Tag-Ansicht: Liste der verfügbaren Tage (neueste zuerst) + effektiv gewählter Tag
   const availableDays = useMemo(
@@ -542,6 +667,78 @@ export default function Analyse({ userId }: { userId: string }) {
                 <span className="stat-sub">{m.count}× erfasst</span>
               </div>
             ))}
+          </div>
+
+          <div className="card">
+            <h2>Gewicht</h2>
+            <p className="section-hint">
+              Verlauf des eingetragenen Gewichts. Fehlende Tage werden ausgelassen.
+            </p>
+
+            <label htmlFor="weight-view">Zeitpunkt</label>
+            <select
+              id="weight-view"
+              value={weightView}
+              onChange={(e) => setWeightView(e.target.value as "morning" | "evening")}
+            >
+              <option value="morning">Morgens</option>
+              <option value="evening">Abends</option>
+            </select>
+
+            <label htmlFor="weight-timeframe" style={{ marginTop: "var(--s3)" }}>
+              Zeitraum
+            </label>
+            <select
+              id="weight-timeframe"
+              value={weightTimeframe}
+              onChange={(e) => setWeightTimeframe(e.target.value)}
+            >
+              {NON_DAY_TIMEFRAMES.map((t) => (
+                <option key={t.id} value={t.id}>
+                  {t.label}
+                </option>
+              ))}
+            </select>
+
+            <div style={{ marginTop: "var(--s4)", overflow: "auto" }}>
+              <AutoLineChart data={weightData} unit="kg" />
+            </div>
+          </div>
+
+          <div className="card">
+            <h2>Gym</h2>
+            <p className="section-hint">Trainingsdauer und Anzahl Übungen im Verlauf.</p>
+
+            <label htmlFor="gym-timeframe">Zeitraum</label>
+            <select
+              id="gym-timeframe"
+              value={gymTimeframe}
+              onChange={(e) => setGymTimeframe(e.target.value)}
+            >
+              {NON_DAY_TIMEFRAMES.map((t) => (
+                <option key={t.id} value={t.id}>
+                  {t.label}
+                </option>
+              ))}
+            </select>
+
+            <div style={{ marginTop: "var(--s4)" }}>
+              <p className="stat-sub" style={{ marginBottom: "var(--s2)" }}>
+                Trainingsdauer (Minuten)
+              </p>
+              <div style={{ overflow: "auto" }}>
+                <AutoLineChart data={gymData.duration} unit="Min" />
+              </div>
+            </div>
+
+            <div style={{ marginTop: "var(--s4)" }}>
+              <p className="stat-sub" style={{ marginBottom: "var(--s2)" }}>
+                Anzahl Übungen
+              </p>
+              <div style={{ overflow: "auto" }}>
+                <AutoLineChart data={gymData.exercises} />
+              </div>
+            </div>
           </div>
         </>
       )}

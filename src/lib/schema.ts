@@ -8,6 +8,7 @@ export type FieldType =
   | "text"
   | "textarea"
   | "ynu" // Ja / Nein / Unsicher
+  | "yn" // Ja / Nein
   | "list" // wiederholbare Textliste mit Plus-Button
   | "slist"; // wiederholbare strukturierte Liste
 
@@ -23,6 +24,7 @@ export interface Question {
   type: FieldType;
   help?: string;
   fields?: SubField[]; // nur für slist
+  addLabel?: string; // nur für list/slist: Beschriftung des Hinzufügen-Buttons
 }
 
 export interface Section {
@@ -43,7 +45,7 @@ export const QUESTIONS: Record<string, Question> = {
   social_courage: Q({ id: "social_courage", label: "Gab es eine soziale Mut-Situation?", type: "textarea" }),
   proud_of: Q({ id: "proud_of", label: "Worauf bin ich stolz?", type: "list" }),
   tomorrow: Q({ id: "tomorrow", label: "Was möchte ich morgen tun?", type: "list" }),
-  dreamed: Q({ id: "dreamed", label: "Habe ich geträumt?", type: "ynu" }),
+  dreamed: Q({ id: "dreamed", label: "Hast du geträumt?", type: "yn" }),
   dream_text: Q({ id: "dream_text", label: "Woran hast du geträumt?", type: "textarea" }),
 
   did_today: Q({ id: "did_today", label: "Was habe ich heute gemacht?", type: "textarea" }),
@@ -79,6 +81,11 @@ export const QUESTIONS: Record<string, Question> = {
   energy_noon: Q({ id: "energy_noon", label: "Energie mittags", type: "scale10" }),
   energy_evening: Q({ id: "energy_evening", label: "Energie abends", type: "scale10" }),
 
+  weight_morning: Q({ id: "weight_morning", label: "Gewicht morgens (kg)", type: "text" }),
+  weight_morning_ate: Q({ id: "weight_morning_ate", label: "Vor dem Wiegen gegessen?", type: "yn" }),
+  weight_evening: Q({ id: "weight_evening", label: "Gewicht abends (kg)", type: "text" }),
+  weight_evening_ate: Q({ id: "weight_evening_ate", label: "Vor dem Wiegen gegessen?", type: "yn" }),
+
   mood_up: Q({ id: "mood_up", label: "Was hat meine Stimmung verbessert?", type: "list" }),
   mood_down: Q({ id: "mood_down", label: "Was hat meine Stimmung verschlechtert?", type: "list" }),
 
@@ -98,6 +105,7 @@ export const QUESTIONS: Record<string, Question> = {
     id: "dreams",
     label: "Träume",
     type: "slist",
+    addLabel: "Traum hinzufügen",
     fields: [
       { id: "title", label: "Titel", type: "text" },
       { id: "description", label: "Beschreibung", type: "textarea" },
@@ -153,6 +161,9 @@ export const QUESTIONS: Record<string, Question> = {
   training: Q({ id: "training", label: "Training (Art, Dauer)", type: "text" }),
   complaints: Q({ id: "complaints", label: "Beschwerden", type: "list" }),
 
+  gym_duration: Q({ id: "gym_duration", label: "Trainingsdauer (Minuten)", type: "text" }),
+  gym_exercises: Q({ id: "gym_exercises", label: "Anzahl Übungen", type: "text" }),
+
   grateful: Q({ id: "grateful", label: "Wofür bin ich dankbar?", type: "list" }),
   best_moments: Q({ id: "best_moments", label: "Beste Momente", type: "list" }),
 
@@ -194,9 +205,8 @@ export const FULL_SECTIONS: Section[] = [
   {
     id: "dreams",
     title: "Traumtagebuch",
-    questions: [QUESTIONS.sleep_quality, QUESTIONS.sleep_hours, QUESTIONS.dreamed, QUESTIONS.dream_text, QUESTIONS.dreams],
+    questions: [QUESTIONS.sleep_quality, QUESTIONS.sleep_hours, QUESTIONS.dreamed, QUESTIONS.dreams],
   },
-  { id: "growth", title: "Persönliches Wachstum", questions: [QUESTIONS.growth_items] },
   {
     id: "social",
     title: "Soziale Sicherheit & Mut",
@@ -207,6 +217,11 @@ export const FULL_SECTIONS: Section[] = [
     id: "health",
     title: "Körper & Gesundheit",
     questions: [QUESTIONS.training, QUESTIONS.complaints],
+  },
+  {
+    id: "gym",
+    title: "Gym",
+    questions: [QUESTIONS.gym_duration, QUESTIONS.gym_exercises],
   },
   {
     id: "gratitude",

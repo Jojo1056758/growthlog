@@ -40,6 +40,24 @@ function Ynu({ value, onChange }: { value?: string; onChange: (v?: string) => vo
   );
 }
 
+function Yn({ value, onChange }: { value?: string; onChange: (v?: string) => void }) {
+  const opts = ["Ja", "Nein"];
+  return (
+    <div className="ynu">
+      {opts.map((o) => (
+        <button
+          key={o}
+          type="button"
+          className={value === o ? "pill active" : "pill"}
+          onClick={() => onChange(value === o ? undefined : o)}
+        >
+          {o}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 function AutoTextarea({
   value,
   onChange,
@@ -66,9 +84,11 @@ function AutoTextarea({
 function ListField({
   items,
   onChange,
+  addLabel,
 }: {
   items: ListItem[];
   onChange: (items: ListItem[]) => void;
+  addLabel?: string;
 }) {
   const list = items.length ? items : [];
   return (
@@ -97,7 +117,7 @@ function ListField({
         className="add-btn"
         onClick={() => onChange([...list, { id: uid(), text: "" }])}
       >
-        + Weiteren Punkt hinzufügen
+        {addLabel || "+ Weiteren Punkt hinzufügen"}
       </button>
     </div>
   );
@@ -107,10 +127,12 @@ function SListField({
   items,
   fields,
   onChange,
+  addLabel,
 }: {
   items: SListItem[];
   fields: SubField[];
   onChange: (items: SListItem[]) => void;
+  addLabel?: string;
 }) {
   const list = items.length ? items : [];
   const setField = (itemId: string, fieldId: string, value: unknown) =>
@@ -159,7 +181,7 @@ function SListField({
         className="add-btn"
         onClick={() => onChange([...list, { id: uid() }])}
       >
-        + Weiteren Punkt hinzufügen
+        {addLabel || "+ Weiteren Punkt hinzufügen"}
       </button>
     </div>
   );
@@ -182,6 +204,7 @@ export function QuestionRenderer({
         <Scale10 value={value as number | undefined} onChange={onChange} />
       )}
       {q.type === "ynu" && <Ynu value={value as string | undefined} onChange={onChange} />}
+      {q.type === "yn" && <Yn value={value as string | undefined} onChange={onChange} />}
       {q.type === "text" && (
         <input
           type="text"
@@ -196,6 +219,7 @@ export function QuestionRenderer({
         <ListField
           items={Array.isArray(value) ? (value as ListItem[]) : []}
           onChange={onChange}
+          addLabel={q.addLabel}
         />
       )}
       {q.type === "slist" && (
@@ -203,6 +227,7 @@ export function QuestionRenderer({
           items={Array.isArray(value) ? (value as SListItem[]) : []}
           fields={q.fields || []}
           onChange={onChange}
+          addLabel={q.addLabel}
         />
       )}
     </div>

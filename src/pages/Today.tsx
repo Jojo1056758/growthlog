@@ -205,6 +205,64 @@ export default function Today({ userId }: { userId: string }) {
                 </div>
               );
             })}
+
+            {/* Gewicht heute: morgens/abends, jeweils mit "vor dem Wiegen gegessen?" */}
+            {(() => {
+              const isExpanded = expandedMetric === "weight";
+              const wm = answers.weight_morning as string | undefined;
+              const we = answers.weight_evening as string | undefined;
+              const summary = [wm && `${wm} kg morgens`, we && `${we} kg abends`]
+                .filter(Boolean)
+                .join(" · ");
+              return (
+                <div style={{ paddingBottom: "var(--s3)" }}>
+                  <button
+                    type="button"
+                    className="section-toggle"
+                    aria-expanded={isExpanded}
+                    onClick={() => toggleMetric("weight")}
+                    style={{ marginBottom: isExpanded ? "var(--s2)" : 0 }}
+                  >
+                    <div style={{ flex: 1, textAlign: "left" }}>
+                      <span>Gewicht heute</span>
+                      {summary && <strong style={{ marginLeft: "var(--s2)" }}>{summary}</strong>}
+                    </div>
+                    <span className="chev" aria-hidden="true">›</span>
+                  </button>
+
+                  {isExpanded && (
+                    <div className="accordion-body" style={{ paddingTop: "var(--s2)" }}>
+                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--s3)" }}>
+                        <div>
+                          <QuestionRenderer
+                            q={QUESTIONS.weight_morning}
+                            value={wm}
+                            onChange={(v) => update("weight_morning", v)}
+                          />
+                          <QuestionRenderer
+                            q={QUESTIONS.weight_morning_ate}
+                            value={answers.weight_morning_ate}
+                            onChange={(v) => update("weight_morning_ate", v)}
+                          />
+                        </div>
+                        <div>
+                          <QuestionRenderer
+                            q={QUESTIONS.weight_evening}
+                            value={we}
+                            onChange={(v) => update("weight_evening", v)}
+                          />
+                          <QuestionRenderer
+                            q={QUESTIONS.weight_evening_ate}
+                            value={answers.weight_evening_ate}
+                            onChange={(v) => update("weight_evening_ate", v)}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
           </div>
 
           {/* Ausführliche Bereiche */}
@@ -224,11 +282,15 @@ export default function Today({ userId }: { userId: string }) {
                 </button>
                 {open && (
                   <div className="accordion-body">
-                    {section.questions.map((q) => (
-                      <Fragment key={q.id}>
-                        <QuestionRenderer q={q} value={answers[q.id]} onChange={(v) => update(q.id, v)} />
-                      </Fragment>
-                    ))}
+                    {section.questions.map((q) => {
+                      // Träume erscheinen nur, wenn "Hast du geträumt?" mit Ja beantwortet wurde.
+                      if (q.id === "dreams" && (answers.dreamed as string) !== "Ja") return null;
+                      return (
+                        <Fragment key={q.id}>
+                          <QuestionRenderer q={q} value={answers[q.id]} onChange={(v) => update(q.id, v)} />
+                        </Fragment>
+                      );
+                    })}
                   </div>
                 )}
               </div>
