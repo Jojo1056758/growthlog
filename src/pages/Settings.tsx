@@ -142,22 +142,17 @@ export default function Settings({ userId, email }: { userId: string; email: str
             </p>
           ) : (
             <>
-              <div className="stat-row">
-                <span className="muted">Tagebucheinträge</span>
-                <strong>{stats.entries}</strong>
+              <div className="stat-row" style={{ marginBottom: "var(--s3)" }}>
+                <span>Geschätzte Größe deiner gespeicherten App-Daten</span>
+                <strong style={{ fontSize: "1.3rem" }}>{formatBytes(stats.bytes)}</strong>
               </div>
-              <div className="stat-row">
-                <span className="muted">Wörter</span>
-                <strong>{stats.words}</strong>
-              </div>
-              <div className="stat-row">
-                <span className="muted">Datensätze gesamt</span>
-                <strong>{stats.entries + stats.words}</strong>
-              </div>
-              <div className="stat-row">
-                <span className="muted">Geschätzte Größe deiner gespeicherten App-Daten</span>
-                <strong>{formatBytes(stats.bytes)}</strong>
-              </div>
+              <p className="stat-sub" style={{ margin: "0 0 var(--s3) 0" }}>
+                {stats.entries} Tagebucheinträge · {stats.words} Wörter
+              </p>
+              <p className="stat-sub" style={{ margin: 0 }}>
+                Die Schätzung basiert auf dem Inhalt deiner App-Daten und enthält nicht den
+                technischen Datenbank-Overhead von Supabase.
+              </p>
             </>
           )
         )}

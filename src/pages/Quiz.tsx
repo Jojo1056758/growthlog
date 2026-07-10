@@ -38,6 +38,11 @@ export default function Quiz({ userId }: { userId: string }) {
   const [results, setResults] = useState<Record<string, NewRating>>({});
   const [saving, setSaving] = useState(false);
 
+  const [resetOpen, setResetOpen] = useState(false);
+  const [resetScope, setResetScope] = useState("");
+  const [resetBusy, setResetBusy] = useState(false);
+  const [resetMsg, setResetMsg] = useState<{ ok: boolean; text: string } | null>(null);
+
   const load = async () => {
     setLoading(true);
     const { data, error } = await supabase
@@ -94,6 +99,51 @@ export default function Quiz({ userId }: { userId: string }) {
       load();
       setStep("results");
     }
+  };
+
+  const resetStats = async () => {
+    const targets = resetScope
+      ? words.filter((w) => w.category === resetScope)
+      : words;
+    if (!targets.length) {
+      setResetMsg({ ok: false, text: "Keine passenden Wörter gefunden." });
+      return;
+    }
+    const scopeText = resetScope ? `der Kategorie „${resetScope}"` : "aller Wörter";
+    if (
+      !window.confirm(
+        `Quizstatistik ${scopeText} (${targets.length} Wörter) wirklich zurücksetzen? ` +
+          `Wörter, Kategorien, Erklärungen und Beispiele bleiben erhalten.`
+      )
+    ) {
+      return;
+    }
+    setResetBusy(true);
+    setResetMsg(null);
+    const ids = targets.map((w) => w.id);
+    const { error } = await supabase
+      .from("user_words")
+      .update({
+        review_count: 0,
+        correct_count: 0,
+        partial_count: 0,
+        wrong_count: 0,
+        unknown_count: 0,
+        last_reviewed_at: null,
+        last_correct_at: null,
+      })
+      .eq("user_id", userId)
+      .in("id", ids);
+    setResetBusy(false);
+    if (error) {
+      setResetMsg({ ok: false, text: "Zurücksetzen fehlgeschlagen. Bitte später erneut versuchen." });
+      return;
+    }
+    await load();
+    setResetMsg({
+      ok: true,
+      text: `Quizstatistik ${scopeText} für ${targets.length} Wörter zurückgesetzt.`,
+    });
   };
 
   const summary = useMemo(() => {
@@ -225,6 +275,65 @@ export default function Quiz({ userId }: { userId: string }) {
                 Feste Reihenfolge
               </button>
             </div>
+          </div>
+        )}
+
+        {words.length > 0 && (
+          <div className="card">
+            <button
+              type="button"
+              className="section-toggle"
+              aria-expanded={resetOpen}
+              onClick={() => {
+                setResetOpen(!resetOpen);
+                setResetMsg(null);
+              }}
+            >
+              <span>Quizstatistik verwalten</span>
+              <span className="chev" aria-hidden="true">›</span>
+            </button>
+            {resetOpen && (
+              <div className="accordion-body">
+                <p className="section-hint">
+                  Setzt nur die Quizbewertungen zurück. Wörter, Kategorien, Erklärungen und
+                  Beispiele bleiben erhalten.
+                </p>
+                <label htmlFor="reset-scope-quiz">Umfang</label>
+                <select
+                  id="reset-scope-quiz"
+                  value={resetScope}
+                  onChange={(e) => {
+                    setResetScope(e.target.value);
+                    setResetMsg(null);
+                  }}
+                >
+                  <option value="">Alle Wörter</option>
+                  {categories.map((c) => (
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
+                  ))}
+                </select>
+                {resetMsg && (
+                  <p className={resetMsg.ok ? "status" : "status error"} style={{ marginTop: "var(--s3)" }}>
+                    {resetMsg.text}
+                  </p>
+                )}
+                <button
+                  type="button"
+                  className="btn-danger"
+                  style={{ marginTop: "var(--s3)" }}
+                  disabled={resetBusy}
+                  onClick={resetStats}
+                >
+                  {resetBusy
+                    ? "Setzt zurück…"
+                    : resetScope
+                    ? `Statistik der Kategorie zurücksetzen`
+                    : "Statistik aller Wörter zurücksetzen"}
+                </button>
+              </div>
+            )}
           </div>
         )}
 

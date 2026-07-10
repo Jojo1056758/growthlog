@@ -14,16 +14,107 @@ const METRICS: { id: string; label: string }[] = [
   { id: "stress", label: "Stress" },
   { id: "focus", label: "Fokus" },
   { id: "calm", label: "Innere Ruhe" },
-  { id: "sleep_quality", label: "Schlafqualität" },
+];
+
+const TIMEFRAMES = [
+  { id: "week", label: "Woche (7 Tage)" },
+  { id: "month", label: "Monat (30 Tage)" },
+  { id: "year", label: "Jahr (alle)" },
 ];
 
 const num = (v: unknown): number | undefined =>
   typeof v === "number" && Number.isFinite(v) ? v : undefined;
 
+interface DataPoint {
+  date: string;
+  value: number;
+}
+
+// SVG Liniengraph
+const LineChart = ({ data, metric }: { data: DataPoint[]; metric: string }) => {
+  if (data.length === 0) {
+    return <p className="stat-sub">Keine Daten für diese Auswahl.</p>;
+  }
+
+  const values = data.map((d) => d.value);
+  const minVal = 1;
+  const maxVal = 10;
+  const padding = 40;
+  const width = 400;
+  const height = 200;
+  const graphWidth = width - padding * 2;
+  const graphHeight = height - padding * 2;
+
+  const xStep = graphWidth / Math.max(data.length - 1, 1);
+  const yRange = maxVal - minVal || 1;
+  const yScale = graphHeight / yRange;
+
+  // Punkte berechnen
+  const points = data.map((d, i) => {
+    const x = padding + i * xStep;
+    const y = padding + graphHeight - (d.value - minVal) * yScale;
+    return { x, y };
+  });
+
+  // Linie als Path
+  const pathData = points
+    .map((p, i) => (i === 0 ? `M${p.x},${p.y}` : `L${p.x},${p.y}`))
+    .join(" ");
+
+  // X-Achsen-Labels (nur jeden 3. anzeigen wenn viele Datenpunkte)
+  const xLabels = data.map((d, i) => {
+    const show = data.length <= 7 || i % Math.ceil(data.length / 5) === 0;
+    const x = padding + i * xStep;
+    if (!show) return null;
+    const shortDate = d.date.slice(5); // MM-DD
+    return (
+      <text key={i} x={x} y={height - 15} textAnchor="middle" fontSize="12" fill="var(--muted)">
+        {shortDate}
+      </text>
+    );
+  });
+
+  return (
+    <svg viewBox={`0 0 ${width} ${height}`} style={{ width: "100%", maxHeight: "300px" }}>
+      {/* Y-Achse */}
+      <line x1={padding} y1={padding} x2={padding} y2={height - padding} stroke="var(--border)" strokeWidth="1" />
+      {/* X-Achse */}
+      <line x1={padding} y1={height - padding} x2={width - padding} y2={height - padding} stroke="var(--border)" strokeWidth="1" />
+
+      {/* Y-Achsen-Labels */}
+      {[1, 4, 7, 10].map((val) => {
+        const y = padding + graphHeight - (val - minVal) * yScale;
+        return (
+          <g key={val}>
+            <line x1={padding - 5} y1={y} x2={padding} y2={y} stroke="var(--border)" strokeWidth="1" />
+            <text x={padding - 10} y={y + 4} textAnchor="end" fontSize="12" fill="var(--muted)">
+              {val}
+            </text>
+          </g>
+        );
+      })}
+
+      {/* X-Achsen-Labels */}
+      {xLabels}
+
+      {/* Liniengraph */}
+      <path d={pathData} stroke="var(--accent)" strokeWidth="2" fill="none" />
+
+      {/* Punkte */}
+      {points.map((p, i) => (
+        <circle key={i} cx={p.x} cy={p.y} r="3" fill="var(--accent)" />
+      ))}
+    </svg>
+  );
+};
+
 export default function Analyse({ userId }: { userId: string }) {
   const [entries, setEntries] = useState<EntryRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const [selectedMetric, setSelectedMetric] = useState("mood_overall");
+  const [selectedTimeframe, setSelectedTimeframe] = useState("month");
 
   useEffect(() => {
     let cancelled = false;
@@ -33,7 +124,7 @@ export default function Analyse({ userId }: { userId: string }) {
         .select("entry_date, answers")
         .eq("user_id", userId)
         .order("entry_date", { ascending: true })
-        .limit(90);
+        .limit(365);
       if (cancelled) return;
       if (error) setError(error.message);
       else setEntries((data as EntryRow[]) || []);
@@ -60,14 +151,20 @@ export default function Analyse({ userId }: { userId: string }) {
     [last30]
   );
 
-  const moodBars = useMemo(
-    () =>
-      last30.map((e) => ({
+  const graphData = useMemo(() => {
+    let filtered = entries;
+    if (selectedTimeframe === "week") {
+      filtered = entries.slice(-7);
+    } else if (selectedTimeframe === "month") {
+      filtered = entries.slice(-30);
+    }
+    return filtered
+      .map((e) => ({
         date: e.entry_date,
-        mood: num(e.answers?.mood_overall),
-      })),
-    [last30]
-  );
+        value: num(e.answers?.[selectedMetric]),
+      }))
+      .filter((d) => d.value !== undefined) as DataPoint[];
+  }, [entries, selectedMetric, selectedTimeframe]);
 
   const streak = useMemo(() => {
     if (!entries.length) return 0;
@@ -82,7 +179,6 @@ export default function Analyse({ userId }: { userId: string }) {
         count += 1;
         d.setDate(d.getDate() - 1);
       } else if (count === 0) {
-        // heute noch kein Eintrag – Streak ab gestern zählen
         d.setDate(d.getDate() - 1);
         const y = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(
           d.getDate()
@@ -102,6 +198,8 @@ export default function Analyse({ userId }: { userId: string }) {
     return vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : undefined;
   }, [last30]);
 
+  const currentMetricLabel = METRICS.find((m) => m.id === selectedMetric)?.label || "";
+
   return (
     <div className="page">
       <h1>Analyse</h1>
@@ -115,7 +213,7 @@ export default function Analyse({ userId }: { userId: string }) {
           </div>
           <div className="card">
             <div className="skeleton skel-line w60" />
-            <div className="skeleton" style={{ height: 130, borderRadius: 12 }} />
+            <div className="skeleton" style={{ height: 200, borderRadius: 12 }} />
           </div>
         </>
       )}
@@ -159,18 +257,46 @@ export default function Analyse({ userId }: { userId: string }) {
           </div>
 
           <div className="card">
-            <h2>Stimmungsverlauf</h2>
-            <p className="section-hint">Gesamtstimmung (1–10) der letzten 30 Einträge.</p>
-            <div className="chart">
-              {moodBars.map((b) => (
-                <div
-                  key={b.date}
-                  className={`bar${b.mood ? "" : " empty"}`}
-                  title={`${b.date}: ${b.mood ?? "kein Wert"}`}
-                  style={{ height: b.mood ? `${Math.max(b.mood * 10, 4)}%` : "6%" }}
-                />
+            <h2>Trends</h2>
+            <p className="section-hint">Wähle eine Kennzahl und einen Zeitraum aus.</p>
+
+            <label htmlFor="metric-select">Kennzahl</label>
+            <select
+              id="metric-select"
+              value={selectedMetric}
+              onChange={(e) => setSelectedMetric(e.target.value)}
+            >
+              {METRICS.map((m) => (
+                <option key={m.id} value={m.id}>
+                  {m.label}
+                </option>
               ))}
+            </select>
+
+            <label htmlFor="timeframe-select" style={{ marginTop: "var(--s3)" }}>
+              Zeitraum
+            </label>
+            <select
+              id="timeframe-select"
+              value={selectedTimeframe}
+              onChange={(e) => setSelectedTimeframe(e.target.value)}
+            >
+              {TIMEFRAMES.map((t) => (
+                <option key={t.id} value={t.id}>
+                  {t.label}
+                </option>
+              ))}
+            </select>
+
+            <div style={{ marginTop: "var(--s4)", overflow: "auto" }}>
+              <LineChart data={graphData} metric={selectedMetric} />
             </div>
+
+            {graphData.length === 0 && (
+              <p className="stat-sub" style={{ marginTop: "var(--s3)" }}>
+                Für die Kennzahl „{currentMetricLabel}" liegen für diesen Zeitraum keine Daten vor.
+              </p>
+            )}
           </div>
 
           <div className="card">
