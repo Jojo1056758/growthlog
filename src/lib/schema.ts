@@ -161,6 +161,7 @@ export const QUESTIONS: Record<string, Question> = {
   training: Q({ id: "training", label: "Training (Art, Dauer)", type: "text" }),
   complaints: Q({ id: "complaints", label: "Beschwerden", type: "list" }),
 
+  gym_visited: Q({ id: "gym_visited", label: "Warst du heute im Gym?", type: "yn" }),
   gym_duration: Q({ id: "gym_duration", label: "Trainingsdauer (Minuten)", type: "text" }),
   gym_exercises: Q({ id: "gym_exercises", label: "Anzahl Übungen", type: "text" }),
 
@@ -216,12 +217,12 @@ export const FULL_SECTIONS: Section[] = [
   {
     id: "health",
     title: "Körper & Gesundheit",
-    questions: [QUESTIONS.training, QUESTIONS.complaints],
+    questions: [QUESTIONS.complaints],
   },
   {
     id: "gym",
     title: "Gym",
-    questions: [QUESTIONS.gym_duration, QUESTIONS.gym_exercises],
+    questions: [QUESTIONS.gym_visited, QUESTIONS.gym_duration, QUESTIONS.gym_exercises],
   },
   {
     id: "gratitude",

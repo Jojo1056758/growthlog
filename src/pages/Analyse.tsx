@@ -59,6 +59,18 @@ const NON_DAY_TIMEFRAMES = [
   { id: "year", label: "Jahr (alle)" },
 ];
 
+// Montag als Wochenstart – dient als stabiler Gruppierungsschlüssel für
+// wöchentliche Auswertungen (z. B. Gym-Besuche pro Woche).
+const weekKey = (isoDate: string): string => {
+  const d = new Date(isoDate + "T12:00:00");
+  const dow = (d.getDay() + 6) % 7; // Montag = 0 .. Sonntag = 6
+  d.setDate(d.getDate() - dow);
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+};
+
 interface DataPoint {
   date: string;
   value: number;
@@ -338,6 +350,7 @@ export default function Analyse({ userId }: { userId: string }) {
   const [weightView, setWeightView] = useState<"morning" | "evening">("morning");
   const [weightTimeframe, setWeightTimeframe] = useState("month");
   const [gymTimeframe, setGymTimeframe] = useState("month");
+  const [sleepTimeframe, setSleepTimeframe] = useState("month");
 
   useEffect(() => {
     let cancelled = false;
@@ -446,8 +459,37 @@ export default function Analyse({ userId }: { userId: string }) {
     const exercises = filtered
       .map((e) => ({ date: e.entry_date, value: parseNumeric(e.answers?.gym_exercises) }))
       .filter((d): d is DataPoint => d.value !== undefined);
-    return { duration, exercises };
+
+    // Gym-Besuche pro Woche: nur Wochen, in denen tatsächlich Tagebucheinträge
+    // vorliegen, werden gezählt (0 Besuche ist dort ein echter Wert). Wochen
+    // ganz ohne Einträge tauchen gar nicht erst auf – sie werden nicht als 0 gewertet.
+    const buckets = new Map<string, number>();
+    filtered.forEach((e) => {
+      const key = weekKey(e.entry_date);
+      if (!buckets.has(key)) buckets.set(key, 0);
+      if (e.answers?.gym_visited === "Ja") {
+        buckets.set(key, (buckets.get(key) || 0) + 1);
+      }
+    });
+    const visitsPerWeek = Array.from(buckets.entries())
+      .sort((a, b) => a[0].localeCompare(b[0]))
+      .map(([week, count]) => ({ date: week, value: count }));
+
+    return { duration, exercises, visitsPerWeek };
   }, [entries, gymTimeframe]);
+
+  const sleepData = useMemo(() => {
+    let filtered = entries;
+    if (sleepTimeframe === "week") filtered = entries.slice(-7);
+    else if (sleepTimeframe === "month") filtered = entries.slice(-30);
+    const quality = filtered
+      .map((e) => ({ date: e.entry_date, value: num(e.answers?.sleep_quality) }))
+      .filter((d): d is DataPoint => d.value !== undefined);
+    const duration = filtered
+      .map((e) => ({ date: e.entry_date, value: parseNumeric(e.answers?.sleep_hours) }))
+      .filter((d): d is DataPoint => d.value !== undefined);
+    return { quality, duration };
+  }, [entries, sleepTimeframe]);
 
   // Tag-Ansicht: Liste der verfügbaren Tage (neueste zuerst) + effektiv gewählter Tag
   const availableDays = useMemo(
@@ -737,6 +779,62 @@ export default function Analyse({ userId }: { userId: string }) {
               </p>
               <div style={{ overflow: "auto" }}>
                 <AutoLineChart data={gymData.exercises} />
+              </div>
+            </div>
+
+            <div style={{ marginTop: "var(--s4)" }}>
+              <p className="stat-sub" style={{ marginBottom: "var(--s2)" }}>
+                Gym-Besuche pro Woche
+              </p>
+              {gymData.visitsPerWeek.length === 0 ? (
+                <p className="stat-sub">Keine Daten für diese Auswahl.</p>
+              ) : (
+                <div className="chart">
+                  {gymData.visitsPerWeek.map((w) => (
+                    <div
+                      key={w.date}
+                      className={`bar${w.value === 0 ? " empty" : ""}`}
+                      title={`Woche ab ${w.date}: ${w.value}× im Gym`}
+                      style={{ height: `${Math.max((w.value / 7) * 100, 4)}%` }}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="card">
+            <h2>Schlaf</h2>
+            <p className="section-hint">Verlauf von Schlafqualität und Schlafdauer.</p>
+
+            <label htmlFor="sleep-timeframe">Zeitraum</label>
+            <select
+              id="sleep-timeframe"
+              value={sleepTimeframe}
+              onChange={(e) => setSleepTimeframe(e.target.value)}
+            >
+              {NON_DAY_TIMEFRAMES.map((t) => (
+                <option key={t.id} value={t.id}>
+                  {t.label}
+                </option>
+              ))}
+            </select>
+
+            <div style={{ marginTop: "var(--s4)" }}>
+              <p className="stat-sub" style={{ marginBottom: "var(--s2)" }}>
+                Schlafqualität
+              </p>
+              <div style={{ overflow: "auto" }}>
+                <LineChart data={sleepData.quality} metric="sleep_quality" />
+              </div>
+            </div>
+
+            <div style={{ marginTop: "var(--s4)" }}>
+              <p className="stat-sub" style={{ marginBottom: "var(--s2)" }}>
+                Schlafdauer (Stunden)
+              </p>
+              <div style={{ overflow: "auto" }}>
+                <AutoLineChart data={sleepData.duration} unit="Std" />
               </div>
             </div>
           </div>

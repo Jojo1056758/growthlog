@@ -285,6 +285,12 @@ export default function Today({ userId }: { userId: string }) {
                     {section.questions.map((q) => {
                       // Träume erscheinen nur, wenn "Hast du geträumt?" mit Ja beantwortet wurde.
                       if (q.id === "dreams" && (answers.dreamed as string) !== "Ja") return null;
+                      // Trainingsdauer/Übungen erscheinen nur, wenn "Warst du heute im Gym?" mit Ja beantwortet wurde.
+                      if (
+                        (q.id === "gym_duration" || q.id === "gym_exercises") &&
+                        (answers.gym_visited as string) !== "Ja"
+                      )
+                        return null;
                       return (
                         <Fragment key={q.id}>
                           <QuestionRenderer q={q} value={answers[q.id]} onChange={(v) => update(q.id, v)} />
