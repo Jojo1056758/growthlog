@@ -350,6 +350,7 @@ export default function Analyse({ userId }: { userId: string }) {
   const [weightView, setWeightView] = useState<"morning" | "evening">("morning");
   const [weightTimeframe, setWeightTimeframe] = useState("month");
   const [gymTimeframe, setGymTimeframe] = useState("month");
+  const [gymMetric, setGymMetric] = useState<"duration" | "exercises" | "exertion">("duration");
   const [sleepTimeframe, setSleepTimeframe] = useState("month");
 
   useEffect(() => {
@@ -459,6 +460,10 @@ export default function Analyse({ userId }: { userId: string }) {
     const exercises = filtered
       .map((e) => ({ date: e.entry_date, value: parseNumeric(e.answers?.gym_exercises) }))
       .filter((d): d is DataPoint => d.value !== undefined);
+    // Anstrengung (1–10): nur tatsächlich erfasste Werte, fehlende nie als 0
+    const exertion = filtered
+      .map((e) => ({ date: e.entry_date, value: num(e.answers?.gym_exertion) }))
+      .filter((d): d is DataPoint => d.value !== undefined);
 
     // Gym-Besuche pro Woche: nur Wochen, in denen tatsächlich Tagebucheinträge
     // vorliegen, werden gezählt (0 Besuche ist dort ein echter Wert). Wochen
@@ -475,7 +480,7 @@ export default function Analyse({ userId }: { userId: string }) {
       .sort((a, b) => a[0].localeCompare(b[0]))
       .map(([week, count]) => ({ date: week, value: count }));
 
-    return { duration, exercises, visitsPerWeek };
+    return { duration, exercises, exertion, visitsPerWeek };
   }, [entries, gymTimeframe]);
 
   const sleepData = useMemo(() => {
@@ -764,22 +769,23 @@ export default function Analyse({ userId }: { userId: string }) {
               ))}
             </select>
 
-            <div style={{ marginTop: "var(--s4)" }}>
-              <p className="stat-sub" style={{ marginBottom: "var(--s2)" }}>
-                Trainingsdauer (Minuten)
-              </p>
-              <div style={{ overflow: "auto" }}>
-                <AutoLineChart data={gymData.duration} unit="Min" />
-              </div>
-            </div>
+            <label htmlFor="gym-metric" style={{ marginTop: "var(--s3)" }}>
+              Kennzahl
+            </label>
+            <select
+              id="gym-metric"
+              value={gymMetric}
+              onChange={(e) => setGymMetric(e.target.value as "duration" | "exercises" | "exertion")}
+            >
+              <option value="duration">Trainingsdauer (Minuten)</option>
+              <option value="exercises">Anzahl Übungen</option>
+              <option value="exertion">Anstrengung (1–10)</option>
+            </select>
 
-            <div style={{ marginTop: "var(--s4)" }}>
-              <p className="stat-sub" style={{ marginBottom: "var(--s2)" }}>
-                Anzahl Übungen
-              </p>
-              <div style={{ overflow: "auto" }}>
-                <AutoLineChart data={gymData.exercises} />
-              </div>
+            <div style={{ marginTop: "var(--s4)", overflow: "auto" }}>
+              {gymMetric === "duration" && <AutoLineChart data={gymData.duration} unit="Min" />}
+              {gymMetric === "exercises" && <AutoLineChart data={gymData.exercises} />}
+              {gymMetric === "exertion" && <LineChart data={gymData.exertion} metric="gym_exertion" />}
             </div>
 
             <div style={{ marginTop: "var(--s4)" }}>

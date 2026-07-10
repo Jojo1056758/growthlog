@@ -1,6 +1,7 @@
 import { Fragment, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { QuestionRenderer } from "../components/Fields";
+import TodayCalendar from "../components/TodayCalendar";
 import { FULL_SECTIONS, QUESTIONS, Question } from "../lib/schema";
 import { useEntry } from "../lib/useEntry";
 
@@ -265,6 +266,9 @@ export default function Today({ userId }: { userId: string }) {
             })()}
           </div>
 
+          {/* Kompakte Kalenderübersicht (nur bei verbundenem Kalender) */}
+          <TodayCalendar userId={userId} />
+
           {/* Ausführliche Bereiche */}
           {FULL_SECTIONS.map((section) => {
             const open = !!openSections[section.id];
@@ -285,9 +289,9 @@ export default function Today({ userId }: { userId: string }) {
                     {section.questions.map((q) => {
                       // Träume erscheinen nur, wenn "Hast du geträumt?" mit Ja beantwortet wurde.
                       if (q.id === "dreams" && (answers.dreamed as string) !== "Ja") return null;
-                      // Trainingsdauer/Übungen erscheinen nur, wenn "Warst du heute im Gym?" mit Ja beantwortet wurde.
+                      // Trainingsdetails erscheinen nur, wenn "Warst du heute im Gym?" mit Ja beantwortet wurde.
                       if (
-                        (q.id === "gym_duration" || q.id === "gym_exercises") &&
+                        (q.id === "gym_duration" || q.id === "gym_exercises" || q.id === "gym_exertion") &&
                         (answers.gym_visited as string) !== "Ja"
                       )
                         return null;

@@ -9,6 +9,7 @@ import Analyse from "./pages/Analyse";
 import Words from "./pages/Words";
 import Quiz from "./pages/Quiz";
 import Settings from "./pages/Settings";
+import CalendarPage from "./pages/Calendar";
 
 const svgProps = {
   width: 22,
@@ -49,6 +50,12 @@ const IconMore = () => (
     <circle cx="5" cy="12" r="1.4" />
     <circle cx="12" cy="12" r="1.4" />
     <circle cx="19" cy="12" r="1.4" />
+  </svg>
+);
+const IconCalendar = () => (
+  <svg {...svgProps}>
+    <rect x="4" y="5" width="16" height="16" rx="2.5" />
+    <path d="M4 10h16M8 3v4M16 3v4" />
   </svg>
 );
 
@@ -106,6 +113,7 @@ function Shell({ userId, email }: { userId: string; email: string }) {
       <main className="content">
         <Routes>
           <Route path="/" element={<Today userId={userId} />} />
+          <Route path="/calendar" element={<CalendarPage userId={userId} />} />
           <Route path="/history" element={<History userId={userId} />} />
           <Route path="/analyse" element={<Analyse userId={userId} />} />
           <Route path="/words" element={<Words userId={userId} />} />
@@ -119,6 +127,10 @@ function Shell({ userId, email }: { userId: string; email: string }) {
           <NavLink to="/" end>
             <span className="nav-ico" aria-hidden="true"><IconToday /></span>
             <span className="nav-label">Heute</span>
+          </NavLink>
+          <NavLink to="/calendar">
+            <span className="nav-ico" aria-hidden="true"><IconCalendar /></span>
+            <span className="nav-label">Kalender</span>
           </NavLink>
           <NavLink to="/history">
             <span className="nav-ico" aria-hidden="true"><IconHistory /></span>

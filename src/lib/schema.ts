@@ -164,6 +164,7 @@ export const QUESTIONS: Record<string, Question> = {
   gym_visited: Q({ id: "gym_visited", label: "Warst du heute im Gym?", type: "yn" }),
   gym_duration: Q({ id: "gym_duration", label: "Trainingsdauer (Minuten)", type: "text" }),
   gym_exercises: Q({ id: "gym_exercises", label: "Anzahl Übungen", type: "text" }),
+  gym_exertion: Q({ id: "gym_exertion", label: "Anstrengung", type: "scale10" }),
 
   grateful: Q({ id: "grateful", label: "Wofür bin ich dankbar?", type: "list" }),
   best_moments: Q({ id: "best_moments", label: "Beste Momente", type: "list" }),
@@ -222,7 +223,12 @@ export const FULL_SECTIONS: Section[] = [
   {
     id: "gym",
     title: "Gym",
-    questions: [QUESTIONS.gym_visited, QUESTIONS.gym_duration, QUESTIONS.gym_exercises],
+    questions: [
+      QUESTIONS.gym_visited,
+      QUESTIONS.gym_duration,
+      QUESTIONS.gym_exercises,
+      QUESTIONS.gym_exertion,
+    ],
   },
   {
     id: "gratitude",

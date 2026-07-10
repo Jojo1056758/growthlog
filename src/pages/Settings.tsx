@@ -1,11 +1,30 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { supabase } from "../lib/supabase";
+import {
+  CalendarInfo,
+  CalendarPrefs,
+  calendarWritable,
+  disconnectGoogle,
+  getConnectionStatus,
+  listCalendars,
+  loadPrefs,
+  savePrefs,
+  startGoogleConnect,
+} from "../lib/calendar";
 
 interface DataStats {
   entries: number;
   words: number;
   bytes: number;
 }
+
+type CalConn =
+  | { state: "loading" }
+  | { state: "disconnected" }
+  | { state: "reconnect"; email: string | null }
+  | { state: "connected"; email: string | null }
+  | { state: "error" };
 
 const formatBytes = (bytes: number): string => {
   if (bytes < 1024) return `${bytes} B`;
@@ -21,6 +40,94 @@ export default function Settings({ userId, email }: { userId: string; email: str
   const [stats, setStats] = useState<DataStats | null>(null);
   const [statsLoading, setStatsLoading] = useState(true);
   const [statsError, setStatsError] = useState(false);
+
+  const [params, setParams] = useSearchParams();
+  const [calNotice, setCalNotice] = useState<"connected" | "error" | null>(null);
+  const [cal, setCal] = useState<CalConn>({ state: "loading" });
+  const [calList, setCalList] = useState<CalendarInfo[]>([]);
+  const [calPrefs, setCalPrefs] = useState<CalendarPrefs>({ hidden: [], defaultCalendar: null });
+  const [calBusy, setCalBusy] = useState(false);
+
+  // Rückmeldung nach dem OAuth-Redirect (?calendar=connected|error)
+  useEffect(() => {
+    const flag = params.get("calendar");
+    if (flag === "connected" || flag === "error") {
+      setCalNotice(flag);
+      setParams({}, { replace: true });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const loadCalendarSection = async () => {
+    setCal({ state: "loading" });
+    try {
+      const status = await getConnectionStatus();
+      if (!status.connected) {
+        setCal({ state: "disconnected" });
+        return;
+      }
+      if (status.needsReconnect) {
+        setCal({ state: "reconnect", email: status.email });
+        return;
+      }
+      const [cals, prefs] = await Promise.all([listCalendars(), loadPrefs(userId)]);
+      setCalList(cals);
+      setCalPrefs(prefs);
+      setCal({ state: "connected", email: status.email });
+    } catch {
+      setCal({ state: "error" });
+    }
+  };
+
+  useEffect(() => {
+    loadCalendarSection();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId]);
+
+  const connectGoogle = async () => {
+    setCalBusy(true);
+    try {
+      window.location.href = await startGoogleConnect();
+    } catch {
+      setCalBusy(false);
+      setCal({ state: "error" });
+    }
+  };
+
+  const disconnect = async () => {
+    if (
+      !window.confirm(
+        "Google Kalender wirklich trennen? Die gespeicherten Zugriffstokens werden gelöscht und bei Google widerrufen."
+      )
+    )
+      return;
+    setCalBusy(true);
+    try {
+      await disconnectGoogle();
+      setCalList([]);
+      setCal({ state: "disconnected" });
+    } catch {
+      setCal({ state: "error" });
+    } finally {
+      setCalBusy(false);
+    }
+  };
+
+  const updatePrefs = async (next: CalendarPrefs) => {
+    setCalPrefs(next);
+    try {
+      await savePrefs(userId, next);
+    } catch {
+      /* nächster Load stellt den gespeicherten Stand wieder her */
+    }
+  };
+
+  const toggleCalendarVisible = (id: string) => {
+    const hidden = calPrefs.hidden.includes(id)
+      ? calPrefs.hidden.filter((x) => x !== id)
+      : [...calPrefs.hidden, id];
+    updatePrefs({ ...calPrefs, hidden });
+  };
 
   useEffect(() => {
     let cancelled = false;
@@ -116,6 +223,139 @@ export default function Settings({ userId, email }: { userId: string; email: str
         <button type="button" className="btn-secondary" onClick={signOut}>
           Abmelden
         </button>
+      </div>
+
+      <div className="card">
+        <h2>Kalender-Integration</h2>
+
+        {calNotice === "connected" && (
+          <div className="alert" style={{ marginBottom: "var(--s3)", background: "var(--accent-soft)", borderColor: "var(--accent-border)" }}>
+            <span className="alert-ico" aria-hidden="true" style={{ color: "var(--accent)" }}>✓</span>
+            <div>Google Kalender wurde erfolgreich verbunden.</div>
+          </div>
+        )}
+        {calNotice === "error" && (
+          <div className="alert" style={{ marginBottom: "var(--s3)" }}>
+            <span className="alert-ico" aria-hidden="true">!</span>
+            <div>Die Verbindung mit Google ist fehlgeschlagen. Bitte versuche es erneut.</div>
+          </div>
+        )}
+
+        {cal.state === "loading" && (
+          <>
+            <div className="skeleton skel-line w60" />
+            <div className="skeleton skel-line w40" />
+          </>
+        )}
+
+        {cal.state === "error" && (
+          <div className="alert">
+            <span className="alert-ico" aria-hidden="true">!</span>
+            <div>
+              Der Verbindungsstatus konnte nicht geladen werden.
+              <div className="alert-actions">
+                <button type="button" className="link-btn" onClick={loadCalendarSection}>
+                  Erneut versuchen
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {cal.state === "disconnected" && (
+          <>
+            <p className="section-hint">
+              Verbinde dein Google-Konto, um deine Kalender direkt in der App anzuzeigen
+              und Termine zu erstellen, zu bearbeiten und zu löschen. Die Zugriffstokens
+              werden ausschließlich serverseitig gespeichert.
+            </p>
+            <button type="button" className="primary" disabled={calBusy} onClick={connectGoogle}>
+              {calBusy ? "Öffnet Google…" : "Google Kalender verbinden"}
+            </button>
+          </>
+        )}
+
+        {cal.state === "reconnect" && (
+          <>
+            <div className="stat-row">
+              <span className="muted">Status</span>
+              <strong style={{ color: "var(--error)" }}>Verbindung abgelaufen</strong>
+            </div>
+            {cal.email && (
+              <div className="stat-row">
+                <span className="muted">Google-Konto</span>
+                <strong>{cal.email}</strong>
+              </div>
+            )}
+            <button type="button" className="primary" disabled={calBusy} onClick={connectGoogle}>
+              {calBusy ? "Öffnet Google…" : "Erneut mit Google verbinden"}
+            </button>
+            <button type="button" className="btn-secondary" disabled={calBusy} onClick={disconnect}>
+              Verbindung trennen
+            </button>
+          </>
+        )}
+
+        {cal.state === "connected" && (
+          <>
+            <div className="stat-row">
+              <span className="muted">Status</span>
+              <strong style={{ color: "var(--good)" }}>Verbunden</strong>
+            </div>
+            {cal.email && (
+              <div className="stat-row">
+                <span className="muted">Google-Konto</span>
+                <strong>{cal.email}</strong>
+              </div>
+            )}
+
+            {calList.length > 0 && (
+              <>
+                <p className="q-label" style={{ marginTop: "var(--s4)" }}>Sichtbare Kalender</p>
+                <div className="cal-pref-list">
+                  {calList.map((c) => {
+                    const visible = !calPrefs.hidden.includes(c.id);
+                    return (
+                      <label key={c.id} className="cal-pref-row">
+                        <input
+                          type="checkbox"
+                          checked={visible}
+                          onChange={() => toggleCalendarVisible(c.id)}
+                        />
+                        <span className="cal-dot" style={{ background: c.color || "var(--accent)" }} />
+                        <span className="cal-pref-name">{c.name}</span>
+                        {!calendarWritable(c) && <span className="cal-badge">Schreibgeschützt</span>}
+                        {c.primary && <span className="cal-badge">Haupt</span>}
+                      </label>
+                    );
+                  })}
+                </div>
+
+                <label htmlFor="cal-default" style={{ marginTop: "var(--s3)" }}>
+                  Standardkalender für neue Termine
+                </label>
+                <select
+                  id="cal-default"
+                  value={calPrefs.defaultCalendar || ""}
+                  onChange={(e) =>
+                    updatePrefs({ ...calPrefs, defaultCalendar: e.target.value || null })
+                  }
+                >
+                  <option value="">Automatisch (Hauptkalender)</option>
+                  {calList.filter(calendarWritable).map((c) => (
+                    <option key={c.id} value={c.id}>
+                      {c.name}
+                    </option>
+                  ))}
+                </select>
+              </>
+            )}
+
+            <button type="button" className="btn-secondary" disabled={calBusy} onClick={disconnect}>
+              {calBusy ? "Trennt…" : "Verbindung trennen"}
+            </button>
+          </>
+        )}
       </div>
 
       <div className="card">
