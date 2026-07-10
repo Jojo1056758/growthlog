@@ -28,30 +28,30 @@ const formatDate = (iso: string) => {
   });
 };
 
-// Ein einziges, geführtes Tagebuch. Der obere Überblick enthält NUR die
-// grundlegenden Tageswerte und keine Inhalte, die weiter unten in einem
-// ausführlichen Bereich (Mini-Tagebuch, Traumtagebuch, Entscheidungen,
-// Wachstum, soziale Sicherheit) ausführlicher vorkommen.
-// Alle Felder bleiben optional; keine Änderung an Daten-/Speicherlogik.
-const OVERVIEW_IDS = ["mood_overall", "energy"];
-const OVERVIEW_QUESTIONS: Question[] = OVERVIEW_IDS.map((id) => QUESTIONS[id]);
-
-interface JournalSection {
-  id: string;
-  title: string;
-  questions: Question[];
-}
-const SECTIONS: JournalSection[] = [
-  { id: "overview", title: "Überblick", questions: OVERVIEW_QUESTIONS },
-  ...FULL_SECTIONS.map((s) => ({ id: s.id, title: s.title, questions: s.questions })),
+// Zentrale Kennzahlen im Überblick mit optionalen Tageszeitwerten
+const CORE_METRICS = [
+  { id: "mood_overall", label: "Gesamtstimmung" },
+  { id: "energy", label: "Energie" },
+  { id: "motivation", label: "Motivation" },
+  { id: "stress", label: "Stress" },
+  { id: "focus", label: "Fokus" },
+  { id: "calm", label: "Innere Ruhe" },
 ];
+
+const TIMEOFDAY_MAPPING: Record<string, { morning: string; noon: string; evening: string }> = {
+  mood_overall: { morning: "mood_morning", noon: "mood_noon", evening: "mood_evening" },
+  energy: { morning: "energy_morning", noon: "energy_noon", evening: "energy_evening" },
+  motivation: { morning: "motivation_morning", noon: "motivation_noon", evening: "motivation_evening" },
+  stress: { morning: "stress_morning", noon: "stress_noon", evening: "stress_evening" },
+  focus: { morning: "focus_morning", noon: "focus_noon", evening: "focus_evening" },
+  calm: { morning: "calm_morning", noon: "calm_noon", evening: "calm_evening" },
+};
 
 export default function Today({ userId }: { userId: string }) {
   const [params, setParams] = useSearchParams();
   const date = params.get("date") || todayIso();
-  const [openSections, setOpenSections] = useState<Record<string, boolean>>({
-    overview: true,
-  });
+  const [expandedMetric, setExpandedMetric] = useState<string | null>(null);
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
   const { answers, update, status, retry } = useEntry(userId, date);
 
   const isToday = date === todayIso();
@@ -63,6 +63,9 @@ export default function Today({ userId }: { userId: string }) {
 
   const toggleSection = (id: string) =>
     setOpenSections((prev) => ({ ...prev, [id]: !prev[id] }));
+
+  const toggleMetric = (id: string) =>
+    setExpandedMetric(expandedMetric === id ? null : id);
 
   const save = useMemo(() => {
     switch (status) {
@@ -78,19 +81,6 @@ export default function Today({ userId }: { userId: string }) {
         return { cls: "", text: "Bereit" };
     }
   }, [status]);
-
-  const renderQuestion = (q: Question) => (
-    <Fragment key={q.id}>
-      <QuestionRenderer q={q} value={answers[q.id]} onChange={(v) => update(q.id, v)} />
-      {q.id === "dreamed" && answers.dreamed === "Ja" && (
-        <QuestionRenderer
-          q={QUESTIONS.dream_text}
-          value={answers.dream_text}
-          onChange={(v) => update("dream_text", v)}
-        />
-      )}
-    </Fragment>
-  );
 
   return (
     <div className="page">
@@ -120,7 +110,7 @@ export default function Today({ userId }: { userId: string }) {
 
       <div className="row-between">
         <p className="section-hint" style={{ margin: 0 }}>
-          Halte fest, was passt – jedes Feld ist freiwillig.
+          Trage deine Tageswerte ein – Tageszeiten sind optional.
         </p>
         <span className={`save-chip ${save.cls}`}>
           <span className="save-dot" />
@@ -140,28 +130,111 @@ export default function Today({ userId }: { userId: string }) {
           <div className="skeleton skel-line w60" />
         </div>
       ) : (
-        SECTIONS.map((section) => {
-          const open = !!openSections[section.id];
-          if (!section.questions.length) return null;
-          return (
-            <div className="card" key={section.id}>
-              <button
-                type="button"
-                className="section-toggle"
-                aria-expanded={open}
-                onClick={() => toggleSection(section.id)}
-              >
-                <span>{section.title}</span>
-                <span className="chev" aria-hidden="true">›</span>
-              </button>
-              {open && (
-                <div className="accordion-body">
-                  {section.questions.map(renderQuestion)}
+        <>
+          {/* Zentrale Kennzahlen im Überblick */}
+          <div className="card">
+            <h2>Überblick</h2>
+            {CORE_METRICS.map((metric) => {
+              const value = answers[metric.id] as number | undefined;
+              const timeMapping = TIMEOFDAY_MAPPING[metric.id];
+              const morningValue = answers[timeMapping.morning] as number | undefined;
+              const noonValue = answers[timeMapping.noon] as number | undefined;
+              const eveningValue = answers[timeMapping.evening] as number | undefined;
+              const isExpanded = expandedMetric === metric.id;
+
+              return (
+                <div
+                  key={metric.id}
+                  style={{ paddingBottom: "var(--s3)", borderBottom: "1px solid var(--border)" }}
+                >
+                  <button
+                    type="button"
+                    className="section-toggle"
+                    aria-expanded={isExpanded}
+                    onClick={() => toggleMetric(metric.id)}
+                    style={{ marginBottom: isExpanded ? "var(--s2)" : 0 }}
+                  >
+                    <div style={{ flex: 1, textAlign: "left" }}>
+                      <span>{metric.label}</span>
+                      {value !== undefined && (
+                        <strong style={{ marginLeft: "var(--s2)" }}>{value}/10</strong>
+                      )}
+                    </div>
+                    <span className="chev" aria-hidden="true">›</span>
+                  </button>
+
+                  {isExpanded && (
+                    <div className="accordion-body" style={{ paddingTop: "var(--s2)" }}>
+                      <QuestionRenderer
+                        q={QUESTIONS[metric.id]}
+                        value={value}
+                        onChange={(v) => update(metric.id, v)}
+                      />
+
+                      <div style={{ marginTop: "var(--s4)" }}>
+                        <p className="section-hint">Tageszeiten (optional)</p>
+                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "var(--s2)" }}>
+                          <div>
+                            <label style={{ fontSize: "0.85rem" }}>Morgens</label>
+                            <QuestionRenderer
+                              q={QUESTIONS[timeMapping.morning]}
+                              value={morningValue}
+                              onChange={(v) => update(timeMapping.morning, v)}
+                            />
+                          </div>
+                          <div>
+                            <label style={{ fontSize: "0.85rem" }}>Mittags</label>
+                            <QuestionRenderer
+                              q={QUESTIONS[timeMapping.noon]}
+                              value={noonValue}
+                              onChange={(v) => update(timeMapping.noon, v)}
+                            />
+                          </div>
+                          <div>
+                            <label style={{ fontSize: "0.85rem" }}>Abends</label>
+                            <QuestionRenderer
+                              q={QUESTIONS[timeMapping.evening]}
+                              value={eveningValue}
+                              onChange={(v) => update(timeMapping.evening, v)}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          );
-        })
+              );
+            })}
+          </div>
+
+          {/* Ausführliche Bereiche */}
+          {FULL_SECTIONS.map((section) => {
+            const open = !!openSections[section.id];
+            if (!section.questions.length) return null;
+            return (
+              <div className="card" key={section.id}>
+                <button
+                  type="button"
+                  className="section-toggle"
+                  aria-expanded={open}
+                  onClick={() => toggleSection(section.id)}
+                >
+                  <span>{section.title}</span>
+                  <span className="chev" aria-hidden="true">›</span>
+                </button>
+                {open && (
+                  <div className="accordion-body">
+                    {section.questions.map((q) => (
+                      <Fragment key={q.id}>
+                        <QuestionRenderer q={q} value={answers[q.id]} onChange={(v) => update(q.id, v)} />
+                      </Fragment>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </>
       )}
     </div>
   );

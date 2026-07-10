@@ -56,9 +56,29 @@ export const QUESTIONS: Record<string, Question> = {
   mood_noon: Q({ id: "mood_noon", label: "Stimmung mittags", type: "scale10" }),
   mood_evening: Q({ id: "mood_evening", label: "Stimmung abends", type: "scale10" }),
   motivation: Q({ id: "motivation", label: "Motivation", type: "scale10" }),
+  motivation_morning: Q({ id: "motivation_morning", label: "Motivation morgens", type: "scale10" }),
+  motivation_noon: Q({ id: "motivation_noon", label: "Motivation mittags", type: "scale10" }),
+  motivation_evening: Q({ id: "motivation_evening", label: "Motivation abends", type: "scale10" }),
+
   stress: Q({ id: "stress", label: "Stress", type: "scale10" }),
+  stress_morning: Q({ id: "stress_morning", label: "Stress morgens", type: "scale10" }),
+  stress_noon: Q({ id: "stress_noon", label: "Stress mittags", type: "scale10" }),
+  stress_evening: Q({ id: "stress_evening", label: "Stress abends", type: "scale10" }),
+
   focus: Q({ id: "focus", label: "Fokus", type: "scale10" }),
+  focus_morning: Q({ id: "focus_morning", label: "Fokus morgens", type: "scale10" }),
+  focus_noon: Q({ id: "focus_noon", label: "Fokus mittags", type: "scale10" }),
+  focus_evening: Q({ id: "focus_evening", label: "Fokus abends", type: "scale10" }),
+
   calm: Q({ id: "calm", label: "Innere Ruhe", type: "scale10" }),
+  calm_morning: Q({ id: "calm_morning", label: "Innere Ruhe morgens", type: "scale10" }),
+  calm_noon: Q({ id: "calm_noon", label: "Innere Ruhe mittags", type: "scale10" }),
+  calm_evening: Q({ id: "calm_evening", label: "Innere Ruhe abends", type: "scale10" }),
+
+  energy_morning: Q({ id: "energy_morning", label: "Energie morgens", type: "scale10" }),
+  energy_noon: Q({ id: "energy_noon", label: "Energie mittags", type: "scale10" }),
+  energy_evening: Q({ id: "energy_evening", label: "Energie abends", type: "scale10" }),
+
   mood_up: Q({ id: "mood_up", label: "Was hat meine Stimmung verbessert?", type: "list" }),
   mood_down: Q({ id: "mood_down", label: "Was hat meine Stimmung verschlechtert?", type: "list" }),
 
@@ -186,7 +206,11 @@ export const FULL_SECTIONS: Section[] = [
     ],
   },
   { id: "feelings", title: "Besondere Gefühle", questions: [QUESTIONS.feelings] },
-  { id: "dreams", title: "Traumtagebuch", questions: [QUESTIONS.dreams] },
+  {
+    id: "dreams",
+    title: "Traumtagebuch",
+    questions: [QUESTIONS.sleep_quality, QUESTIONS.sleep_hours, QUESTIONS.dreamed, QUESTIONS.dream_text, QUESTIONS.dreams],
+  },
   { id: "growth", title: "Persönliches Wachstum", questions: [QUESTIONS.growth_items] },
   {
     id: "social",
@@ -197,12 +221,7 @@ export const FULL_SECTIONS: Section[] = [
   {
     id: "health",
     title: "Körper & Gesundheit",
-    questions: [
-      QUESTIONS.sleep_hours,
-      QUESTIONS.sleep_quality,
-      QUESTIONS.training,
-      QUESTIONS.complaints,
-    ],
+    questions: [QUESTIONS.training, QUESTIONS.complaints],
   },
   {
     id: "gratitude",
