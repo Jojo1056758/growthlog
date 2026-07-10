@@ -190,21 +190,6 @@ export const FULL_SECTIONS: Section[] = [
       QUESTIONS.free_thoughts,
     ],
   },
-  {
-    id: "mood",
-    title: "Stimmung im Tagesverlauf",
-    questions: [
-      QUESTIONS.mood_morning,
-      QUESTIONS.mood_noon,
-      QUESTIONS.mood_evening,
-      QUESTIONS.motivation,
-      QUESTIONS.stress,
-      QUESTIONS.focus,
-      QUESTIONS.calm,
-      QUESTIONS.mood_up,
-      QUESTIONS.mood_down,
-    ],
-  },
   { id: "feelings", title: "Besondere Gefühle", questions: [QUESTIONS.feelings] },
   {
     id: "dreams",
@@ -232,11 +217,6 @@ export const FULL_SECTIONS: Section[] = [
     id: "difficulties",
     title: "Schwierigkeiten & Fehler",
     questions: [QUESTIONS.difficult, QUESTIONS.mistakes_learned],
-  },
-  {
-    id: "planning",
-    title: "Morgenplanung",
-    questions: [QUESTIONS.tomorrow, QUESTIONS.avoid_tomorrow, QUESTIONS.self_reminder],
   },
 ];
 
